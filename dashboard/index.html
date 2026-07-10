@@ -65,7 +65,10 @@
         <p class="lede">Master transcription factors for every group, at five resolutions of the DepMap disease hierarchy, down to the single cell line. <b>Specific</b> = top-5% by CaCTS score <em>and</em> expression; <b>non-specific</b> = highly expressed, lower specificity (CaCTS's candidate ubiquitous MTFs).</p></div>
       <div class="controls">
         <div class="seg" id="atlas-div" role="tablist"></div>
-        <select id="atlas-group" class="sel" aria-label="Group" title="Choose a group. At the Cell-line level, type to jump to a cell-line name."></select>
+        <div class="combo" id="atlas-combo">
+          <input id="atlas-group" class="sel combo-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" autocomplete="off" spellcheck="false" aria-label="Group" title="Choose a group, or type to filter. At the Model-type and Cell-line levels you can search by cancer / tissue text (e.g. 'serous', 'glioblastoma')." placeholder="Choose a group…">
+          <div class="combo-pop" id="atlas-pop" role="listbox"></div>
+        </div>
         <span class="hint" id="atlas-hint"></span>
         <button id="atlas-dl" class="dl-btn" title="download this group's specific + non-specific MTFs as TSV">⬇ TSV</button>
       </div>
@@ -84,7 +87,10 @@
         <p class="lede">Every transcription factor's CaCTS specificity score for a chosen group, sortable, at any of the five resolutions, down to a single cell line. Lower CaCTS score = more group-specific (rank 1 = most specific). Class (specific / non-specific) uses the top-5%-score ∩ top-5%-expression rule, and the two gates behind it are shown as their own columns. Each TF also carries its family, per-group CRISPR essentiality (Chronos; not at the single-cell-line level), cross-group breadth, and out-links. <b>⬇ TSV</b> downloads the current sorted / filtered view.</p></div>
       <div class="controls">
         <div class="seg" id="scores-div" role="tablist"></div>
-        <select id="scores-group" class="sel" aria-label="Group" title="Choose a group. At the Cell-line level, type to jump to a cell-line name."></select>
+        <div class="combo" id="scores-combo">
+          <input id="scores-group" class="sel combo-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" autocomplete="off" spellcheck="false" aria-label="Group" title="Choose a group, or type to filter. At the Model-type and Cell-line levels you can search by cancer / tissue text (e.g. 'serous', 'glioblastoma')." placeholder="Choose a group…">
+          <div class="combo-pop" id="scores-pop" role="listbox"></div>
+        </div>
         <input type="search" id="scores-filter" class="sel" placeholder="filter TFs…" autocomplete="off" spellcheck="false" title="filter the table to TF symbols containing this text">
         <button id="scores-dl" class="dl-btn" title="download the current table (sorted + filtered) as TSV">⬇ TSV</button>
         <span class="hint" id="scores-hint"></span>
@@ -142,6 +148,7 @@
 <script src="js/theme.js"></script>
 <script src="js/tab-manager.js"></script>
 <script src="js/util.js"></script>
+<script src="js/combo.js"></script>
 <script src="js/overview.js"></script>
 <script src="js/atlas.js"></script>
 <script src="js/scores.js"></script>

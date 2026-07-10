@@ -57,10 +57,5 @@ const U = (() => {
     return out;
   };
 
-  // Populate a <select> dropdown. opts: [{val, hint}]; option value = val (what selectVal matches on).
-  // Native <select> gives an obvious dropdown affordance and type-to-jump even for the ~1,450 cell lines.
-  const fillSelect = (selEl, opts) =>
-    selEl.innerHTML = opts.map(o => `<option value="${esc(o.val)}">${esc(o.val)}</option>`).join("");
-
-  return { DIVS, el, esc, tags, classify, empiricalFDR, fillSelect, downloadTSV };
+  return { DIVS, el, esc, tags, classify, empiricalFDR, downloadTSV };
 })();

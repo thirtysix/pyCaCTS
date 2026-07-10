@@ -87,6 +87,19 @@ td.mono.ess-dep{color:var(--amber); font-weight:700}
 .dl-btn{font:inherit; font-size:12.5px; font-weight:600; color:var(--accent-deep); background:var(--surface);
   border:1px solid var(--border); border-radius:8px; padding:7px 12px; cursor:pointer}
 .dl-btn:hover{border-color:var(--accent); background:var(--accent-soft)}
+/* searchable combobox group picker: visible dropdown that also filters as you type */
+.combo{position:relative; display:inline-block; min-width:270px; max-width:100%}
+.combo-input{width:100%; padding-right:28px}
+.combo::after{content:"▾"; position:absolute; right:11px; top:11px; font-size:11px; color:var(--muted); pointer-events:none; transition:transform .15s}
+.combo.open::after{transform:rotate(180deg)}
+.combo-pop{position:absolute; left:0; right:0; top:calc(100% + 4px); z-index:30; display:none;
+  max-height:min(340px,60vh); overflow-y:auto; background:var(--surface); border:1px solid var(--border);
+  border-radius:9px; box-shadow:var(--sh); padding:4px}
+.combo.open .combo-pop{display:block}
+.combo-opt{padding:7px 11px; border-radius:6px; font-size:13.5px; cursor:pointer; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.combo-opt:hover, .combo-opt.hi{background:var(--accent-soft)}
+.combo-opt.on{color:var(--accent-deep); font-weight:600}
+.combo-empty{padding:8px 11px; font-size:12.5px; color:var(--muted)}
 
 /* tags & pills */
 .tag{font-size:9.5px; font-weight:700; letter-spacing:.03em; padding:1.5px 5px; border-radius:4px; text-transform:uppercase; white-space:nowrap}

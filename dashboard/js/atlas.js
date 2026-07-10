@@ -1,6 +1,6 @@
 /* atlas.js, browse specific / non-specific MTFs for every group, at five resolutions incl. single cell line. */
 const Atlas = (() => {
-  let manifest, mtDesc = null, linesIdx = null, curDiv = "lineage", curOpts = [], curSpec = [], curNons = [];
+  let manifest, mtDesc = null, linesIdx = null, curDiv = "lineage", curOpts = [], curSpec = [], curNons = [], combo;
   const byGroup = {};                          // group-level: div -> {group -> {spec, nons}}
   const isLine = () => curDiv === "line";
 
@@ -15,21 +15,26 @@ const Atlas = (() => {
     byGroup[div] = m;
   }
 
-  function optionsFor() {
-    if (isLine()) return linesIdx.map(l => ({ val: `${l.n} · ${l.a}`, hint: l.s, key: l.a, name: l.n, sub: l.s }));
-    return Object.entries(manifest.divisions[curDiv].groups).sort((a, b) => b[1] - a[1])
-      .map(([g, n]) => ({ val: g, hint: `n=${n}`, key: g, n }));
+  function optionsFor() {                                    // {key, label, search} for the combobox
+    if (isLine()) return linesIdx.map(l => ({
+      key: l.a, label: `${l.n} · ${l.s || "–"}`, search: `${l.n} ${l.a} ${l.s || ""}`.toLowerCase(),
+      name: l.n, sub: l.s }));
+    const groups = Object.entries(manifest.divisions[curDiv].groups).sort((a, b) => b[1] - a[1]);
+    if (curDiv === "modeltype") return groups.map(([g, n]) => ({   // show + search the code's description
+      key: g, label: mtDesc && mtDesc[g] ? `${g} · ${mtDesc[g]}` : g,
+      search: `${g} ${mtDesc && mtDesc[g] ? mtDesc[g] : ""}`.toLowerCase(), n }));
+    return groups.map(([g, n]) => ({ key: g, label: g, search: g.toLowerCase(), n }));
   }
 
   function fillPicker() {
     curOpts = optionsFor();
-    U.fillSelect(U.el("atlas-group"), curOpts);
+    combo.setOptions(curOpts);
     // land on the most illustrative group, the one with the most specific MTFs (line level: first line)
     let def = curOpts[0];
     if (!isLine() && byGroup[curDiv]) def = curOpts.reduce((best, o) =>
       (byGroup[curDiv][o.key]?.spec.length || 0) > (byGroup[curDiv][best.key]?.spec.length || 0) ? o : best, curOpts[0]);
-    U.el("atlas-group").value = def ? def.val : "";
-    if (def) selectVal(def.val);
+    combo.setValue(def ? def.key : null);
+    if (def) selectVal(def.key);
   }
 
   const setDesc = html => U.el("atlas-desc").innerHTML = html;
@@ -45,9 +50,9 @@ const Atlas = (() => {
     U.el("atlas-nons").innerHTML = nons.length ? nons.map(row).join("") : `<div class="empty">None.</div>`;
   }
 
-  async function selectVal(val) {
-    const o = curOpts.find(x => x.val === val) || curOpts.find(x => x.val.toUpperCase() === val.toUpperCase());
-    if (!o) return;                            // partial / invalid entry, wait for a full match
+  async function selectVal(key) {
+    const o = curOpts.find(x => x.key === key);
+    if (!o) return;
     if (isLine()) {
       const [d, tfNames] = await Promise.all([
         DataLoader.loadJSON(`data/lines/${o.key}.json`), DataLoader.loadJSON("data/tf_names.json")]);
@@ -65,7 +70,8 @@ const Atlas = (() => {
   }
 
   function download() {
-    const g = U.el("atlas-group").value || "group";
+    const o = curOpts.find(x => x.key === combo.getKey()) || {};
+    const g = o.name || o.key || "group";
     const rows = curSpec.map(x => ({ tf: x[0], rank: x[1], expr: x[2], cat: "specific" }))
       .concat(curNons.map(x => ({ tf: x[0], rank: x[1], expr: x[2], cat: "non_specific" })));
     const cols = [{ label: "tf", key: "tf" }, { label: "cacts_rank", key: "rank" },
@@ -87,7 +93,7 @@ const Atlas = (() => {
       [...seg.children].forEach(x => x.setAttribute("aria-selected", x === b));
       await pick(b.dataset.div);
     });
-    U.el("atlas-group").addEventListener("change", e => selectVal(e.target.value));
+    combo = Combo.make(U.el("atlas-group"), key => selectVal(key));
     U.el("atlas-dl").addEventListener("click", download);
     await ensure(curDiv); fillPicker();
   }

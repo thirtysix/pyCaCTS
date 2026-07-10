@@ -3,16 +3,21 @@
    expression), gene name + TF family, per-group CRISPR essentiality, cross-group breadth, and out-links.
    Works at all five levels incl. single cell line; the current view is downloadable as TSV. */
 const Scores = (() => {
-  let manifest, mtDesc = null, linesIdx = null, info = {}, curDiv = "subtype", curOpts = [];
+  let manifest, mtDesc = null, linesIdx = null, info = {}, curDiv = "subtype", curOpts = [], combo;
   const isLine = () => curDiv === "line";
   const state = { rows: [], sort: { col: "rank", dir: "asc" }, filter: "", fdrMax: 1 };
 
   async function ensure(div) { if (div === "line") linesIdx ||= await DataLoader.loadJSON("data/lines_index.json"); }
 
-  function optionsFor() {
-    if (isLine()) return linesIdx.map(l => ({ val: `${l.n} · ${l.a}`, hint: l.s, key: l.a, name: l.n, sub: l.s }));
-    return Object.entries(manifest.divisions[curDiv].groups).sort((a, b) => b[1] - a[1])
-      .map(([g, n]) => ({ val: g, hint: `n=${n}`, key: g, n }));
+  function optionsFor() {                                    // {key, label, search} for the combobox
+    if (isLine()) return linesIdx.map(l => ({
+      key: l.a, label: `${l.n} · ${l.s || "–"}`, search: `${l.n} ${l.a} ${l.s || ""}`.toLowerCase(),
+      name: l.n, sub: l.s }));
+    const groups = Object.entries(manifest.divisions[curDiv].groups).sort((a, b) => b[1] - a[1]);
+    if (curDiv === "modeltype") return groups.map(([g, n]) => ({   // show + search the code's description
+      key: g, label: mtDesc && mtDesc[g] ? `${g} · ${mtDesc[g]}` : g,
+      search: `${g} ${mtDesc && mtDesc[g] ? mtDesc[g] : ""}`.toLowerCase(), n }));
+    return groups.map(([g, n]) => ({ key: g, label: g, search: g.toLowerCase(), n }));
   }
 
   async function recsFor(o) {
@@ -120,7 +125,8 @@ const Scores = (() => {
   }
 
   function download() {
-    const g = (curOpts.find(x => x.val === U.el("scores-group").value) || {}).val || "group";
+    const o = curOpts.find(x => x.key === combo.getKey()) || {};
+    const g = o.name || o.key || "group";
     const cols = [
       { label: "rank", key: "rank" }, { label: "tf", key: "tf" }, { label: "gene_name", key: "name" },
       { label: "tf_family", key: "family" }, { label: "cacts_score", get: r => r.cacts.toFixed(6) },
@@ -137,14 +143,14 @@ const Scores = (() => {
 
   function fillPicker() {
     curOpts = optionsFor();
-    U.fillSelect(U.el("scores-group"), curOpts);
+    combo.setOptions(curOpts);
     const def = curOpts[0];                     // largest group (group levels) / first line (line level)
-    U.el("scores-group").value = def ? def.val : "";
+    combo.setValue(def ? def.key : null);
     if (def) load(def);
   }
 
-  function selectVal(val) {
-    const o = curOpts.find(x => x.val === val) || curOpts.find(x => x.val.toUpperCase() === val.toUpperCase());
+  function selectVal(key) {
+    const o = curOpts.find(x => x.key === key);
     if (o) load(o);
   }
   async function pick(div) { curDiv = div; await ensure(div); fillPicker(); }
@@ -161,7 +167,7 @@ const Scores = (() => {
       [...seg.children].forEach(x => x.setAttribute("aria-selected", x === b));
       await pick(b.dataset.div);
     });
-    U.el("scores-group").addEventListener("change", e => selectVal(e.target.value));
+    combo = Combo.make(U.el("scores-group"), key => selectVal(key));
     U.el("scores-filter").addEventListener("input", e => { state.filter = e.target.value.trim(); render(); });
     U.el("scores-dl").addEventListener("click", download);
     const fseg = U.el("scores-fdr");
