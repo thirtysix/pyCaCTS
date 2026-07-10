@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pyCaCTS — master-TF atlas of the DepMap cell-line panel</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c847e'/%3E%3Ctext x='16' y='23' font-size='19' font-family='monospace' font-weight='700' text-anchor='middle' fill='white'%3EC%3C/text%3E%3C/svg%3E">
+<script>
+(function () {
+  try { document.documentElement.setAttribute('data-theme', localStorage.getItem('pycacts-theme') || 'light'); }
+  catch (_) { document.documentElement.setAttribute('data-theme', 'light'); }
+})();
+</script>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/layout.css">
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">py<b>CaCTS</b></div>
+      <div class="sub">master-TF atlas of DepMap</div>
+    </div>
+    <div class="snap" id="snap"></div>
+    <nav class="nav" id="nav">
+      <button data-tab="overview" class="active"><span class="ico">◧</span> Overview</button>
+      <button data-tab="atlas"><span class="ico">▦</span> MTF atlas</button>
+      <button data-tab="scores"><span class="ico">≣</span> TF scores</button>
+      <button data-tab="finder"><span class="ico">⌕</span> TF finder</button>
+      <button data-tab="about"><span class="ico">ⓘ</span> About &amp; methods</button>
+    </nav>
+    <div class="side-foot">
+      <button id="theme-toggle" class="theme-toggle"><span class="theme-toggle-label">Dark mode</span></button>
+      <div class="credit">Method: CaCTS · Reddy et al., Sci. Adv. 2021<br>pyCaCTS — independent Python port</div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="tabbar" id="tabbar"></div>
+
+    <!-- Overview -->
+    <section class="panel active" data-tab="overview">
+      <div class="phead"><div class="eyebrow">pyCaCTS</div>
+        <h1>Master transcription factors across the DepMap cell-line panel</h1>
+        <p class="lede">A validated, fast Python reimplementation of <b>CaCTS</b> (Cancer Core Transcription factor Specificity), which scores how lineage-specifically each transcription factor is expressed. Here it is applied to the whole DepMap/CCLE panel at every level of the disease hierarchy — <b>lineage</b>, <b>primary disease</b>, <b>subtype</b>, and <b>model type</b> — so you can read out the candidate master regulators of any cancer group. Scores match the original R to floating-point precision, computed thousands of times faster.</p>
+      </div>
+      <div class="stat-grid" id="ov-stats"></div>
+      <div class="two">
+        <div class="card">
+          <div class="card-h"><h3>Python vs. the original R</h3><span class="muted-s">identical scores, same input</span></div>
+          <div class="card-b" id="ov-bench"></div>
+        </div>
+        <div class="card">
+          <div class="card-h"><h3>What you can explore</h3></div>
+          <div class="card-b guide" id="ov-guide"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MTF atlas -->
+    <section class="panel" data-tab="atlas">
+      <div class="phead"><div class="eyebrow">Explore</div><h1>MTF atlas</h1>
+        <p class="lede">Master transcription factors for every group, at five resolutions of the DepMap disease hierarchy — down to the single cell line. <b>Specific</b> = top-5% by CaCTS score <em>and</em> expression; <b>non-specific</b> = highly expressed, lower specificity (CaCTS's candidate ubiquitous MTFs).</p></div>
+      <div class="controls">
+        <div class="seg" id="atlas-div" role="tablist"></div>
+        <input id="atlas-group" class="sel" list="atlas-grouplist" placeholder="type to search…" autocomplete="off" spellcheck="false" aria-label="Group" title="Type to search. At the Cell-line level, search by cell-line name.">
+        <datalist id="atlas-grouplist"></datalist>
+        <span class="hint" id="atlas-hint"></span>
+      </div>
+      <div class="desc" id="atlas-desc" title="what this group is"></div>
+      <div class="two">
+        <div class="card"><div class="card-h"><span class="pill spec" title="top-5% by CaCTS score AND top-5% by expression in this group">specific</span><h3 title="lineage-restricted and abundant — the strict CaCTS master-TF call">Specific MTFs</h3></div>
+          <div class="card-b listbox" id="atlas-spec"></div></div>
+        <div class="card"><div class="card-h"><span class="pill nons" title="top-5% expression but outside the top-5% specificity — CaCTS's candidate ubiquitous / multi-cancer MTF">non-specific</span><h3 title="highly expressed but not lineage-specific">Non-specific MTFs</h3></div>
+          <div class="card-b listbox" id="atlas-nons"></div></div>
+      </div>
+    </section>
+
+    <!-- TF scores -->
+    <section class="panel" data-tab="scores">
+      <div class="phead"><div class="eyebrow">Explore</div><h1>TF scores</h1>
+        <p class="lede">Every transcription factor's CaCTS specificity score for a chosen group, sortable — at any of the five resolutions, down to a single cell line. Lower CaCTS score = more group-specific (rank 1 = most specific). Class (specific / non-specific) uses the top-5%-score ∩ top-5%-expression rule.</p></div>
+      <div class="controls">
+        <div class="seg" id="scores-div" role="tablist"></div>
+        <input id="scores-group" class="sel" list="scores-grouplist" placeholder="type to search…" autocomplete="off" spellcheck="false" aria-label="Group" title="Type to search. At the Cell-line level, search by cell-line name.">
+        <datalist id="scores-grouplist"></datalist>
+        <input type="search" id="scores-filter" class="sel" placeholder="filter TFs…" autocomplete="off" spellcheck="false" title="filter the table to TF symbols containing this text">
+        <span class="hint" id="scores-hint"></span>
+      </div>
+      <div class="desc" id="scores-desc" title="what this group is"></div>
+      <div class="controls">
+        <span class="ctl-label" title="Empirical-null FDR: model this group's non-specific (high-JSD) bulk, take a left-tail p-value per TF, then Benjamini-Hochberg correct. This is the same test as the pipeline's specificity gate. Lower = more confidently group-specific.">Empirical FDR ≤</span>
+        <div class="seg" id="scores-fdr" role="tablist">
+          <button data-fdr="1" aria-selected="true" title="no FDR filter">All</button>
+          <button data-fdr="0.25" title="keep TFs with FDR ≤ 0.25">0.25</button>
+          <button data-fdr="0.1" title="keep TFs with FDR ≤ 0.10 (the pipeline's Step-1 threshold)">0.10</button>
+          <button data-fdr="0.05" title="keep TFs with FDR ≤ 0.05">0.05</button>
+        </div>
+      </div>
+      <div class="card"><div class="card-b"><div class="scroll">
+        <table class="tbl sortable" id="scores-table">
+          <thead><tr>
+            <th data-sort="rank" data-num="1" class="sorted-asc" title="rank by CaCTS specificity within this group (1 = most specific). Click to sort.">Rank</th>
+            <th data-sort="tf" title="transcription factor (gene symbol). Click to sort A–Z.">TF</th>
+            <th data-sort="cacts" data-num="1" title="CaCTS score = Jensen-Shannon divergence specificity. Lower = more group-specific. Click to sort.">CaCTS score</th>
+            <th data-sort="expr" data-num="1" title="mean expression across the group's cell lines (log₂ TPM+1). Click to sort.">Expr <span class="th-sub">log₂TPM</span></th>
+            <th data-sort="exprrank" data-num="1" title="abundance rank in this group (1 = most highly expressed). Click to sort.">Expr rank</th>
+            <th data-sort="fdr" data-num="1" title="Empirical-null false-discovery rate for group-specificity (Benjamini-Hochberg). Lower = more confidently specific; bold = FDR < 0.10. Use the FDR filter above. Click to sort.">FDR</th>
+            <th data-sort="cat" title="MTF call — specific: top-5% score ∩ top-5% expression; non-specific: high expression, lower specificity. Click to sort.">Class</th>
+          </tr></thead>
+          <tbody id="scores-body"></tbody>
+        </table></div></div>
+        <div class="card-note" id="scores-foot"></div>
+      </div>
+    </section>
+
+    <!-- TF finder -->
+    <section class="panel" data-tab="finder">
+      <div class="phead"><div class="eyebrow">Look up</div><h1>Where is a TF a master regulator?</h1>
+        <p class="lede">Type a gene symbol to see every lineage, disease, subtype, and model type where it is a <em>specific</em> MTF, with its specificity rank.</p></div>
+      <input type="search" id="finder-input" class="sel big" placeholder="e.g. PAX8, MITF, SPI1, AR, GATA3…" autocomplete="off" spellcheck="false" title="enter a gene symbol; results list each group where it clears both the specificity and expression cutoffs">
+      <div class="finder-res" id="finder-res"></div>
+    </section>
+
+    <!-- About -->
+    <section class="panel" data-tab="about">
+      <div class="phead"><div class="eyebrow">Reference</div><h1>About &amp; methods</h1></div>
+      <div class="prose" id="about-body"></div>
+    </section>
+  </main>
+</div>
+
+<script src="js/data-loader.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/tab-manager.js"></script>
+<script src="js/util.js"></script>
+<script src="js/overview.js"></script>
+<script src="js/atlas.js"></script>
+<script src="js/scores.js"></script>
+<script src="js/finder.js"></script>
+<script src="js/about.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

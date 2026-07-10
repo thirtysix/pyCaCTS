@@ -1,0 +1,1 @@
+{"rows":[{"input":"1,651 TFs \u00d7 29 groups (TCGA scale)","py_ms":1.4,"r_ms":6025,"speedup":"~4,300\u00d7"},{"input":"1,651 TFs \u00d7 400 groups (per-line)","py_ms":32,"r_ms":103433,"speedup":"~3,200\u00d7"}]}

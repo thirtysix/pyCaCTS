@@ -1,0 +1,29 @@
+# --- large / external inputs (never commit) ---
+data/*.csv
+data/*.tsv
+data/*.parquet
+data/*.gz
+data/raw/
+
+# --- results: regenerable outputs, keep only the dir ---
+results/*
+!results/.gitkeep
+
+# --- python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# --- os / editor ---
+.DS_Store
+*.swp
+.~lock.*#
+
+# original CaCTS R source (GPL, lawrenson-lab) — kept locally for reference, NOT redistributed
+reference_R/
