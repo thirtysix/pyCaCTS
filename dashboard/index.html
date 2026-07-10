@@ -67,6 +67,7 @@
         <div class="seg" id="atlas-div" role="tablist"></div>
         <select id="atlas-group" class="sel" aria-label="Group" title="Choose a group. At the Cell-line level, type to jump to a cell-line name."></select>
         <span class="hint" id="atlas-hint"></span>
+        <button id="atlas-dl" class="dl-btn" title="download this group's specific + non-specific MTFs as TSV">⬇ TSV</button>
       </div>
       <div class="desc" id="atlas-desc" title="what this group is"></div>
       <div class="two">
@@ -80,11 +81,12 @@
     <!-- TF scores -->
     <section class="panel" data-tab="scores">
       <div class="phead"><div class="eyebrow">Explore</div><h1>TF scores</h1>
-        <p class="lede">Every transcription factor's CaCTS specificity score for a chosen group, sortable, at any of the five resolutions, down to a single cell line. Lower CaCTS score = more group-specific (rank 1 = most specific). Class (specific / non-specific) uses the top-5%-score ∩ top-5%-expression rule.</p></div>
+        <p class="lede">Every transcription factor's CaCTS specificity score for a chosen group, sortable, at any of the five resolutions, down to a single cell line. Lower CaCTS score = more group-specific (rank 1 = most specific). Class (specific / non-specific) uses the top-5%-score ∩ top-5%-expression rule, and the two gates behind it are shown as their own columns. Each TF also carries its family, per-group CRISPR essentiality (Chronos; not at the single-cell-line level), cross-group breadth, and out-links. <b>⬇ TSV</b> downloads the current sorted / filtered view.</p></div>
       <div class="controls">
         <div class="seg" id="scores-div" role="tablist"></div>
         <select id="scores-group" class="sel" aria-label="Group" title="Choose a group. At the Cell-line level, type to jump to a cell-line name."></select>
         <input type="search" id="scores-filter" class="sel" placeholder="filter TFs…" autocomplete="off" spellcheck="false" title="filter the table to TF symbols containing this text">
+        <button id="scores-dl" class="dl-btn" title="download the current table (sorted + filtered) as TSV">⬇ TSV</button>
         <span class="hint" id="scores-hint"></span>
       </div>
       <div class="desc" id="scores-desc" title="what this group is"></div>
@@ -101,12 +103,18 @@
         <table class="tbl sortable" id="scores-table">
           <thead><tr>
             <th data-sort="rank" data-num="1" class="sorted-asc" title="rank by CaCTS specificity within this group (1 = most specific). Click to sort.">Rank</th>
-            <th data-sort="tf" title="transcription factor (gene symbol). Click to sort A–Z.">TF</th>
+            <th data-sort="tf" title="transcription factor (gene symbol); hover a symbol for its full name. Click to sort A–Z.">TF</th>
+            <th data-sort="family" title="DNA-binding-domain family (Lambert et al. 2018). Click to sort.">Family</th>
             <th data-sort="cacts" data-num="1" title="CaCTS score = Jensen-Shannon divergence specificity. Lower = more group-specific. Click to sort.">CaCTS score</th>
+            <th data-sort="top5s" data-num="1" title="✓ if in the top 5% by CaCTS score in this group (the specificity gate behind the class). Click to sort.">top-5% <span class="th-sub">score</span></th>
             <th data-sort="expr" data-num="1" title="mean expression across the group's cell lines (log₂ TPM+1). Click to sort.">Expr <span class="th-sub">log₂TPM</span></th>
+            <th data-sort="top5e" data-num="1" title="✓ if in the top 5% by expression in this group (the abundance gate behind the class). Click to sort.">top-5% <span class="th-sub">expr</span></th>
             <th data-sort="exprrank" data-num="1" title="abundance rank in this group (1 = most highly expressed). Click to sort.">Expr rank</th>
             <th data-sort="fdr" data-num="1" title="Empirical-null false-discovery rate for group-specificity (Benjamini-Hochberg). Lower = more confidently specific; bold = FDR < 0.10. Use the FDR filter above. Click to sort.">FDR</th>
             <th data-sort="cat" title="MTF call, specific: top-5% score ∩ top-5% expression; non-specific: high expression, lower specificity. Click to sort.">Class</th>
+            <th data-sort="ess" data-num="1" title="mean CRISPR (Chronos) dependency across this group's cell lines; lower = stronger dependency (~ -1 = common-essential, 0 = neutral). Not staged at the single-cell-line level. Click to sort.">Essent. <span class="th-sub">Chronos</span></th>
+            <th data-sort="breadth" data-num="1" title="number of lineage / disease / subtype / model-type groups where this TF is a specific MTF (how broadly it is a master regulator). Click to sort.">Breadth</th>
+            <th title="external gene pages: N = NCBI Gene, G = GeneCards, D = DepMap">Links</th>
           </tr></thead>
           <tbody id="scores-body"></tbody>
         </table></div></div>

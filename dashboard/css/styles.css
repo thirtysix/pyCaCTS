@@ -74,6 +74,19 @@ em{font-style:normal; color:var(--accent-deep)}
 .row-hl{background:var(--accent-soft)!important}
 .tf-sym{font-family:ui-monospace,Menlo,monospace; font-weight:650}
 td.mono.sig{color:var(--accent-deep); font-weight:700}
+/* enriched TF-scores table: gates, family, essentiality, out-links + TSV download */
+td.ctr{text-align:center}
+.chk{color:var(--accent-deep); font-weight:700}
+.chk-no{color:var(--faint)}
+td.fam{color:var(--muted); font-size:12.5px; white-space:nowrap}
+td.mono.ess-dep{color:var(--amber); font-weight:700}
+.glinks{display:inline-flex; gap:4px; justify-content:center}
+.glinks a{display:inline-flex; align-items:center; justify-content:center; width:17px; height:17px;
+  font-size:10px; font-weight:700; border-radius:4px; background:var(--bg-alt); color:var(--muted); border:1px solid var(--border)}
+.glinks a:hover{color:var(--accent-deep); border-color:var(--accent); text-decoration:none}
+.dl-btn{font:inherit; font-size:12.5px; font-weight:600; color:var(--accent-deep); background:var(--surface);
+  border:1px solid var(--border); border-radius:8px; padding:7px 12px; cursor:pointer}
+.dl-btn:hover{border-color:var(--accent); background:var(--accent-soft)}
 
 /* tags & pills */
 .tag{font-size:9.5px; font-weight:700; letter-spacing:.03em; padding:1.5px 5px; border-radius:4px; text-transform:uppercase; white-space:nowrap}

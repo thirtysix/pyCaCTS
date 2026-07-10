@@ -13,9 +13,21 @@ export PYCACTS_DEPMAP=/path/to/depmap_release
 | :-- | :-- | :-- |
 | `OmicsExpressionProteinCodingGenesTPMLogp1.csv` | protein-coding expression, log2(TPM+1), ~1,450 lines × ~19k genes | all runners |
 | `Model.csv` | cell-line annotation (`OncotreeLineage`, `OncotreePrimaryDisease`, `OncotreeSubtype`, `DepmapModelType`, names) | all runners |
+| `CRISPRGeneEffect.csv` | CRISPR (Chronos) gene-effect, ~1,150 lines × ~18k genes | `stage_essentiality.py` (dashboard essentiality column) |
 
-Place both under `$PYCACTS_DEPMAP`. The DepMap portal versions its releases; any recent release with the
-above two files works (column names are stable).
+Place these under `$PYCACTS_DEPMAP`. The DepMap portal versions its releases; any recent release with these
+files works (column names are stable). `CRISPRGeneEffect.csv` is only needed for the dashboard's per-group
+essentiality column.
+
+## TF annotation (dashboard gene-info)
+
+`scripts/build_gene_info.py` builds the dashboard's per-TF dictionary (gene name, DNA-binding-domain family,
+Entrez / Ensembl IDs) from the **Lambert et al. 2018** human-TF table. Point at it with `PYCACTS_TF_ANNOT`
+(default `data/DatabaseExtract_v_1.01.csv`):
+
+| File | What | Source |
+| :-- | :-- | :-- |
+| `DatabaseExtract_v_1.01.csv` | Lambert 2018 human-TF table (HGNC symbol, DBD family, EntrezGene description + ID, Ensembl ID) | humantfs.ccbr.utoronto.ca / Lambert et al., *Cell* 2018 |
 
 ## Bundled in the repo
 

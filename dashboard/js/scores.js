@@ -1,7 +1,9 @@
 /* scores.js, every TF's CaCTS specificity score + expression rank for a chosen group, sortable.
-   Class (specific / non-specific) recomputed as in the pipeline. Works at all five levels incl. single cell line. */
+   All TFs in one table: class (specific / non-specific) plus the two gates behind it (top-5% score, top-5%
+   expression), gene name + TF family, per-group CRISPR essentiality, cross-group breadth, and out-links.
+   Works at all five levels incl. single cell line; the current view is downloadable as TSV. */
 const Scores = (() => {
-  let manifest, mtDesc = null, linesIdx = null, curDiv = "subtype", curOpts = [];
+  let manifest, mtDesc = null, linesIdx = null, info = {}, curDiv = "subtype", curOpts = [];
   const isLine = () => curDiv === "line";
   const state = { rows: [], sort: { col: "rank", dir: "asc" }, filter: "", fdrMax: 1 };
 
@@ -14,15 +16,19 @@ const Scores = (() => {
   }
 
   async function recsFor(o) {
-    if (isLine()) {
+    if (isLine()) {                                            // per-line essentiality not staged -> null
       const [d, tfNames] = await Promise.all([
         DataLoader.loadJSON(`data/lines/${o.key}.json`), DataLoader.loadJSON("data/tf_names.json")]);
-      return tfNames.map((tf, i) => ({ tf, cacts: d.c[i], expr: d.e[i] }));
+      return tfNames.map((tf, i) => ({ tf, cacts: d.c[i], expr: d.e[i], ess: null }));
     }
-    const [S, E] = await Promise.all([DataLoader.loadTSV(`data/scores_${curDiv}.tsv`), DataLoader.loadTSV(`data/expr_${curDiv}.tsv`)]);
-    const tfCol = S.columns[0], ex = {};
+    const [S, E, ES] = await Promise.all([
+      DataLoader.loadTSV(`data/scores_${curDiv}.tsv`), DataLoader.loadTSV(`data/expr_${curDiv}.tsv`),
+      DataLoader.loadTSV(`data/ess_${curDiv}.tsv`).catch(() => null)]);   // essentiality is optional
+    const tfCol = S.columns[0], ex = {}, es = {};
     for (const r of E.rows) ex[r[E.columns[0]]] = r[o.key];
-    return S.rows.map(r => ({ tf: r[tfCol], cacts: r[o.key], expr: ex[r[tfCol]] }));
+    const hasEss = ES && ES.columns.includes(o.key);
+    if (hasEss) for (const r of ES.rows) es[r[ES.columns[0]]] = r[o.key];
+    return S.rows.map(r => ({ tf: r[tfCol], cacts: r[o.key], expr: ex[r[tfCol]], ess: hasEss ? es[r[tfCol]] : null }));
   }
 
   function setDesc(o) {
@@ -38,7 +44,13 @@ const Scores = (() => {
   async function load(o) {
     const recs = await recsFor(o);
     const rows = U.classify(recs), fdr = U.empiricalFDR(recs);
-    rows.forEach(r => r.fdr = fdr[r.tf]);
+    const ess = {}; recs.forEach(r => ess[r.tf] = r.ess);
+    rows.forEach(r => {
+      r.fdr = fdr[r.tf]; r.ess = ess[r.tf];
+      const gi = info[r.tf] || {};
+      r.name = gi.name || ""; r.family = gi.family || ""; r.breadth = gi.breadth || 0;
+      r.entrez = gi.entrez || ""; r.ensembl = gi.ensembl || "";
+    });
     state.rows = rows; setDesc(o); render();
   }
 
@@ -55,24 +67,48 @@ const Scores = (() => {
     const e = Math.floor(l10), m = Math.pow(10, l10 - e);  // mantissa ∈ [1,10); representable below float64 range
     return `${m.toFixed(1)}e${e}`;                         // e.g. 2.3e-340
   };
+  const chk = b => b ? '<span class="chk" title="yes">✓</span>' : '<span class="chk-no" title="no">·</span>';
+  const essFmt = e => (e == null || isNaN(e)) ? "–" : (+e).toFixed(2);
+  const links = r => {
+    const a = (href, t, lab) => `<a href="${href}" target="_blank" rel="noopener" title="${t}">${lab}</a>`;
+    const out = [];
+    if (r.entrez) out.push(a(`https://www.ncbi.nlm.nih.gov/gene/${r.entrez}`, "NCBI Gene", "N"));
+    out.push(a(`https://www.genecards.org/cgi-bin/carddisp.pl?gene=${encodeURIComponent(r.tf)}`, "GeneCards", "G"));
+    out.push(a(`https://depmap.org/portal/gene/${encodeURIComponent(r.tf)}?tab=overview`, "DepMap", "D"));
+    return `<span class="glinks">${out.join("")}</span>`;
+  };
 
-  function render() {
+  function currentRows() {                                  // filtered + sorted view (shared by render + download)
     const { col, dir } = state.sort, f = state.filter.toUpperCase();
     let rows = state.rows;
     if (f) rows = rows.filter(r => r.tf.toUpperCase().includes(f));
     if (state.fdrMax < 1) rows = rows.filter(r => r.fdr != null && r.fdr <= Math.log(state.fdrMax));
-    rows = [...rows].sort((a, b) => {
-      const va = a[col], vb = b[col], cmp = typeof va === "string" ? va.localeCompare(vb) : (va - vb) || 0;
+    return [...rows].sort((a, b) => {
+      let va = a[col], vb = b[col];
+      if (va == null) va = col === "ess" ? Infinity : -Infinity;   // nulls sort last
+      if (vb == null) vb = col === "ess" ? Infinity : -Infinity;
+      const cmp = typeof va === "string" ? va.localeCompare(vb) : (va - vb) || 0;
       return dir === "asc" ? cmp : -cmp;
     });
+  }
+
+  function render() {
+    const { col, dir } = state.sort, f = state.filter;
+    const rows = currentRows();
     U.el("scores-body").innerHTML = rows.map(r =>
       `<tr><td class="num mono">${r.rank}</td>
-        <td><span class="tf-sym">${r.tf}</span></td>
+        <td><span class="tf-sym" title="${U.esc(r.name || r.tf)}">${r.tf}</span></td>
+        <td class="fam" title="DNA-binding-domain family">${U.esc(r.family || "–")}</td>
         <td class="num mono">${r.cacts.toFixed(4)}</td>
+        <td class="ctr">${chk(r.top5s)}</td>
         <td class="num mono">${r.expr.toFixed(1)}</td>
+        <td class="ctr">${chk(r.top5e)}</td>
         <td class="num mono">${r.exprrank}</td>
         <td class="num mono${r.fdr != null && r.fdr < LSIG ? " sig" : ""}" title="empirical-null FDR = ${r.fdr == null ? "n/a" : fmtFDR(r.fdr)}">${fmtFDR(r.fdr)}</td>
-        <td>${CLS[r.cat]}</td></tr>`).join("");
+        <td>${CLS[r.cat]}</td>
+        <td class="num mono${(r.ess != null && !isNaN(r.ess) && r.ess < -0.5) ? " ess-dep" : ""}" title="mean CRISPR (Chronos) in this group; lower = stronger dependency (~ -1 = common-essential)">${essFmt(r.ess)}</td>
+        <td class="num mono" title="number of lineage/disease/subtype/model-type groups where this TF is a specific MTF">${r.breadth || 0}</td>
+        <td class="ctr">${links(r)}</td></tr>`).join("");
     document.querySelectorAll("#scores-table th[data-sort]").forEach(th => {
       th.classList.remove("sorted-asc", "sorted-desc");
       if (th.dataset.sort === col) th.classList.add(dir === "asc" ? "sorted-asc" : "sorted-desc");
@@ -81,6 +117,22 @@ const Scores = (() => {
     const nSig = state.rows.filter(r => r.fdr != null && r.fdr < LSIG).length;
     const flt = (f || state.fdrMax < 1) ? " (filtered)" : "";
     U.el("scores-foot").innerHTML = `${rows.length.toLocaleString()} TFs shown${flt} · ${nSpec} specific · ${nSig} significant at empirical-null FDR&lt;0.10 · lower CaCTS score / FDR = more specific.`;
+  }
+
+  function download() {
+    const g = (curOpts.find(x => x.val === U.el("scores-group").value) || {}).val || "group";
+    const cols = [
+      { label: "rank", key: "rank" }, { label: "tf", key: "tf" }, { label: "gene_name", key: "name" },
+      { label: "tf_family", key: "family" }, { label: "cacts_score", get: r => r.cacts.toFixed(6) },
+      { label: "top5pct_cacts", get: r => r.top5s ? 1 : 0 }, { label: "expr_log2tpm", get: r => r.expr.toFixed(4) },
+      { label: "top5pct_expr", get: r => r.top5e ? 1 : 0 }, { label: "expr_rank", key: "exprrank" },
+      { label: "empirical_fdr", get: r => r.fdr == null ? "" : Math.exp(r.fdr).toExponential(3) },
+      { label: "class", get: r => r.cat || "" },
+      { label: "mean_chronos", get: r => (r.ess == null || isNaN(r.ess)) ? "" : (+r.ess).toFixed(3) },
+      { label: "specific_in_n_groups", key: "breadth" }, { label: "entrez", key: "entrez" },
+      { label: "ensembl", key: "ensembl" }];
+    const safe = g.replace(/[^A-Za-z0-9]+/g, "_").replace(/^_|_$/g, "");
+    U.downloadTSV(`pycacts_${curDiv}_${safe}.tsv`, cols, currentRows());
   }
 
   function fillPicker() {
@@ -98,8 +150,9 @@ const Scores = (() => {
   async function pick(div) { curDiv = div; await ensure(div); fillPicker(); }
 
   async function init() {
-    [manifest, mtDesc] = await Promise.all([
-      DataLoader.loadJSON("data/manifest.json"), DataLoader.loadJSON("data/modeltype_desc.json")]);
+    [manifest, mtDesc, info] = await Promise.all([
+      DataLoader.loadJSON("data/manifest.json"), DataLoader.loadJSON("data/modeltype_desc.json"),
+      DataLoader.loadJSON("data/gene_info.json")]);
     const seg = U.el("scores-div");
     seg.innerHTML = U.DIVS.map(([k, lab]) =>
       `<button role="tab" data-div="${k}" aria-selected="${k === curDiv}" title="score TFs specifically within each ${lab.toLowerCase()}">${lab}</button>`).join("");
@@ -110,6 +163,7 @@ const Scores = (() => {
     });
     U.el("scores-group").addEventListener("change", e => selectVal(e.target.value));
     U.el("scores-filter").addEventListener("input", e => { state.filter = e.target.value.trim(); render(); });
+    U.el("scores-dl").addEventListener("click", download);
     const fseg = U.el("scores-fdr");
     fseg.addEventListener("click", e => {
       const b = e.target.closest("button"); if (!b) return;
@@ -119,7 +173,7 @@ const Scores = (() => {
     document.querySelectorAll("#scores-table th[data-sort]").forEach(th => th.addEventListener("click", () => {
       const c = th.dataset.sort;
       if (state.sort.col === c) state.sort.dir = state.sort.dir === "asc" ? "desc" : "asc";
-      else state.sort = { col: c, dir: th.dataset.num ? (["rank", "exprrank", "fdr"].includes(c) ? "asc" : "desc") : "asc" };
+      else state.sort = { col: c, dir: th.dataset.num ? (["rank", "exprrank", "fdr", "ess"].includes(c) ? "asc" : "desc") : "asc" };
       render();
     }));
     await ensure(curDiv); fillPicker();

@@ -23,8 +23,19 @@ const U = (() => {
     const tE = new Set(byExpr.slice(0, k).map(r => r.tf));
     return byScore.map((r, i) => ({
       rank: i + 1, tf: r.tf, cacts: r.cacts, expr: r.expr, exprrank: er[r.tf],
+      top5s: tS.has(r.tf), top5e: tE.has(r.tf),                 // the two gates behind the MTF class
       cat: (tS.has(r.tf) && tE.has(r.tf)) ? "specific" : (tE.has(r.tf) ? "non_specific" : ""),
     }));
+  };
+
+  // Download row-objects as a TSV file. cols = [{label, key} | {label, get(row)}]; rows = [{...}].
+  const downloadTSV = (filename, cols, rows) => {
+    const cell = v => v == null ? "" : String(v).replace(/[\t\r\n]/g, " ");
+    const lines = [cols.map(c => c.label).join("\t")].concat(
+      rows.map(r => cols.map(c => cell(c.get ? c.get(r) : r[c.key])).join("\t")));
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([lines.join("\n")], { type: "text/tab-separated-values" }));
+    a.download = filename; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href);
   };
 
   // Empirical-null FDR for the CaCTS scores of one group (same method as the pipeline's Step-1 gate):
@@ -51,5 +62,5 @@ const U = (() => {
   const fillSelect = (selEl, opts) =>
     selEl.innerHTML = opts.map(o => `<option value="${esc(o.val)}">${esc(o.val)}</option>`).join("");
 
-  return { DIVS, el, esc, tags, classify, empiricalFDR, fillSelect };
+  return { DIVS, el, esc, tags, classify, empiricalFDR, fillSelect, downloadTSV };
 })();

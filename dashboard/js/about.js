@@ -40,6 +40,16 @@ const About = (() => {
       alternative to the top-5% cutoff (e.g. filter to FDR &lt; 0.10). It is recomputed for whichever group and
       level you select.</p>
 
+      <h3>The TF-scores table</h3>
+      <p>The <b>TF scores</b> tab puts every TF in one table for the selected group. Alongside the CaCTS
+      score and class it shows the <b>two gates</b> behind the class as their own columns (top-5% by score,
+      top-5% by expression), each TF's <b>family</b> (DNA-binding domain, Lambert et al. 2018), <b>per-group
+      CRISPR essentiality</b> (mean Chronos across the group's DepMap cell lines; lower = stronger
+      dependency, ~ -1 = common-essential, 0 = neutral; not staged at the single-cell-line level),
+      <b>cross-group breadth</b> (in how many lineage / disease / subtype / model-type groups the TF is a
+      specific MTF), and out-links to NCBI Gene, GeneCards, and DepMap. The <b>&#8595; TSV</b> button exports
+      the current sorted and filtered view; the MTF-atlas lists export the same way.</p>
+
       <h3>Validation &amp; performance</h3>
       <p>pyCaCTS reproduces the original CaCTS R output to floating-point precision
       (max |Δ| &lt; 1×10⁻¹⁵ on identical input) and runs roughly <b>~3,900× faster</b> via an exact

@@ -1,6 +1,6 @@
 /* atlas.js, browse specific / non-specific MTFs for every group, at five resolutions incl. single cell line. */
 const Atlas = (() => {
-  let manifest, mtDesc = null, linesIdx = null, curDiv = "lineage", curOpts = [];
+  let manifest, mtDesc = null, linesIdx = null, curDiv = "lineage", curOpts = [], curSpec = [], curNons = [];
   const byGroup = {};                          // group-level: div -> {group -> {spec, nons}}
   const isLine = () => curDiv === "line";
 
@@ -38,6 +38,7 @@ const Atlas = (() => {
       <div class="g"><span class="tf-sym">${tf}</span></div><div class="meta">rank <b>#${rank}</b> · ${expr.toFixed(1)}</div></div>`;
 
   function renderLists(spec, nons) {
+    curSpec = spec; curNons = nons;            // keep for TSV download
     U.el("atlas-hint").textContent = `${spec.length} specific · ${nons.length} non-specific`;
     U.el("atlas-spec").innerHTML = spec.length ? spec.map(row).join("")
       : `<div class="empty">No factor clears both the top-5% specificity and top-5% expression cutoffs here.</div>`;
@@ -63,6 +64,16 @@ const Atlas = (() => {
     }
   }
 
+  function download() {
+    const g = U.el("atlas-group").value || "group";
+    const rows = curSpec.map(x => ({ tf: x[0], rank: x[1], expr: x[2], cat: "specific" }))
+      .concat(curNons.map(x => ({ tf: x[0], rank: x[1], expr: x[2], cat: "non_specific" })));
+    const cols = [{ label: "tf", key: "tf" }, { label: "cacts_rank", key: "rank" },
+      { label: "expr_log2tpm", get: r => (+r.expr).toFixed(4) }, { label: "class", key: "cat" }];
+    const safe = g.replace(/[^A-Za-z0-9]+/g, "_").replace(/^_|_$/g, "");
+    U.downloadTSV(`pycacts_MTFs_${curDiv}_${safe}.tsv`, cols, rows);
+  }
+
   async function pick(div) { curDiv = div; await ensure(div); fillPicker(); }
 
   async function init() {
@@ -77,6 +88,7 @@ const Atlas = (() => {
       await pick(b.dataset.div);
     });
     U.el("atlas-group").addEventListener("change", e => selectVal(e.target.value));
+    U.el("atlas-dl").addEventListener("click", download);
     await ensure(curDiv); fillPicker();
   }
   return { init };
