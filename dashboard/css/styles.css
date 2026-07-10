@@ -129,7 +129,7 @@ select.sel{min-width:250px} input.sel{min-width:180px} .sel.big{min-width:min(42
 .sw{width:10px; height:10px; border-radius:50%; display:inline-block}
 .sw.acc{background:var(--accent)} .sw.hot{background:var(--hot)}
 
-/* benchmark bars (log₁₀ scale — a linear axis can't render a >3,000× gap) */
+/* benchmark bars (log₁₀ scale, a linear axis can't render a >3,000× gap) */
 .bench{display:flex; flex-direction:column; gap:17px}
 .brow{display:flex; flex-direction:column; gap:5px}
 .bhead{display:flex; justify-content:space-between; align-items:baseline; gap:12px}

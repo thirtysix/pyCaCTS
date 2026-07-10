@@ -1,4 +1,4 @@
-/* atlas.js — browse specific / non-specific MTFs for every group, at five resolutions incl. single cell line. */
+/* atlas.js, browse specific / non-specific MTFs for every group, at five resolutions incl. single cell line. */
 const Atlas = (() => {
   let manifest, mtDesc = null, linesIdx = null, curDiv = "lineage", curOpts = [];
   const byGroup = {};                          // group-level: div -> {group -> {spec, nons}}
@@ -23,8 +23,8 @@ const Atlas = (() => {
 
   function fillPicker() {
     curOpts = optionsFor();
-    U.fillList(U.el("atlas-grouplist"), curOpts);
-    // land on the most illustrative group — the one with the most specific MTFs (line level: first line)
+    U.fillSelect(U.el("atlas-group"), curOpts);
+    // land on the most illustrative group, the one with the most specific MTFs (line level: first line)
     let def = curOpts[0];
     if (!isLine() && byGroup[curDiv]) def = curOpts.reduce((best, o) =>
       (byGroup[curDiv][o.key]?.spec.length || 0) > (byGroup[curDiv][best.key]?.spec.length || 0) ? o : best, curOpts[0]);
@@ -46,14 +46,14 @@ const Atlas = (() => {
 
   async function selectVal(val) {
     const o = curOpts.find(x => x.val === val) || curOpts.find(x => x.val.toUpperCase() === val.toUpperCase());
-    if (!o) return;                            // partial / invalid entry — wait for a full match
+    if (!o) return;                            // partial / invalid entry, wait for a full match
     if (isLine()) {
       const [d, tfNames] = await Promise.all([
         DataLoader.loadJSON(`data/lines/${o.key}.json`), DataLoader.loadJSON("data/tf_names.json")]);
       const cl = U.classify(tfNames.map((tf, i) => ({ tf, cacts: d.c[i], expr: d.e[i] })));
       renderLists(cl.filter(r => r.cat === "specific").map(r => [r.tf, r.rank, r.expr]),
                   cl.filter(r => r.cat === "non_specific").map(r => [r.tf, r.rank, r.expr]));
-      setDesc(`<b>${U.esc(o.name)}</b> &middot; ${U.esc(o.sub || "—")} &middot; <span class="mono">${o.key}</span>`);
+      setDesc(`<b>${U.esc(o.name)}</b> &middot; ${U.esc(o.sub || "–")} &middot; <span class="mono">${o.key}</span>`);
     } else {
       const d = byGroup[curDiv][o.key];
       renderLists(d ? d.spec : [], d ? d.nons : []);

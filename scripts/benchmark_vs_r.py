@@ -20,7 +20,7 @@ DATA = HERE.parent / "data"
 DEPMAP = Path(os.environ.get("PYCACTS_DEPMAP", DATA / "depmap"))    # DepMap release dir (download; see README)
 EXPR = DEPMAP / "OmicsExpressionProteinCodingGenesTPMLogp1.csv"
 MODEL = DEPMAP / "Model.csv"; TF_CACTS = DATA / "CaCTS_merged_1671_TFs.txt"
-JSD_R = HERE.parent / "reference_R" / "JSD.R"                       # original CaCTS R (GPL; not redistributed — see README)
+JSD_R = HERE.parent / "reference_R" / "JSD.R"                       # original CaCTS R (GPL; not redistributed, see README)
 BENCH = HERE.parent / "results" / "bench"; BENCH.mkdir(parents=True, exist_ok=True)
 
 

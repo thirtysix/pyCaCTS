@@ -1,4 +1,4 @@
-/* scores.js — every TF's CaCTS specificity score + expression rank for a chosen group, sortable.
+/* scores.js, every TF's CaCTS specificity score + expression rank for a chosen group, sortable.
    Class (specific / non-specific) recomputed as in the pipeline. Works at all five levels incl. single cell line. */
 const Scores = (() => {
   let manifest, mtDesc = null, linesIdx = null, curDiv = "subtype", curOpts = [];
@@ -27,7 +27,7 @@ const Scores = (() => {
 
   function setDesc(o) {
     let html;
-    if (isLine()) html = `<b>${U.esc(o.name)}</b> &middot; ${U.esc(o.sub || "—")} &middot; <span class="mono">${o.key}</span>`;
+    if (isLine()) html = `<b>${U.esc(o.name)}</b> &middot; ${U.esc(o.sub || "–")} &middot; <span class="mono">${o.key}</span>`;
     else {
       html = `${o.n.toLocaleString()} cell line${o.n === 1 ? "" : "s"}`;
       if (curDiv === "modeltype" && mtDesc && mtDesc[o.key]) html = `<b>${U.esc(o.key)}</b> &rarr; ${U.esc(mtDesc[o.key])} &middot; ${html}`;
@@ -44,12 +44,12 @@ const Scores = (() => {
 
   const CLS = {
     specific: '<span class="cls spec" title="top-5% by CaCTS score AND top-5% by expression">specific</span>',
-    non_specific: '<span class="cls nons" title="top-5% expression but not top-5% specificity — a candidate ubiquitous MTF">non-specific</span>',
-    "": '<span class="cls none" title="not a called MTF in this group">—</span>',
+    non_specific: '<span class="cls nons" title="top-5% expression but not top-5% specificity, a candidate ubiquitous MTF">non-specific</span>',
+    "": '<span class="cls none" title="not a called MTF in this group">–</span>',
   };
   const LSIG = Math.log(0.10);                             // ln-FDR significance line (FDR < 0.10)
   const fmtFDR = lf => {                                    // lf = ln(FDR)
-    if (lf == null) return "—";
+    if (lf == null) return "–";
     const l10 = lf / Math.LN10;                            // log10(FDR)
     if (l10 >= -3) return Math.pow(10, l10).toFixed(3);    // ≥ 1e-3
     const e = Math.floor(l10), m = Math.pow(10, l10 - e);  // mantissa ∈ [1,10); representable below float64 range
@@ -85,7 +85,7 @@ const Scores = (() => {
 
   function fillPicker() {
     curOpts = optionsFor();
-    U.fillList(U.el("scores-grouplist"), curOpts);
+    U.fillSelect(U.el("scores-group"), curOpts);
     const def = curOpts[0];                     // largest group (group levels) / first line (line level)
     U.el("scores-group").value = def ? def.val : "";
     if (def) load(def);

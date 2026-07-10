@@ -1,4 +1,4 @@
-/* finder.js — search a TF, list every group where it is a specific MTF. */
+/* finder.js, search a TF, list every group where it is a specific MTF. */
 const Finder = (() => {
   let index = null;
   const SHORT = Object.fromEntries(U.DIVS.map(([k, lab]) => [k, lab.toLowerCase()]));
@@ -9,7 +9,7 @@ const Finder = (() => {
     if (!q) { box.innerHTML = `<div class="hint" style="padding:6px 2px">Start typing a gene symbol.</div>`; return; }
     const hits = Object.keys(index).filter(t => t.startsWith(q)).sort().slice(0, 14);
     if (!hits.length) {
-      box.innerHTML = `<div class="card fr"><span class="hint">No group has <b class="mono">${U.esc(q)}</b> as a <em>specific</em> MTF. It may still rank highly by specificity without clearing the expression cutoff — check the TF scores tab.</span></div>`;
+      box.innerHTML = `<div class="card fr"><span class="hint">No group has <b class="mono">${U.esc(q)}</b> as a <em>specific</em> MTF. It may still rank highly by specificity without clearing the expression cutoff, check the TF scores tab.</span></div>`;
       return;
     }
     box.innerHTML = hits.map(tf => {

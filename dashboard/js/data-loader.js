@@ -1,4 +1,4 @@
-/* data-loader.js — fetch + parse TSV/JSON with caching (no backend). */
+/* data-loader.js, fetch + parse TSV/JSON with caching (no backend). */
 const DataLoader = (() => {
   const cache = new Map();
 

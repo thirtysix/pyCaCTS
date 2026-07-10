@@ -1,4 +1,4 @@
-/* main.js — register per-tab inits and boot. */
+/* main.js, register per-tab inits and boot. */
 document.addEventListener("DOMContentLoaded", () => {
   Theme.init();
   TabManager.registerInit("overview", Overview.init);

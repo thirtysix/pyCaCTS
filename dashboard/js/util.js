@@ -1,4 +1,4 @@
-/* util.js — shared helpers. General pyCaCTS tool dashboard: the DepMap organizational levels. */
+/* util.js, shared helpers. General pyCaCTS tool dashboard: the DepMap organizational levels. */
 const U = (() => {
   const DIVS = [["lineage", "Lineage"], ["disease", "Primary disease"],
                 ["subtype", "Subtype"], ["modeltype", "Model type"], ["line", "Cell line"]];
@@ -7,7 +7,7 @@ const U = (() => {
   const tags = () => "";                         // no lineage-specific badges in the general tool view
 
   const median = a => { const s = [...a].sort((x, y) => x - y), n = s.length; return n ? (n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2) : 0; };
-  // standard-normal CDF via Abramowitz-Stegun erf (|err| < 1.5e-7) — no scipy in the browser
+  // standard-normal CDF via Abramowitz-Stegun erf (|err| < 1.5e-7): no scipy in the browser
   const erf = x => { const s = x < 0 ? -1 : 1; x = Math.abs(x); const t = 1 / (1 + 0.3275911 * x);
     const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x); return s * y; };
   const normcdf = z => 0.5 * (1 + erf(z / Math.SQRT2));
@@ -46,9 +46,10 @@ const U = (() => {
     return out;
   };
 
-  // Populate a <datalist> for a searchable text input. opts: [{val, hint}]; val is what gets typed/matched.
-  const fillList = (listEl, opts) =>
-    listEl.innerHTML = opts.map(o => `<option value="${esc(o.val)}">${esc(o.hint || "")}</option>`).join("");
+  // Populate a <select> dropdown. opts: [{val, hint}]; option value = val (what selectVal matches on).
+  // Native <select> gives an obvious dropdown affordance and type-to-jump even for the ~1,450 cell lines.
+  const fillSelect = (selEl, opts) =>
+    selEl.innerHTML = opts.map(o => `<option value="${esc(o.val)}">${esc(o.val)}</option>`).join("");
 
-  return { DIVS, el, esc, tags, classify, empiricalFDR, fillList };
+  return { DIVS, el, esc, tags, classify, empiricalFDR, fillSelect };
 })();

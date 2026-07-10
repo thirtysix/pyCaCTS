@@ -27,7 +27,7 @@ above two files works (column names are stable).
 
 | Input | What | Source |
 | :-- | :-- | :-- |
-| `reference_R/JSD.R` | the original CaCTS R scoring code — kept **locally only**, GPL, not redistributed | github.com/lawrenson-lab/CaCTS |
+| `reference_R/JSD.R` | the original CaCTS R scoring code, kept **locally only**, GPL, not redistributed | github.com/lawrenson-lab/CaCTS |
 | TCGA pan-cancer RNA-seq | to reproduce the published TCGA scores | github.com/lawrenson-lab/CaCTS `RNA.TCGA.pancancer.url.txt` |
 
 The benchmark (`scripts/benchmark_vs_r.py`) needs R on `PATH` and a local `reference_R/JSD.R`; it is the

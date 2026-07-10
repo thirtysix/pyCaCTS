@@ -2,10 +2,10 @@
 
 A fast, dependency-light **Python reimplementation of CaCTS** (Cancer Core Transcription factor
 Specificity), applied to the **DepMap/CCLE** cell-line panel to nominate master transcription factors
-(MTFs) at every level of the disease hierarchy — lineage, primary disease, subtype, model type, and each
+(MTFs) at every level of the disease hierarchy, lineage, primary disease, subtype, model type, and each
 individual cell line.
 
-> **Credit / original method.** CaCTS is the work of the Lawrenson lab —
+> **Credit / original method.** CaCTS is the work of the Lawrenson lab,
 > **Reddy J, Fonseca MAS, Corona RI, *et al.*, "Predicting master transcription factors from pan-cancer
 > expression data," *Sci. Adv.* 2021;7(48):eabf6123** (PMID 34818047; DOI 10.1126/sciadv.abf6123),
 > code at <https://github.com/lawrenson-lab/CaCTS>. This repository is an **independent Python port** of
@@ -14,11 +14,11 @@ individual cell line.
 > Their original R is GPL and is **not** redistributed here.
 
 ## Why
-CaCTS identifies MTFs from **expression alone** — how *specifically* a transcription factor is expressed in
+CaCTS identifies MTFs from **expression alone**: how *specifically* a transcription factor is expressed in
 one group relative to the diversity of all groups (a Jensen-Shannon-divergence measure), combined with an
 absolute-expression filter. It needs **no ChIP-seq / epigenomic data**. The original was run on TCGA
 tumor types; pyCaCTS runs the same method on the DepMap/CCLE cell-line panel (~1,450 lines with
-expression), so you can read out the candidate master regulators of any cancer group — down to a single
+expression), so you can read out the candidate master regulators of any cancer group, down to a single
 cell line.
 
 ## What it does
@@ -44,7 +44,7 @@ locally and **not** redistributed). The speed-up comes from an exact O(TFs × gr
 per-query JSD loop.
 
 ## Explore the results
-A static, no-backend **dashboard** lives in `dashboard/` — a browsable MTF atlas across the disease
+A static, no-backend **dashboard** lives in `dashboard/`, a browsable MTF atlas across the disease
 hierarchy, a sortable per-group **TF-scores** table with empirical-null FDR, and a TF finder. Run locally
 with `cd dashboard && python3 -m http.server 8000`, or deploy via the included GitHub Pages workflow
 (Settings → Pages → Source → GitHub Actions). Regenerate its data with `scripts/stage_dashboard_data.py`
@@ -56,8 +56,8 @@ pycacts/        the package (score / grouping / io / filter)
 scripts/        runners (run_divisions.py, stage_dashboard_data.py, stage_line_data.py,
                 benchmark_vs_r.py, cacts_reference.R)
 dashboard/      static results explorer (index.html + css/ + js/ + data/); GitHub-Pages-ready
-data/           bundled TF list + data pointers (large inputs are NOT committed — see data/README.md)
-results/        outputs (score matrices, MTF lists) — not committed
+data/           bundled TF list + data pointers (large inputs are NOT committed, see data/README.md)
+results/        outputs (score matrices, MTF lists): not committed
 ```
 
 ## Data (not committed)
@@ -67,6 +67,6 @@ catalogue is bundled at `data/CaCTS_merged_1671_TFs.txt`.
 
 ## License
 pyCaCTS is released under the **GNU General Public License v3.0-or-later** (`LICENSE`),
-© 2026 Harlan Barker. It is an independent reimplementation written from the published CaCTS method — the
+© 2026 Harlan Barker. It is an independent reimplementation written from the published CaCTS method, the
 original CaCTS R (also GPL) is credited above and is **not** redistributed here. GPL is a deliberate choice
 to keep pyCaCTS, and anything built from it, open, mirroring how the original was released.

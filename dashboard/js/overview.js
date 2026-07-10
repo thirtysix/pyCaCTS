@@ -1,4 +1,4 @@
-/* overview.js — hero stats, benchmark, and a guide to the tabs. */
+/* overview.js, hero stats, benchmark, and a guide to the tabs. */
 const Overview = (() => {
   async function init() {
     const [meta, bench] = await Promise.all([
@@ -30,7 +30,7 @@ const Overview = (() => {
         <div class="btrack" title="pyCaCTS: ${r.py_ms} ms"><div class="bfill py" style="width:${w(r.py_ms)}%"></div><span class="bval">pyCaCTS · ${r.py_ms} ms</span></div>
         <div class="btrack" title="original R: ${r.r_ms.toLocaleString()} ms"><div class="bfill r" style="width:${w(r.r_ms)}%"></div><span class="bval">R · ${r.r_ms.toLocaleString()} ms</span></div>
       </div>`).join("") +
-      `<div class="bnote">Bars are on a <b>log₁₀(time)</b> scale — on a linear axis the pyCaCTS bar would be an invisible sliver at this ratio. The multiplier at right is the true measured speedup.</div></div>`;
+      `<div class="bnote">Bars are on a <b>log₁₀(time)</b> scale.</div></div>`;
 
     U.el("ov-guide").innerHTML = [
       ["▦", "atlas", "MTF atlas", "specific &amp; non-specific MTFs for every group, at four resolutions"],
