@@ -9,7 +9,7 @@ Download the two inputs first (see the README 'Worked example: master TFs of the
      curl -L -o TCGA_pancan.geneExp.gz \\
        "https://pancanatlas.xenahubs.net/download/EB%2B%2BAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena.gz"
 
-  2. Sample -> tumor-type map (the 34-type list CaCTS used), from the original authors' repo:
+  2. Sample -> tumor-type map (the 33-code tumor-type list CaCTS used), from the original authors' repo:
      curl -L -o TCGA_sample_types.txt \\
        "https://raw.githubusercontent.com/lawrenson-lab/CaCTS/master/files/SuppTable1-34-TCGAID.txt"
 

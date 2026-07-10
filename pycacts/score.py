@@ -44,15 +44,16 @@ def cacts_score_matrix(rep_matrix: pd.DataFrame) -> pd.DataFrame:
     Returns a DataFrame of JSD scores with the same index/columns.
     """
     obs = _normalize_rows(rep_matrix.values)                      # T x G
-    # obs term pieces:  A = obs*log(obs/(0.5*obs+0.5*EPS))  (non-query form, all j)
-    A = _xlogxy(obs, 0.5 * obs + 0.5 * EPS)
-    B = _xlogxy(obs, 0.5 * obs + 0.5)                             # query form (ideal=1 at q)
-    SA = A.sum(axis=1, keepdims=True)
-    # ideal term pieces: logterm = 1*log(1/(0.5*obs+0.5))  at the query column
-    logterm = np.log(1.0 / (0.5 * obs + 0.5))
-    c = EPS * np.log(EPS / (0.5 * obs + 0.5 * EPS))               # background j-term (subtracted at q)
-    C = c.sum(axis=1, keepdims=True)
-    jsd = 0.5 * (SA - A + B) + 0.5 * (logterm + C - c)            # T x G, exact
+    with np.errstate(divide="ignore", invalid="ignore"):         # NaN input -> NaN score (no noisy warnings)
+        # obs term pieces:  A = obs*log(obs/(0.5*obs+0.5*EPS))  (non-query form, all j)
+        A = _xlogxy(obs, 0.5 * obs + 0.5 * EPS)
+        B = _xlogxy(obs, 0.5 * obs + 0.5)                        # query form (ideal=1 at q)
+        SA = A.sum(axis=1, keepdims=True)
+        # ideal term pieces: logterm = 1*log(1/(0.5*obs+0.5))  at the query column
+        logterm = np.log(1.0 / (0.5 * obs + 0.5))
+        c = EPS * np.log(EPS / (0.5 * obs + 0.5 * EPS))          # background j-term (subtracted at q)
+        C = c.sum(axis=1, keepdims=True)
+        jsd = 0.5 * (SA - A + B) + 0.5 * (logterm + C - c)       # T x G, exact
     return pd.DataFrame(jsd, index=rep_matrix.index, columns=rep_matrix.columns)
 
 

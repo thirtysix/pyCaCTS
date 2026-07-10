@@ -99,8 +99,8 @@ Runnable end-to-end example: `python examples/quickstart.py [LINEAGE]` (set `PYC
 CaCTS was originally built on TCGA tumors; here is that analysis with pyCaCTS, from raw download to
 master-TF list. (A runnable version is `examples/tcga.py`.)
 
-**1. Download the expression matrix:** TCGA pan-cancer batch-corrected RNA-seq, log2(norm+1), from
-**UCSC Xena** PanCanAtlas (~1.6 GB, 20,531 genes × 11,069 samples). Use the **Download** link on the
+**1. Download the expression matrix:** TCGA pan-cancer batch-corrected RNA-seq, log2(norm+1), gene symbols,
+from **UCSC Xena** PanCanAtlas (~330 MB gzipped; 20,531 genes × 11,069 samples). Use the **Download** link on the
 [dataset page](https://xenabrowser.net/datapages/?dataset=EB%2B%2BAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena&host=https://pancanatlas.xenahubs.net),
 or:
 ```bash
@@ -108,8 +108,8 @@ curl -L -o TCGA_pancan.geneExp.gz \
   "https://pancanatlas.xenahubs.net/download/EB%2B%2BAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena.gz"
 ```
 
-**2. Download the sample → tumor-type map:** the exact 34-type mapping CaCTS used (9,691 samples), from
-the original authors' repo:
+**2. Download the sample → tumor-type map:** the tumor-type mapping CaCTS used (9,691 samples, 33 TCGA
+type codes), from the original authors' repo:
 ```bash
 curl -L -o TCGA_sample_types.txt \
   "https://raw.githubusercontent.com/lawrenson-lab/CaCTS/master/files/SuppTable1-34-TCGAID.txt"
@@ -133,14 +133,15 @@ print(f"matched {len(cols)} samples across {types.nunique()} tumor types")
 
 # subset to the CaCTS TF universe, then per-type mean = the CaCTS representative matrix
 tfs = io.load_tf_universe("data/CaCTS_merged_1671_TFs.txt")
-rep = expr.loc[expr.index.intersection(tfs), cols].T.groupby(types).mean().T   # TFs x 34 tumor types
+rep = expr.loc[expr.index.intersection(tfs), cols].T.groupby(types).mean().T   # TFs x 33 tumor types
 
 scores = score.cacts_score_matrix(rep)                          # TFs x tumor types, in ~ms
 print(score.rank_specific(scores, "SKCM").head())               # cutaneous melanoma
-print("specific MTFs:", cfilter.mtf_categories(scores, rep, "SKCM")["specific"])   # MITF, SOX10, ...
+print("specific MTFs:", cfilter.mtf_categories(scores, rep, "SKCM")["specific"])
+# -> SOX10, IRF4, TFAP2A, MITF, LEF1, ARNT2   (the melanoma master regulators)
 ```
-Swap `"SKCM"` for any of the 34 codes (`BRCA`, `LUAD`, `OV`, `GBM`, `LAML`, …). This is the original CaCTS
-analysis, run with the fast Python engine.
+Swap `"SKCM"` for any of the 33 codes (`BRCA`, `LUAD`, `OV`, `GBM`, `LAML`, …). Verified end-to-end on the
+files above: this is CaCTS's original TCGA analysis, run with the fast Python engine.
 
 ## Validation & performance
 pyCaCTS's specificity score is **numerically identical to the original CaCTS R** and dramatically faster.
