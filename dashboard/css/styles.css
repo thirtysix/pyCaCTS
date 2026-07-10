@@ -88,7 +88,7 @@ td.mono.ess-dep{color:var(--amber); font-weight:700}
   border:1px solid var(--border); border-radius:8px; padding:7px 12px; cursor:pointer}
 .dl-btn:hover{border-color:var(--accent); background:var(--accent-soft)}
 /* searchable combobox group picker: visible dropdown that also filters as you type */
-.combo{position:relative; display:inline-block; min-width:270px; max-width:100%}
+.combo{position:relative; display:inline-block; min-width:405px; max-width:100%}
 .combo-input{width:100%; padding-right:28px}
 .combo::after{content:"▾"; position:absolute; right:11px; top:11px; font-size:11px; color:var(--muted); pointer-events:none; transition:transform .15s}
 .combo.open::after{transform:rotate(180deg)}
