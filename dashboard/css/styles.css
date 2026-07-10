@@ -74,6 +74,12 @@ em{font-style:normal; color:var(--accent-deep)}
 .row-hl{background:var(--accent-soft)!important}
 .tf-sym{font-family:ui-monospace,Menlo,monospace; font-weight:650}
 td.mono.sig{color:var(--accent-deep); font-weight:700}
+/* overview: panel-at-a-glance resolution strip */
+.panel-strip{display:flex; flex-wrap:wrap; gap:9px; align-items:center; margin:0 0 18px}
+.panel-strip .ps-cap{font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--faint); margin-right:3px}
+.panel-strip .ps-item{display:flex; align-items:baseline; gap:6px; padding:8px 14px; background:var(--bg-alt); border:1px solid var(--border-2); border-radius:10px}
+.panel-strip .ps-n{font-size:18px; font-weight:700; color:var(--accent-deep); font-variant-numeric:tabular-nums}
+.panel-strip .ps-l{font-size:12.5px; color:var(--muted)}
 /* enriched TF-scores table: gates, family, essentiality, out-links + TSV download */
 td.ctr{text-align:center}
 .chk{color:var(--accent-deep); font-weight:700}

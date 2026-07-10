@@ -1,9 +1,11 @@
 /* overview.js, hero stats, benchmark, and a guide to the tabs. */
 const Overview = (() => {
   async function init() {
-    const [meta, bench] = await Promise.all([
+    const [meta, bench, manifest, linesIdx] = await Promise.all([
       DataLoader.loadJSON("data/meta.json"),
       DataLoader.loadJSON("data/benchmark.json"),
+      DataLoader.loadJSON("data/manifest.json"),
+      DataLoader.loadJSON("data/lines_index.json"),
     ]);
     // sidebar snapshot
     U.el("snap").innerHTML = [
@@ -19,6 +21,14 @@ const Overview = (() => {
       [meta.n_tfs, "", "transcription factors (CaCTS catalogue)"],
       [meta.n_lines, "", "DepMap / CCLE cell lines"],
     ].map(([k, cls, l]) => `<div class="stat"><div class="k ${cls}">${k}</div><div class="l">${l}</div></div>`).join("");
+
+    // panel at a glance: number of groups at each of the five resolutions
+    const nG = d => Object.keys(manifest.divisions[d].groups).length;
+    U.el("ov-panel").innerHTML =
+      `<span class="ps-cap">grouped at five resolutions</span>` +
+      [["lineage", "lineages"], ["disease", "primary diseases"], ["subtype", "subtypes"], ["modeltype", "model types"]]
+        .map(([k, lab]) => `<div class="ps-item"><span class="ps-n">${nG(k)}</span><span class="ps-l">${lab}</span></div>`).join("")
+      + `<div class="ps-item"><span class="ps-n">${linesIdx.length.toLocaleString()}</span><span class="ps-l">cell lines</span></div>`;
 
     // Log scale: a linear axis can't render a >3,000× gap (the fast bar would be an invisible sliver).
     const lg = v => Math.log10(Math.max(v, 1));
