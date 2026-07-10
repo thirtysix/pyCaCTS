@@ -1,1 +1,1 @@
-{"n_tfs":1671,"n_lines":"~1,450","validated":"identical to the original R (max |\u0394| < 1e-15)","speedup":"~3,000\u20134,300\u00d7"}
+{"n_tfs":1671,"n_lines":"~1,450","validated":"identical to the original R (max |Δ| < 1e-15)","speedup":"~3,900×"}

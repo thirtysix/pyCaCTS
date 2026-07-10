@@ -42,9 +42,10 @@ const About = (() => {
 
       <h3>Validation &amp; performance</h3>
       <p>pyCaCTS reproduces the original CaCTS R output to floating-point precision
-      (max |Δ| &lt; 1×10⁻¹⁵ on identical input) and runs roughly <b>3,000–4,300× faster</b> via an exact
-      vectorization of the per-query loop, a genome-wide re-score across all groups is a milliseconds-to-seconds
-      job rather than minutes. Input: DepMap/CCLE <code>OmicsExpressionProteinCodingGenesTPMLogp1</code>.</p>
+      (max |Δ| &lt; 1×10⁻¹⁵ on identical input) and runs roughly <b>~3,900× faster</b> via an exact
+      vectorization of the per-query loop: scoring the whole DepMap panel at all five levels takes pyCaCTS
+      <b>0.19 s</b> versus <b>12.5 min</b> for the original R. Input: DepMap/CCLE
+      <code>OmicsExpressionProteinCodingGenesTPMLogp1</code>.</p>
 
       <h3>Credit</h3>
       <p>CaCTS is the method of the Lawrenson lab, <b>Reddy J, Fonseca MAS, Corona RI, et al.,

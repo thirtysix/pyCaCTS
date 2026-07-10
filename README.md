@@ -31,17 +31,22 @@ cell line.
 
 ## Validation & performance
 pyCaCTS's specificity score is **numerically identical to the original CaCTS R** and dramatically faster.
-Validated by scoring the same representative matrices with both `pycacts` (vectorized) and the original
-`run_CaCTS_score` (looped), on CCLE-derived inputs:
+Scoring the same representative matrices with both `pycacts` (vectorized) and the original `run_CaCTS_score`
+(looped), across the **whole DepMap/CCLE panel at all five hierarchy levels**:
 
 | input (TFs × groups) | pyCaCTS | original R | speed-up | max &#124;pyCaCTS − R&#124; |
 | :-- | --: | --: | --: | --: |
-| 1,651 × 29 (≈ TCGA scale) | **1.4 ms** | 6,025 ms | **~4,300×** | 8e-16 (identical) |
-| 1,651 × 400 (per-line) | **32 ms** | 103,433 ms | **~3,200×** | 1e-15 (identical) |
+| 1,651 × 29 (lineage) | **1.3 ms** | 5.5 s | **~4,180×** | 8e-16 |
+| 1,651 × 79 (primary disease) | **4.7 ms** | 15.1 s | **~3,240×** | 9e-16 |
+| 1,651 × 191 (subtype) | **12.1 ms** | 40.2 s | **~3,320×** | 1e-15 |
+| 1,651 × 192 (model type) | **11.9 ms** | 40.3 s | **~3,390×** | 1e-15 |
+| 1,651 × 1,450 (per cell line) | **161 ms** | 10.8 min | **~4,020×** | 3e-15 |
+| **full panel (all 5 levels)** | **0.19 s** | **12.5 min** | **~3,900×** | identical |
 
-Reproduce: `python scripts/benchmark_vs_r.py` (needs R on PATH and the original `reference_R/JSD.R`, kept
-locally and **not** redistributed). The speed-up comes from an exact O(TFs × groups) vectorization of the
-per-query JSD loop.
+All scores match to floating-point precision (max |Δ| ≤ 3e-15). Reproduce: `python scripts/benchmark_vs_r.py`
+(needs R on PATH and the original `reference_R/JSD.R`, kept locally and **not** redistributed). The speed-up
+comes from an exact O(TFs × groups) vectorization of the per-query JSD loop; the R implementation scores one
+query group at a time.
 
 ## Explore the results
 A static, no-backend **dashboard** lives in `dashboard/`, a browsable MTF atlas across the disease

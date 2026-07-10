@@ -61,17 +61,25 @@ def bench(rep, tag):
     return dict(tag=tag, shape=rep.shape, py_ms=pyt*1000, r_ms=rt*1000, speedup=rt/pyt, maxdiff=maxdiff)
 
 
+# the five DepMap dashboard resolutions (build_rep_matrix keys / Model.csv columns)
+DIVISIONS = [("lineage", "lineage"), ("disease", "OncotreePrimaryDisease"),
+             ("subtype", "subtype"), ("modeltype", "DepmapModelType"), ("line", "line")]
+
+
 def main():
-    print("loading CCLE expression + building representative matrices ...")
+    print("loading DepMap expression + building representative matrices ...")
     expr = io.load_expression(EXPR); model = io.load_model(MODEL); tfs = io.load_tf_universe(TF_CACTS, "cacts")
-    rep_lin, _ = grouping.build_rep_matrix(expr, model, "lineage", tf_universe=tfs)   # ~TCGA scale
-    rep_line, _ = grouping.build_rep_matrix(expr, model, "line", tf_universe=tfs)     # per-line (pyCaCTS extension)
     rows = []
-    rows.append(bench(rep_lin, "lineage_TCGA-scale"))
-    rows.append(bench(rep_line.iloc[:, :400], "per-line_400"))   # subset: full 1450 in R is very slow
-    tab = pd.DataFrame([r for r in rows if r]).to_string(index=False)
-    print("\n=== summary ===\n" + tab)
-    (HERE.parent / "results" / "benchmark_summary.txt").write_text(tab + "\n")
+    for key, gcol in DIVISIONS:                          # full panel, all five levels (per-line R is the slow one)
+        rep, _ = grouping.build_rep_matrix(expr, model, gcol, tf_universe=tfs, min_group_n=1)
+        r = bench(rep, key)
+        if r: rows.append(r)
+    tab = pd.DataFrame(rows)
+    print("\n=== summary ===\n" + tab.to_string(index=False))
+    if len(tab):
+        print(f"\nTOTAL scoring: pyCaCTS {tab.py_ms.sum():.1f} ms | R {tab.r_ms.sum()/1000:.1f} s "
+              f"| overall ~{tab.r_ms.sum()/tab.py_ms.sum():,.0f}x")
+    (HERE.parent / "results" / "benchmark_summary.txt").write_text(tab.to_string(index=False) + "\n")
 
 
 if __name__ == "__main__":
