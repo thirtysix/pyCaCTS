@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use pyCaCTS, please cite this repository and the original CaCTS method (Reddy et al. 2021)."
+title: "pyCaCTS: a fast Python reimplementation of CaCTS"
+abstract: >-
+  An independent, validated Python reimplementation of CaCTS (Cancer Core Transcription factor
+  Specificity), applied to the DepMap/CCLE cell-line panel to nominate master transcription factors at
+  every level of the disease hierarchy. Numerically identical to the original R and thousands of times
+  faster, with a static results dashboard.
+type: software
+authors:
+  - family-names: Barker
+    given-names: Harlan
+license: GPL-3.0-or-later
+repository-code: "https://github.com/thirtysix/pyCaCTS"
+keywords:
+  - transcription factors
+  - master regulators
+  - CaCTS
+  - DepMap
+  - Jensen-Shannon divergence
+references:
+  - type: article
+    scope: "Original CaCTS method reimplemented by this software."
+    title: "Predicting master transcription factors from pan-cancer expression data"
+    authors:
+      - family-names: Reddy
+        given-names: Jessica
+      - family-names: Fonseca
+        given-names: "Marcos A. S."
+      - family-names: Corona
+        given-names: "Rosario I."
+      - family-names: Lawrenson
+        given-names: Kate
+    journal: "Science Advances"
+    year: 2021
+    volume: 7
+    issue: 48
+    start: eabf6123
+    doi: "10.1126/sciadv.abf6123"

@@ -61,14 +61,15 @@ def _score_matrix_naive(rep_matrix: pd.DataFrame) -> pd.DataFrame:
     obs_all = _normalize_rows(rep_matrix.values)
     T, G = obs_all.shape
     out = np.zeros((T, G))
-    for i in range(T):
-        obs = obs_all[i]
-        for q in range(G):
-            ideal = np.full(G, EPS); ideal[q] = 1.0
-            m = 0.5 * (obs + ideal)
-            ot = np.where(obs > 0, obs * np.log(obs / m), 0.0).sum()
-            it = np.where(ideal > 0, ideal * np.log(ideal / m), 0.0).sum()
-            out[i, q] = 0.5 * ot + 0.5 * it
+    with np.errstate(divide="ignore", invalid="ignore"):         # log(0) is masked by the where below
+        for i in range(T):
+            obs = obs_all[i]
+            for q in range(G):
+                ideal = np.full(G, EPS); ideal[q] = 1.0
+                m = 0.5 * (obs + ideal)
+                ot = np.where(obs > 0, obs * np.log(obs / m), 0.0).sum()
+                it = np.where(ideal > 0, ideal * np.log(ideal / m), 0.0).sum()
+                out[i, q] = 0.5 * ot + 0.5 * it
     return pd.DataFrame(out, index=rep_matrix.index, columns=rep_matrix.columns)
 
 

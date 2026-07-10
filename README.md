@@ -5,6 +5,8 @@ Specificity), applied to the **DepMap/CCLE** cell-line panel to nominate master 
 (MTFs) at every level of the disease hierarchy, lineage, primary disease, subtype, model type, and each
 individual cell line.
 
+![pyCaCTS dashboard](docs/overview.png)
+
 > **Credit / original method.** CaCTS is the work of the Lawrenson lab,
 > **Reddy J, Fonseca MAS, Corona RI, *et al.*, "Predicting master transcription factors from pan-cancer
 > expression data," *Sci. Adv.* 2021;7(48):eabf6123** (PMID 34818047; DOI 10.1126/sciadv.abf6123),
@@ -113,6 +115,8 @@ with `cd dashboard && python3 -m http.server 8000`, or deploy via the included G
 (Settings → Pages → Source → GitHub Actions). Regenerate its data with `scripts/stage_dashboard_data.py`
 and `scripts/stage_line_data.py`.
 
+![TF-scores table](docs/tf-scores.png)
+
 ## Layout
 ```
 pycacts/        the package (score / grouping / io / filter)
@@ -128,6 +132,24 @@ results/        outputs (score matrices, MTF lists, benchmark / profile CSVs): n
 Point pyCaCTS at a downloaded DepMap release via the `PYCACTS_DEPMAP` environment variable (default
 `data/depmap/`). See `data/README.md` for the exact files and where to get them. The CaCTS 1,671-TF
 catalogue is bundled at `data/CaCTS_merged_1671_TFs.txt`.
+
+## Data sources & citations
+pyCaCTS reimplements a published method and its dashboard ships aggregate statistics derived from public
+resources. If you use it, please cite:
+
+- **CaCTS (the method reimplemented here):** Reddy J, Fonseca MAS, Corona RI, *et al.* "Predicting master
+  transcription factors from pan-cancer expression data." *Science Advances* 2021;7(48):eabf6123.
+  DOI [10.1126/sciadv.abf6123](https://doi.org/10.1126/sciadv.abf6123) · code:
+  <https://github.com/lawrenson-lab/CaCTS>.
+- **DepMap / CCLE** (expression, CRISPR gene-effect, cell-line annotation): Broad Institute DepMap Public
+  release, <https://depmap.org>. DepMap data are released under **CC BY 4.0**; the dashboard redistributes
+  only per-group aggregates (means, ranks) derived from them; please cite the DepMap release and the
+  CCLE/Achilles papers listed at depmap.org. Raw DepMap inputs are not committed (see `data/README.md`).
+- **TF universe & families:** Lambert SA, *et al.* "The Human Transcription Factors." *Cell*
+  2018;172(4):650–665. DOI 10.1016/j.cell.2018.01.029 (humantfs.ccbr.utoronto.ca); the CaCTS 1,671-TF list
+  also draws on Saint-André V, *et al.*, *Genome Research* 2016.
+
+A machine-readable `CITATION.cff` is included, so GitHub shows a "Cite this repository" button.
 
 ## License
 pyCaCTS is released under the **GNU General Public License v3.0-or-later** (`LICENSE`),
