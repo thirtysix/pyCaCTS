@@ -31,6 +31,22 @@ cell line.
   and the high-expression / low-specificity "non-specific" category).
 - Adds an **empirical-null FDR** per TF per group as a non-arbitrary alternative to the top-5% cutoff.
 
+## What's scored
+pyCaCTS scores **1,651 transcription factors** (of the CaCTS 1,671-TF catalogue) across the **1,450
+DepMap/CCLE cell lines**, grouped at five nested resolutions of the Oncotree disease hierarchy (coarse and
+robust at the top, single-cell-line at the bottom):
+
+| Level | Oncotree field | Groups | Median lines/group | Examples (group size) |
+| :-- | :-- | --: | --: | :-- |
+| Lineage | `OncotreeLineage` | 29 | 40 | Lung (191), Lymphoid (157), Skin (89), Myeloid (62) |
+| Primary disease | `OncotreePrimaryDisease` | 79 | 5 | Non-Small Cell Lung Cancer (137), Melanoma (81), Colorectal Adenocarcinoma (75) |
+| Subtype | `OncotreeSubtype` | 191 | 3 | Lung Adenocarcinoma (77), Colon Adenocarcinoma (60), High-Grade Serous Ovarian Cancer (21) |
+| Model type | `DepmapModelType` | 192 | 3 | `GB` → Glioblastoma (52), `LUAD` → Lung Adenocarcinoma (77), `HGSOC` → High-Grade Serous Ovarian Cancer (21) |
+| Cell line | each line on its own | 1,450 | 1 | A549, MCF7, HELA, NIHOVCAR3, HL60, U2OS |
+
+That is 29 + 79 + 191 + 192 + 1,450 = **1,941 groups** scored, each against the same 1,651-TF universe. The
+`Model type` codes are the finest Oncotree labels (the dashboard shows them expanded, e.g. `GB → Glioblastoma`).
+
 ## Usage
 pyCaCTS is a small importable package (numpy + pandas). Point it at a DepMap release (or any group-mean
 expression matrix) and score every TF × group in one call.
