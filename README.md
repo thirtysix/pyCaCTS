@@ -131,9 +131,10 @@ cols = [c for c in expr.columns if c[:15] in sample2type]
 types = pd.Series({c: sample2type[c[:15]] for c in cols})
 print(f"matched {len(cols)} samples across {types.nunique()} tumor types")
 
-# subset to the CaCTS TF universe, then per-type mean = the CaCTS representative matrix
+# subset to the CaCTS TF universe, then per-type mean = the CaCTS representative matrix.
+# the batch-corrected matrix has slightly negative values; CaCTS needs non-negative input, so clip at 0
 tfs = io.load_tf_universe("data/CaCTS_merged_1671_TFs.txt")
-rep = expr.loc[expr.index.intersection(tfs), cols].T.groupby(types).mean().T   # TFs x 33 tumor types
+rep = expr.loc[expr.index.intersection(tfs), cols].T.groupby(types).mean().T.clip(lower=0)   # TFs x 33 types
 
 scores = score.cacts_score_matrix(rep)                          # TFs x tumor types, in ~ms
 print(score.rank_specific(scores, "SKCM").head())               # cutaneous melanoma
@@ -190,7 +191,7 @@ GitHub Pages deploy.)
 ```
 pycacts/        the package (score / grouping / io / filter)
 scripts/        runners: run_divisions, stage_dashboard_data, stage_line_data, build_gene_info,
-                stage_essentiality, benchmark_vs_r, profile_speedup, cacts_reference.R
+                stage_essentiality, stage_tcga, benchmark_vs_r, profile_speedup, cacts_reference.R
 examples/       quickstart.py (DepMap) + tcga.py (TCGA) runnable examples
 dashboard/      static results explorer (index.html + css/ + js/ + data/); GitHub-Pages-ready
 data/           bundled TF list + data pointers (large inputs are NOT committed, see data/README.md)
@@ -214,6 +215,10 @@ resources. If you use it, please cite:
   release, <https://depmap.org>. DepMap data are released under **CC BY 4.0**; the dashboard redistributes
   only per-group aggregates (means, ranks) derived from them; please cite the DepMap release and the
   CCLE/Achilles papers listed at depmap.org. Raw DepMap inputs are not committed (see `data/README.md`).
+- **TCGA / UCSC Xena** (the dashboard's TCGA panel and the TCGA worked example): TCGA pan-cancer expression
+  and molecular-subtype calls via the **UCSC Xena** PanCanAtlas hub, <https://xenabrowser.net>; please cite
+  the TCGA Research Network and the Xena resource (Goldman *et al.*, *Nat. Biotechnol.* 2020). The dashboard
+  ships only per-group aggregates.
 - **TF universe & families:** Lambert SA, *et al.* "The Human Transcription Factors." *Cell*
   2018;172(4):650–665. DOI 10.1016/j.cell.2018.01.029 (humantfs.ccbr.utoronto.ca); the CaCTS 1,671-TF list
   also draws on Saint-André V, *et al.*, *Genome Research* 2016.

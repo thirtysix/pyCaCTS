@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>pyCaCTS: master-TF atlas of the DepMap cell-line panel</title>
+<title>pyCaCTS: master-TF atlas of the DepMap & TCGA panels</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c847e'/%3E%3Ctext x='16' y='23' font-size='19' font-family='monospace' font-weight='700' text-anchor='middle' fill='white'%3EC%3C/text%3E%3C/svg%3E">
 <script>
 (function () {
@@ -20,7 +20,7 @@
   <aside class="sidebar">
     <div class="brand">
       <div class="logo">py<b>CaCTS</b></div>
-      <div class="sub">master-TF atlas of DepMap</div>
+      <div class="sub">master-TF atlas of DepMap &amp; TCGA</div>
     </div>
     <div class="snap" id="snap"></div>
     <nav class="nav" id="nav">
@@ -44,7 +44,7 @@
     <section class="panel active" data-tab="overview">
       <div class="phead"><div class="eyebrow">pyCaCTS</div>
         <h1>Master transcription factors across the DepMap cell-line panel</h1>
-        <p class="lede">A validated, fast Python reimplementation of <b>CaCTS</b> (Cancer Core Transcription factor Specificity), which scores how lineage-specifically each transcription factor is expressed. Here it is applied to the whole DepMap/CCLE panel at every level of the disease hierarchy, <b>lineage</b>, <b>primary disease</b>, <b>subtype</b>, and <b>model type</b>, so you can read out the candidate master regulators of any cancer group. Scores match the original R to floating-point precision, computed thousands of times faster.</p>
+        <p class="lede">A validated, fast Python reimplementation of <b>CaCTS</b> (Cancer Core Transcription factor Specificity), which scores how lineage-specifically each transcription factor is expressed. Here it is applied both to the <b>DepMap/CCLE</b> cell-line panel (lineage, disease, subtype, model type, and each cell line) and to <b>TCGA</b> tumors (tumor type, molecular subtype, sample type), so you can read out the candidate master regulators of any cancer group, and compare the tumor with its cell-line models. Scores match the original R to floating-point precision, computed thousands of times faster.</p>
       </div>
       <div class="stat-grid" id="ov-stats"></div>
       <div class="panel-strip" id="ov-panel"></div>
@@ -63,8 +63,10 @@
     <!-- MTF atlas -->
     <section class="panel" data-tab="atlas">
       <div class="phead"><div class="eyebrow">Explore</div><h1>MTF atlas</h1>
-        <p class="lede">Master transcription factors for every group, at five resolutions of the DepMap disease hierarchy, down to the single cell line. <b>Specific</b> = top-5% by CaCTS score <em>and</em> expression; <b>non-specific</b> = highly expressed, lower specificity (CaCTS's candidate ubiquitous MTFs).</p></div>
+        <p class="lede">Master transcription factors for every group. The <b>Data</b> toggle switches between DepMap cell lines (five resolutions, down to the single cell line) and TCGA tumors (tumor type, molecular subtype, sample type). <b>Specific</b> = top-5% by CaCTS score <em>and</em> expression; <b>non-specific</b> = highly expressed, lower specificity (CaCTS's candidate ubiquitous MTFs).</p></div>
       <div class="controls">
+        <span class="ctl-label" title="which panel to score: DepMap cell lines or TCGA tumors">Data</span>
+        <div class="seg ds-seg" id="atlas-ds" role="tablist"></div>
         <div class="seg" id="atlas-div" role="tablist"></div>
         <div class="combo" id="atlas-combo">
           <input id="atlas-group" class="sel combo-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" autocomplete="off" spellcheck="false" aria-label="Group" title="Choose a group, or type to filter. At the Model-type and Cell-line levels you can search by cancer / tissue text (e.g. 'serous', 'glioblastoma')." placeholder="Choose a group…">
@@ -85,8 +87,10 @@
     <!-- TF scores -->
     <section class="panel" data-tab="scores">
       <div class="phead"><div class="eyebrow">Explore</div><h1>TF scores</h1>
-        <p class="lede">Every transcription factor's CaCTS specificity score for a chosen group, sortable, at any of the five resolutions, down to a single cell line. Lower CaCTS score = more group-specific (rank 1 = most specific). Class (specific / non-specific) uses the top-5%-score ∩ top-5%-expression rule, and the two gates behind it are shown as their own columns. Each TF also carries its family, per-group CRISPR essentiality (Chronos; not at the single-cell-line level), cross-group breadth, and out-links. <b>⬇ TSV</b> downloads the current sorted / filtered view.</p></div>
+        <p class="lede">Every transcription factor's CaCTS specificity score for a chosen group, sortable. The <b>Data</b> toggle switches between DepMap cell lines and TCGA tumors. Lower CaCTS score = more group-specific (rank 1 = most specific). Class (specific / non-specific) uses the top-5%-score ∩ top-5%-expression rule, and the two gates behind it are shown as their own columns. Each TF also carries its family, per-group CRISPR essentiality (Chronos; not at the single-cell-line level), cross-group breadth, and out-links. <b>⬇ TSV</b> downloads the current sorted / filtered view.</p></div>
       <div class="controls">
+        <span class="ctl-label" title="which panel to score: DepMap cell lines or TCGA tumors">Data</span>
+        <div class="seg ds-seg" id="scores-ds" role="tablist"></div>
         <div class="seg" id="scores-div" role="tablist"></div>
         <div class="combo" id="scores-combo">
           <input id="scores-group" class="sel combo-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" autocomplete="off" spellcheck="false" aria-label="Group" title="Choose a group, or type to filter. At the Model-type and Cell-line levels you can search by cancer / tissue text (e.g. 'serous', 'glioblastoma')." placeholder="Choose a group…">

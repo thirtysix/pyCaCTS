@@ -1,18 +1,27 @@
-/* atlas.js, browse specific / non-specific MTFs for every group, at five resolutions incl. single cell line. */
+/* atlas.js: browse specific / non-specific MTFs for every group, for either dataset (DepMap or TCGA). */
 const Atlas = (() => {
-  let manifest, mtDesc = null, linesIdx = null, curDiv = "lineage", curOpts = [], curSpec = [], curNons = [], combo;
-  const byGroup = {};                          // group-level: div -> {group -> {spec, nons}}
+  let dataset = "depmap", manifest, mtDesc = null, linesIdx = null, curDiv, curOpts = [], curSpec = [], curNons = [], combo;
+  const manifests = {}, byGroup = {};          // caches; byGroup keyed by "dataset:div"
+  const DS = () => U.DATASETS[dataset];
+  const dp = f => DS().prefix + f;             // data-path for the current dataset
   const isLine = () => curDiv === "line";
+  const bg = () => byGroup[`${dataset}:${curDiv}`];
+
+  async function loadManifest() {
+    manifest = manifests[dataset] ||= await DataLoader.loadJSON(dp("manifest.json"));
+    if (dataset === "depmap" && !mtDesc) mtDesc = await DataLoader.loadJSON("data/modeltype_desc.json");
+  }
 
   async function ensure(div) {
     if (div === "line") { linesIdx ||= await DataLoader.loadJSON("data/lines_index.json"); return; }
-    if (byGroup[div]) return;
-    const { rows } = await DataLoader.loadTSV(`data/mtfs_${div}.tsv`);
+    const ck = `${dataset}:${div}`;
+    if (byGroup[ck]) return;
+    const { rows } = await DataLoader.loadTSV(dp(`mtfs_${div}.tsv`));
     const m = {};
     for (const r of rows) (m[r.group] ||= { spec: [], nons: [] })[r.category === "specific" ? "spec" : "nons"]
       .push([r.tf, r.jsd_rank, r.group_expr_log2tpm]);
     for (const g in m) { m[g].spec.sort((a, b) => a[1] - b[1]); m[g].nons.sort((a, b) => a[1] - b[1]); }
-    byGroup[div] = m;
+    byGroup[ck] = m;
   }
 
   function optionsFor() {                                    // {key, label, search} for the combobox
@@ -29,17 +38,17 @@ const Atlas = (() => {
   function fillPicker() {
     curOpts = optionsFor();
     combo.setOptions(curOpts);
-    // land on the most illustrative group, the one with the most specific MTFs (line level: first line)
+    // land on the most illustrative group (the one with the most specific MTFs); line level: first line
     let def = curOpts[0];
-    if (!isLine() && byGroup[curDiv]) def = curOpts.reduce((best, o) =>
-      (byGroup[curDiv][o.key]?.spec.length || 0) > (byGroup[curDiv][best.key]?.spec.length || 0) ? o : best, curOpts[0]);
+    if (!isLine() && bg()) def = curOpts.reduce((best, o) =>
+      (bg()[o.key]?.spec.length || 0) > (bg()[best.key]?.spec.length || 0) ? o : best, curOpts[0]);
     combo.setValue(def ? def.key : null);
     if (def) selectVal(def.key);
   }
 
   const setDesc = html => U.el("atlas-desc").innerHTML = html;
   const row = ([tf, rank, expr]) =>
-    `<div class="mtf" title="${tf}: rank #${rank} of 1,651 by CaCTS specificity · mean expression ${expr.toFixed(1)} log₂TPM">
+    `<div class="mtf" title="${tf}: rank #${rank} by CaCTS specificity · mean expression ${expr.toFixed(1)} log₂">
       <div class="g"><span class="tf-sym">${tf}</span></div><div class="meta">rank <b>#${rank}</b> · ${expr.toFixed(1)}</div></div>`;
 
   function renderLists(spec, nons) {
@@ -61,9 +70,9 @@ const Atlas = (() => {
                   cl.filter(r => r.cat === "non_specific").map(r => [r.tf, r.rank, r.expr]));
       setDesc(`<b>${U.esc(o.name)}</b> &middot; ${U.esc(o.sub || "–")} &middot; <span class="mono">${o.key}</span>`);
     } else {
-      const d = byGroup[curDiv][o.key];
+      const d = bg()[o.key], unit = DS().unit;
       renderLists(d ? d.spec : [], d ? d.nons : []);
-      let ds = `${o.n.toLocaleString()} cell line${o.n === 1 ? "" : "s"} in this group`;
+      let ds = `${o.n.toLocaleString()} ${unit}${o.n === 1 ? "" : "s"} in this group`;
       if (curDiv === "modeltype" && mtDesc && mtDesc[o.key]) ds = `<b>${U.esc(o.key)}</b> &rarr; ${U.esc(mtDesc[o.key])} &middot; ${ds}`;
       setDesc(ds);
     }
@@ -75,22 +84,41 @@ const Atlas = (() => {
     const rows = curSpec.map(x => ({ tf: x[0], rank: x[1], expr: x[2], cat: "specific" }))
       .concat(curNons.map(x => ({ tf: x[0], rank: x[1], expr: x[2], cat: "non_specific" })));
     const cols = [{ label: "tf", key: "tf" }, { label: "cacts_rank", key: "rank" },
-      { label: "expr_log2tpm", get: r => (+r.expr).toFixed(4) }, { label: "class", key: "cat" }];
+      { label: "expr_log2", get: r => (+r.expr).toFixed(4) }, { label: "class", key: "cat" }];
     const safe = g.replace(/[^A-Za-z0-9]+/g, "_").replace(/^_|_$/g, "");
-    U.downloadTSV(`pycacts_MTFs_${curDiv}_${safe}.tsv`, cols, rows);
+    U.downloadTSV(`pycacts_MTFs_${dataset}_${curDiv}_${safe}.tsv`, cols, rows);
   }
 
   async function pick(div) { curDiv = div; await ensure(div); fillPicker(); }
 
+  function buildLevelSeg() {
+    U.el("atlas-div").innerHTML = DS().divs.map(([k, lab]) =>
+      `<button role="tab" data-div="${k}" aria-selected="${k === curDiv}" title="group by ${lab.toLowerCase()}">${lab}</button>`).join("");
+  }
+
+  async function setDataset(ds) {
+    if (ds === dataset) return;
+    dataset = ds; curDiv = DS().divs[0][0];
+    await loadManifest();
+    buildLevelSeg();
+    await ensure(curDiv); fillPicker();
+  }
+
   async function init() {
-    [manifest, mtDesc] = await Promise.all([
-      DataLoader.loadJSON("data/manifest.json"), DataLoader.loadJSON("data/modeltype_desc.json")]);
-    const seg = U.el("atlas-div");
-    seg.innerHTML = U.DIVS.map(([k, lab]) =>
-      `<button role="tab" data-div="${k}" aria-selected="${k === curDiv}" title="group cell lines by ${lab.toLowerCase()}">${lab}</button>`).join("");
-    seg.addEventListener("click", async e => {
+    dataset = "depmap"; curDiv = DS().divs[0][0];
+    await loadManifest();
+    const dseg = U.el("atlas-ds");
+    dseg.innerHTML = U.DSLIST.map(([k, lab]) =>
+      `<button role="tab" data-ds="${k}" aria-selected="${k === dataset}" title="show ${lab} groups">${lab}</button>`).join("");
+    dseg.addEventListener("click", async e => {
       const b = e.target.closest("button"); if (!b) return;
-      [...seg.children].forEach(x => x.setAttribute("aria-selected", x === b));
+      [...dseg.children].forEach(x => x.setAttribute("aria-selected", x === b));
+      await setDataset(b.dataset.ds);
+    });
+    buildLevelSeg();
+    U.el("atlas-div").addEventListener("click", async e => {
+      const b = e.target.closest("button"); if (!b) return;
+      [...e.currentTarget.children].forEach(x => x.setAttribute("aria-selected", x === b));
       await pick(b.dataset.div);
     });
     combo = Combo.make(U.el("atlas-group"), key => selectVal(key));

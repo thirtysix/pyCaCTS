@@ -1,12 +1,22 @@
-/* scores.js, every TF's CaCTS specificity score + expression rank for a chosen group, sortable.
-   All TFs in one table: class (specific / non-specific) plus the two gates behind it (top-5% score, top-5%
-   expression), gene name + TF family, per-group CRISPR essentiality, cross-group breadth, and out-links.
-   Works at all five levels incl. single cell line; the current view is downloadable as TSV. */
+/* scores.js: every TF's CaCTS specificity score for a chosen group, sortable, for either dataset.
+   One table: class (specific / non-specific), the two gates behind it (top-5% score, top-5% expression),
+   empirical-null FDR, gene name + family, per-group CRISPR essentiality (DepMap only), cross-group breadth,
+   and out-links. DepMap: five levels incl. single cell line. TCGA: tumor type / molecular subtype / sample
+   type. The current view is downloadable as TSV. */
 const Scores = (() => {
-  let manifest, mtDesc = null, linesIdx = null, info = {}, curDiv = "subtype", curOpts = [], combo;
+  let dataset = "depmap", manifest, mtDesc = null, linesIdx = null, info = {}, tcgaBreadth = null,
+      curDiv = "subtype", curOpts = [], combo;
+  const manifests = {};
+  const DS = () => U.DATASETS[dataset];
+  const dp = f => DS().prefix + f;
   const isLine = () => curDiv === "line";
   const state = { rows: [], sort: { col: "rank", dir: "asc" }, filter: "", fdrMax: 1 };
 
+  async function loadManifest() {
+    manifest = manifests[dataset] ||= await DataLoader.loadJSON(dp("manifest.json"));
+    if (dataset === "depmap" && !mtDesc) mtDesc = await DataLoader.loadJSON("data/modeltype_desc.json");
+    if (dataset === "tcga" && !tcgaBreadth) tcgaBreadth = await DataLoader.loadJSON("data/tcga/breadth.json");
+  }
   async function ensure(div) { if (div === "line") linesIdx ||= await DataLoader.loadJSON("data/lines_index.json"); }
 
   function optionsFor() {                                    // {key, label, search} for the combobox
@@ -27,8 +37,8 @@ const Scores = (() => {
       return tfNames.map((tf, i) => ({ tf, cacts: d.c[i], expr: d.e[i], ess: null }));
     }
     const [S, E, ES] = await Promise.all([
-      DataLoader.loadTSV(`data/scores_${curDiv}.tsv`), DataLoader.loadTSV(`data/expr_${curDiv}.tsv`),
-      DataLoader.loadTSV(`data/ess_${curDiv}.tsv`).catch(() => null)]);   // essentiality is optional
+      DataLoader.loadTSV(dp(`scores_${curDiv}.tsv`)), DataLoader.loadTSV(dp(`expr_${curDiv}.tsv`)),
+      dataset === "depmap" ? DataLoader.loadTSV(dp(`ess_${curDiv}.tsv`)).catch(() => null) : Promise.resolve(null)]);
     const tfCol = S.columns[0], ex = {}, es = {};
     for (const r of E.rows) ex[r[E.columns[0]]] = r[o.key];
     const hasEss = ES && ES.columns.includes(o.key);
@@ -40,7 +50,8 @@ const Scores = (() => {
     let html;
     if (isLine()) html = `<b>${U.esc(o.name)}</b> &middot; ${U.esc(o.sub || "–")} &middot; <span class="mono">${o.key}</span>`;
     else {
-      html = `${o.n.toLocaleString()} cell line${o.n === 1 ? "" : "s"}`;
+      const unit = DS().unit;
+      html = `${o.n.toLocaleString()} ${unit}${o.n === 1 ? "" : "s"}`;
       if (curDiv === "modeltype" && mtDesc && mtDesc[o.key]) html = `<b>${U.esc(o.key)}</b> &rarr; ${U.esc(mtDesc[o.key])} &middot; ${html}`;
     }
     U.el("scores-desc").innerHTML = html;
@@ -53,7 +64,8 @@ const Scores = (() => {
     rows.forEach(r => {
       r.fdr = fdr[r.tf]; r.ess = ess[r.tf];
       const gi = info[r.tf] || {};
-      r.name = gi.name || ""; r.family = gi.family || ""; r.breadth = gi.breadth || 0;
+      r.name = gi.name || ""; r.family = gi.family || "";
+      r.breadth = dataset === "tcga" ? (tcgaBreadth[r.tf] || 0) : (gi.breadth || 0);
       r.entrez = gi.entrez || ""; r.ensembl = gi.ensembl || "";
     });
     state.rows = rows; setDesc(o); render();
@@ -111,8 +123,8 @@ const Scores = (() => {
         <td class="num mono">${r.exprrank}</td>
         <td class="num mono${r.fdr != null && r.fdr < LSIG ? " sig" : ""}" title="empirical-null FDR = ${r.fdr == null ? "n/a" : fmtFDR(r.fdr)}">${fmtFDR(r.fdr)}</td>
         <td>${CLS[r.cat]}</td>
-        <td class="num mono${(r.ess != null && !isNaN(r.ess) && r.ess < -0.5) ? " ess-dep" : ""}" title="mean CRISPR (Chronos) in this group; lower = stronger dependency (~ -1 = common-essential)">${essFmt(r.ess)}</td>
-        <td class="num mono" title="number of lineage/disease/subtype/model-type groups where this TF is a specific MTF">${r.breadth || 0}</td>
+        <td class="num mono${(r.ess != null && !isNaN(r.ess) && r.ess < -0.5) ? " ess-dep" : ""}" title="mean CRISPR (Chronos) in this group; lower = stronger dependency (DepMap only)">${essFmt(r.ess)}</td>
+        <td class="num mono" title="number of groups in this dataset where this TF is a specific MTF">${r.breadth || 0}</td>
         <td class="ctr">${links(r)}</td></tr>`).join("");
     document.querySelectorAll("#scores-table th[data-sort]").forEach(th => {
       th.classList.remove("sorted-asc", "sorted-desc");
@@ -130,7 +142,7 @@ const Scores = (() => {
     const cols = [
       { label: "rank", key: "rank" }, { label: "tf", key: "tf" }, { label: "gene_name", key: "name" },
       { label: "tf_family", key: "family" }, { label: "cacts_score", get: r => r.cacts.toFixed(6) },
-      { label: "top5pct_cacts", get: r => r.top5s ? 1 : 0 }, { label: "expr_log2tpm", get: r => r.expr.toFixed(4) },
+      { label: "top5pct_cacts", get: r => r.top5s ? 1 : 0 }, { label: "expr_log2", get: r => r.expr.toFixed(4) },
       { label: "top5pct_expr", get: r => r.top5e ? 1 : 0 }, { label: "expr_rank", key: "exprrank" },
       { label: "empirical_fdr", get: r => r.fdr == null ? "" : Math.exp(r.fdr).toExponential(3) },
       { label: "class", get: r => r.cat || "" },
@@ -138,7 +150,7 @@ const Scores = (() => {
       { label: "specific_in_n_groups", key: "breadth" }, { label: "entrez", key: "entrez" },
       { label: "ensembl", key: "ensembl" }];
     const safe = g.replace(/[^A-Za-z0-9]+/g, "_").replace(/^_|_$/g, "");
-    U.downloadTSV(`pycacts_${curDiv}_${safe}.tsv`, cols, currentRows());
+    U.downloadTSV(`pycacts_${dataset}_${curDiv}_${safe}.tsv`, cols, currentRows());
   }
 
   function fillPicker() {
@@ -148,23 +160,38 @@ const Scores = (() => {
     combo.setValue(def ? def.key : null);
     if (def) load(def);
   }
-
-  function selectVal(key) {
-    const o = curOpts.find(x => x.key === key);
-    if (o) load(o);
-  }
+  function selectVal(key) { const o = curOpts.find(x => x.key === key); if (o) load(o); }
   async function pick(div) { curDiv = div; await ensure(div); fillPicker(); }
 
-  async function init() {
-    [manifest, mtDesc, info] = await Promise.all([
-      DataLoader.loadJSON("data/manifest.json"), DataLoader.loadJSON("data/modeltype_desc.json"),
-      DataLoader.loadJSON("data/gene_info.json")]);
-    const seg = U.el("scores-div");
-    seg.innerHTML = U.DIVS.map(([k, lab]) =>
+  function buildLevelSeg() {
+    U.el("scores-div").innerHTML = DS().divs.map(([k, lab]) =>
       `<button role="tab" data-div="${k}" aria-selected="${k === curDiv}" title="score TFs specifically within each ${lab.toLowerCase()}">${lab}</button>`).join("");
-    seg.addEventListener("click", async e => {
+  }
+
+  async function setDataset(ds) {
+    if (ds === dataset) return;
+    dataset = ds; curDiv = dataset === "tcga" ? "type" : "subtype";
+    await loadManifest();
+    buildLevelSeg();
+    await ensure(curDiv); fillPicker();
+  }
+
+  async function init() {
+    dataset = "depmap"; curDiv = "subtype";
+    info = await DataLoader.loadJSON("data/gene_info.json");
+    await loadManifest();
+    const dseg = U.el("scores-ds");
+    dseg.innerHTML = U.DSLIST.map(([k, lab]) =>
+      `<button role="tab" data-ds="${k}" aria-selected="${k === dataset}" title="score TFs within ${lab} groups">${lab}</button>`).join("");
+    dseg.addEventListener("click", async e => {
       const b = e.target.closest("button"); if (!b) return;
-      [...seg.children].forEach(x => x.setAttribute("aria-selected", x === b));
+      [...dseg.children].forEach(x => x.setAttribute("aria-selected", x === b));
+      await setDataset(b.dataset.ds);
+    });
+    buildLevelSeg();
+    U.el("scores-div").addEventListener("click", async e => {
+      const b = e.target.closest("button"); if (!b) return;
+      [...e.currentTarget.children].forEach(x => x.setAttribute("aria-selected", x === b));
       await pick(b.dataset.div);
     });
     combo = Combo.make(U.el("scores-group"), key => selectVal(key));

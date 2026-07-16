@@ -5,9 +5,11 @@ from `data/`; no build step.
 
 ## Tabs
 - **Overview**: validation + benchmark + what to explore.
-- **MTF atlas**: specific / non-specific MTFs for every group, at five resolutions of the DepMap disease
-  hierarchy (lineage, primary disease, subtype, model type, and each individual cell line); TSV download.
-- **TF scores**: every TF in one sortable table for a chosen group: CaCTS score, the two gates behind the
+- **MTF atlas**: specific / non-specific MTFs for every group; TSV download. A **Data** toggle switches
+  between DepMap cell lines (lineage, primary disease, subtype, model type, each cell line) and TCGA tumors
+  (tumor type, molecular subtype, sample type).
+- **TF scores**: every TF in one sortable table for a chosen group (DepMap or TCGA via the Data toggle):
+  CaCTS score, the two gates behind the
   class (top-5% score, top-5% expression), MTF class, filterable empirical-null FDR, TF family, per-group
   CRISPR essentiality (Chronos), cross-group breadth, and NCBI / GeneCards / DepMap out-links; TSV download.
 - **TF finder**: where a given TF is a specific master regulator.
@@ -25,6 +27,9 @@ Regenerate `data/` from the analysis with:
 - `scripts/build_gene_info.py`, `gene_info.json` (gene name, TF family, IDs, cross-group breadth; needs the
   Lambert 2018 table, `PYCACTS_TF_ANNOT`, and the mtfs_*.tsv from the first script).
 - `scripts/stage_essentiality.py`, `ess_<div>.tsv` per-group mean CRISPR Chronos (needs `CRISPRGeneEffect.csv`).
+- `scripts/stage_tcga.py`, the `data/tcga/` bundle (scores / expr / mtfs at tumor-type, molecular-subtype,
+  and sample-type levels + manifest + breadth; needs the TCGA expression, CaCTS sample map, and Xena subtype
+  calls; see `../data/README.md`).
 
 Divisions shipped: lineage (29 groups), primary disease (79), subtype (191), model type (192), plus the
 per-cell-line level (~1,450 lines). All from DepMap/CCLE expression scored against the CaCTS 1,671-TF

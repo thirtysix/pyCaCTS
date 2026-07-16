@@ -39,9 +39,10 @@ cols = [c for c in expr.columns if c[:15] in sample2type]
 types = pd.Series({c: sample2type[c[:15]] for c in cols})
 print(f"matched {len(cols)} samples across {types.nunique()} tumor types")
 
-# subset to the CaCTS TF universe, per-type mean = the CaCTS representative matrix, then score
+# subset to the CaCTS TF universe, per-type mean = the CaCTS representative matrix, then score.
+# The batch-corrected matrix has slightly negative values; CaCTS needs non-negative input, so clip at 0.
 tfs = io.load_tf_universe(TF, "cacts")
-rep = expr.loc[expr.index.intersection(tfs), cols].T.groupby(types).mean().T
+rep = expr.loc[expr.index.intersection(tfs), cols].T.groupby(types).mean().T.clip(lower=0)
 scores = score.cacts_score_matrix(rep)                      # TFs x tumor types
 
 print(f"\n{TYPE}: most group-specific TFs (by CaCTS score):")

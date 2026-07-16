@@ -22,6 +22,18 @@ const About = (() => {
       "representative profile" is the mean expression across its member cell lines. Coarser levels pool more
       lines (more robust, less granular); finer levels resolve individual subtypes.</p>
 
+      <h3>TCGA tumors</h3>
+      <p>The <b>Data</b> toggle (on the MTF-atlas and TF-scores tabs) switches from the DepMap cell-line
+      panel to <b>TCGA</b> tumors, scored the same way at three levels: <b>tumor type</b> (33, e.g. SKCM,
+      BRCA, LUAD), <b>molecular subtype</b> (~95 curated TCGA subtype calls, e.g. BRCA.LumA, GBM.Proneural),
+      and <b>sample type</b> (primary / metastatic / recurrent / normal, from the sample barcode).
+      Expression is the UCSC Xena PanCanAtlas batch-corrected pan-cancer matrix; tumor types follow the CaCTS
+      33-type map and subtypes the TCGA subtype working-group calls. Specificity is computed relative to each
+      dataset's own reference set, so a TF's DepMap and TCGA scores are independent, and the difference is
+      the point (the tumor vs its cell-line models). Two caveats: there is no CRISPR essentiality for tumors
+      (that column is blank for TCGA), and the sample-type level is cross-cutting across all cancers, so it
+      reads most cleanly within a single tumor type.</p>
+
       <h3>How an MTF is called</h3>
       <p>Following CaCTS, a factor is a <b>specific MTF</b> in a group if it is in the <b>top 5% by CaCTS score</b>
       <em>and</em> the <b>top 5% by mean expression</b> there. A <b>non-specific MTF</b>, CaCTS's

@@ -44,3 +44,17 @@ Entrez / Ensembl IDs) from the **Lambert et al. 2018** human-TF table. Point at 
 
 The benchmark (`scripts/benchmark_vs_r.py`) needs R on `PATH` and a local `reference_R/JSD.R`; it is the
 only path that touches the original GPL source, which is never committed to this repo.
+
+## TCGA panel (dashboard TCGA data)
+
+`scripts/stage_tcga.py` builds the dashboard's `data/tcga/` bundle (tumor type / molecular subtype / sample
+type). It needs three downloads (paths via env vars; see the README worked example):
+
+| Input | env var | What | Source |
+| :-- | :-- | :-- | :-- |
+| TCGA pan-cancer expression | `PYCACTS_TCGA_EXPR` | UCSC Xena `EB++AdjustPANCAN` gene-symbol matrix, log2, batch-corrected | pancanatlas.xenahubs.net |
+| sample → tumor type | `PYCACTS_TCGA_TYPES` | CaCTS `SuppTable1-34-TCGAID.txt` (33 types) | github.com/lawrenson-lab/CaCTS `files/` |
+| sample → molecular subtype | `PYCACTS_TCGA_SUBTYPE` | UCSC Xena `TCGASubtype.20170308.tsv` (`Subtype_Selected`) | pancanatlas.xenahubs.net |
+
+The staged `data/tcga/*.tsv` are aggregate per-group statistics derived from the above; the raw downloads
+are not committed. TCGA/Xena data are freely available; see the citations in the top-level README.

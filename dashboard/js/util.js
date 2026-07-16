@@ -1,7 +1,16 @@
-/* util.js, shared helpers. General pyCaCTS tool dashboard: the DepMap organizational levels. */
+/* util.js, shared helpers. The two datasets (DepMap cell lines, TCGA tumors) and their grouping levels. */
 const U = (() => {
   const DIVS = [["lineage", "Lineage"], ["disease", "Primary disease"],
                 ["subtype", "Subtype"], ["modeltype", "Model type"], ["line", "Cell line"]];
+  // each dataset: where its data lives (prefix), the unit it groups, and its resolution levels
+  const DATASETS = {
+    depmap: { label: "DepMap", prefix: "data/", unit: "cell line",
+              divs: [["lineage", "Lineage"], ["disease", "Primary disease"], ["subtype", "Subtype"],
+                     ["modeltype", "Model type"], ["line", "Cell line"]] },
+    tcga:   { label: "TCGA", prefix: "data/tcga/", unit: "sample", breadthFile: "data/tcga/breadth.json",
+              divs: [["type", "Tumor type"], ["subtype", "Molecular subtype"], ["sampletype", "Sample type"]] },
+  };
+  const DSLIST = Object.entries(DATASETS).map(([k, v]) => [k, v.label]);
   const el = id => document.getElementById(id);
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]));
   const tags = () => "";                         // no lineage-specific badges in the general tool view
@@ -57,5 +66,5 @@ const U = (() => {
     return out;
   };
 
-  return { DIVS, el, esc, tags, classify, empiricalFDR, downloadTSV };
+  return { DIVS, DATASETS, DSLIST, el, esc, tags, classify, empiricalFDR, downloadTSV };
 })();

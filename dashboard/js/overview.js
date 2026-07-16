@@ -1,11 +1,12 @@
 /* overview.js, hero stats, benchmark, and a guide to the tabs. */
 const Overview = (() => {
   async function init() {
-    const [meta, bench, manifest, linesIdx] = await Promise.all([
+    const [meta, bench, manifest, linesIdx, tcga] = await Promise.all([
       DataLoader.loadJSON("data/meta.json"),
       DataLoader.loadJSON("data/benchmark.json"),
       DataLoader.loadJSON("data/manifest.json"),
       DataLoader.loadJSON("data/lines_index.json"),
+      DataLoader.loadJSON("data/tcga/manifest.json"),
     ]);
     // sidebar snapshot
     U.el("snap").innerHTML = [
@@ -22,13 +23,16 @@ const Overview = (() => {
       [meta.n_lines, "", "DepMap / CCLE cell lines"],
     ].map(([k, cls, l]) => `<div class="stat"><div class="k ${cls}">${k}</div><div class="l">${l}</div></div>`).join("");
 
-    // panel at a glance: number of groups at each of the five resolutions
-    const nG = d => Object.keys(manifest.divisions[d].groups).length;
+    // panel at a glance: groups per resolution, for each dataset
+    const nG = (m, d) => Object.keys(m.divisions[d].groups).length;
+    const items = pairs => pairs.map(([n, lab]) =>
+      `<div class="ps-item"><span class="ps-n">${typeof n === "number" ? n.toLocaleString() : n}</span><span class="ps-l">${lab}</span></div>`).join("");
     U.el("ov-panel").innerHTML =
-      `<span class="ps-cap">grouped at five resolutions</span>` +
-      [["lineage", "lineages"], ["disease", "primary diseases"], ["subtype", "subtypes"], ["modeltype", "model types"]]
-        .map(([k, lab]) => `<div class="ps-item"><span class="ps-n">${nG(k)}</span><span class="ps-l">${lab}</span></div>`).join("")
-      + `<div class="ps-item"><span class="ps-n">${linesIdx.length.toLocaleString()}</span><span class="ps-l">cell lines</span></div>`;
+      `<span class="ps-cap">DepMap</span>` +
+      items([[nG(manifest, "lineage"), "lineages"], [nG(manifest, "disease"), "primary diseases"],
+             [nG(manifest, "subtype"), "subtypes"], [nG(manifest, "modeltype"), "model types"], [linesIdx.length, "cell lines"]]) +
+      `<span class="ps-cap" style="margin-left:8px">TCGA</span>` +
+      items([[nG(tcga, "type"), "tumor types"], [nG(tcga, "subtype"), "subtypes"], [nG(tcga, "sampletype"), "sample types"]]);
 
     // Log scale: a linear axis can't render a >3,000× gap (the fast bar would be an invisible sliver).
     const lg = v => Math.log10(Math.max(v, 1));
