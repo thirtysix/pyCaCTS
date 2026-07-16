@@ -37,6 +37,20 @@ const About = (() => {
       <b>shared</b> (preserved in the model), <b>tumor-only</b>, and <b>model-only</b> (e.g. ovarian: PAX8
       shared, but WT1 / SOX17 tumor-only, lost in the cell-line models).</p>
 
+      <h3>Within-cancer master TFs</h3>
+      <p>The <b>Within-cancer</b> tab re-scores CaCTS with the reference set restricted to a <b>single
+      cancer's own samples</b>, so specificity is read <em>inside</em> one disease rather than across all
+      of TCGA. Two axes are offered: <b>molecular subtype</b> (the TCGA subtype working-group calls, e.g.
+      BRCA into LumA / LumB / Basal / Her2 / Normal) and <b>tumor vs adjacent-normal</b> tissue (from the
+      sample barcode). Because every subgroup shares the cancer's lineage, the strict specific-MTF gate
+      (top-5% score &cap; top-5% expression) is sparse here, so each subgroup lists its <b>top TFs by CaCTS
+      specificity among the well-expressed ones</b> (the top-5%-expression set, ranked by score), with the
+      few that still clear the strict rule flagged. Breast is the clean validation: LumA and LumB surface
+      <b>ESR1, FOXA1, GATA3</b> (the canonical luminal-ER program), Basal surfaces proliferation factors
+      (FOXM1, MYBL2), and the immune LUAD subtype surfaces IRF1 / STAT1. Metastatic and normal samples
+      inherit their patient's cancer via the sample barcode. A stage axis is not shown: the AJCC-stage
+      clinical table is not freely fetchable from the Xena mirror.</p>
+
       <h3>How an MTF is called</h3>
       <p>Following CaCTS, a factor is a <b>specific MTF</b> in a group if it is in the <b>top 5% by CaCTS score</b>
       <em>and</em> the <b>top 5% by mean expression</b> there. A <b>non-specific MTF</b>, CaCTS's

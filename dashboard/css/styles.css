@@ -48,6 +48,11 @@ em{font-style:normal; color:var(--accent-deep)}
 .two{display:grid; grid-template-columns:1fr 1fr; gap:18px}
 .three{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
 @media (max-width:900px){ .three{grid-template-columns:1fr} }
+.within-cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:16px; align-items:start}
+.mtf .tf-rank{display:inline-flex; align-items:center; justify-content:center; min-width:20px; height:18px; padding:0 5px;
+  border-radius:6px; background:var(--bg-alt); border:1px solid var(--border-2); font-family:ui-monospace,Menlo,monospace;
+  font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums}
+.pill.tiny{padding:1px 6px; font-size:9.5px; vertical-align:middle}
 .two-wide{grid-template-columns:1.05fr .95fr}
 @media(max-width:860px){.two,.two-wide{grid-template-columns:1fr}}
 

@@ -180,7 +180,9 @@ what makes per-cell-line scoring tractable (44 s → 0.15 s).
 
 ## Explore the results
 A static, no-backend **dashboard** lives in `dashboard/`, a browsable MTF atlas across the disease
-hierarchy, a sortable per-group **TF-scores** table with empirical-null FDR, and a TF finder. Run locally
+hierarchy, a sortable per-group **TF-scores** table with empirical-null FDR, a TF finder, and a **TCGA**
+side (a Data toggle on the atlas / scores tabs, a tumor-vs-cell-line-model comparison, and a within-cancer
+view that re-scores each tumor type across its own molecular subtypes or tumor/normal samples). Run locally
 with `cd dashboard && python3 -m http.server 8000`. Regenerate its data with `scripts/stage_dashboard_data.py`
 and `scripts/stage_line_data.py`. (Forking to host your own copy? See `dashboard/README.md` for the one-click
 GitHub Pages deploy.)
@@ -191,7 +193,8 @@ GitHub Pages deploy.)
 ```
 pycacts/        the package (score / grouping / io / filter)
 scripts/        runners: run_divisions, stage_dashboard_data, stage_line_data, build_gene_info,
-                stage_essentiality, stage_tcga, build_crosswalk, benchmark_vs_r, profile_speedup, cacts_reference.R
+                stage_essentiality, stage_tcga, stage_tcga_within, build_crosswalk, benchmark_vs_r,
+                profile_speedup, cacts_reference.R
 examples/       quickstart.py (DepMap) + tcga.py (TCGA) runnable examples
 dashboard/      static results explorer (index.html + css/ + js/ + data/); GitHub-Pages-ready
 data/           bundled TF list + data pointers (large inputs are NOT committed, see data/README.md)

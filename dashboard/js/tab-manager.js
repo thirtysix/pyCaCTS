@@ -2,7 +2,7 @@
 const TabManager = (() => {
   const inits = new Map(), initialized = new Set();
   let current = null;
-  const TABS = ["overview", "recovery", "atlas", "scores", "compare", "core83", "finder", "about"];
+  const TABS = ["overview", "recovery", "atlas", "scores", "compare", "within", "core83", "finder", "about"];
 
   function registerInit(id, fn) { inits.set(id, fn); }
 

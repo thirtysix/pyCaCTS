@@ -28,6 +28,7 @@
       <button data-tab="atlas"><span class="ico">▦</span> MTF atlas</button>
       <button data-tab="scores"><span class="ico">≣</span> TF scores</button>
       <button data-tab="compare"><span class="ico">⇄</span> Tumor vs model</button>
+      <button data-tab="within"><span class="ico">◱</span> Within-cancer</button>
       <button data-tab="finder"><span class="ico">⌕</span> TF finder</button>
       <button data-tab="about"><span class="ico">ⓘ</span> About &amp; methods</button>
     </nav>
@@ -157,6 +158,23 @@
       </div>
     </section>
 
+    <!-- Within-cancer -->
+    <section class="panel" data-tab="within">
+      <div class="phead"><div class="eyebrow">Compare</div><h1>Within-cancer master TFs</h1>
+        <p class="lede">Inside a single cancer, which master TFs distinguish its subgroups. CaCTS is re-scored with the reference set restricted to <b>one cancer's own samples</b>, across either its <b>molecular subtypes</b> (TCGA subtype working-group calls) or <b>tumor vs adjacent-normal</b> tissue. Each column is a subgroup, listing its most-specific expressed TFs ranked within that cancer. Because the whole cancer shares a lineage, the strict specific-MTF gate is sparse here, so each list is the top TFs by specificity among the well-expressed ones; <span class="pill spec tiny">S</span> flags the few that still clear the strict rule. Breast is a clean read: LumA / LumB surface ESR1, FOXA1, GATA3.</p></div>
+      <div class="controls">
+        <span class="ctl-label" title="split each cancer by its molecular subtypes, or by tumor vs adjacent-normal tissue">Axis</span>
+        <div class="seg" id="within-axis" role="tablist"></div>
+        <div class="combo" id="within-combo">
+          <input id="within-group" class="sel combo-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" autocomplete="off" spellcheck="false" aria-label="Cancer" title="Choose a cancer, or type to filter by code or name." placeholder="Choose a cancer…">
+          <div class="combo-pop" id="within-pop" role="listbox"></div>
+        </div>
+        <button id="within-dl" class="dl-btn" title="download this cancer's within-group master TFs as TSV">⬇ TSV</button>
+      </div>
+      <div class="desc" id="within-desc"></div>
+      <div class="within-cards" id="within-cards"></div>
+    </section>
+
     <!-- TF finder -->
     <section class="panel" data-tab="finder">
       <div class="phead"><div class="eyebrow">Look up</div><h1>Where is a TF a master regulator?</h1>
@@ -182,6 +200,7 @@
 <script src="js/atlas.js"></script>
 <script src="js/scores.js"></script>
 <script src="js/compare.js"></script>
+<script src="js/within.js"></script>
 <script src="js/finder.js"></script>
 <script src="js/about.js"></script>
 <script src="js/main.js"></script>
