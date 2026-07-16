@@ -33,6 +33,21 @@ SAMPLE_TYPE = {"01": "Primary Solid Tumor", "02": "Recurrent Solid Tumor", "03":
                "05": "Additional New Primary", "06": "Metastatic", "07": "Additional Metastatic",
                "11": "Solid Tissue Normal"}
 
+# TCGA tumor-type code -> full study name (for the dashboard's expanded label, like DepMap's model type)
+TCGA_TYPE_NAMES = {
+    "ACC": "Adrenocortical Carcinoma", "BLCA": "Bladder Urothelial Carcinoma", "BRCA": "Breast Invasive Carcinoma",
+    "CESC": "Cervical & Endocervical Carcinoma", "CHOL": "Cholangiocarcinoma", "COAD": "Colon Adenocarcinoma",
+    "DLBC": "Diffuse Large B-cell Lymphoma", "ESCA": "Esophageal Carcinoma", "GBM": "Glioblastoma Multiforme",
+    "HNSC": "Head & Neck Squamous Cell Carcinoma", "KICH": "Kidney Chromophobe",
+    "KIRC": "Kidney Renal Clear Cell Carcinoma", "KIRP": "Kidney Renal Papillary Cell Carcinoma",
+    "LAML": "Acute Myeloid Leukemia", "LGG": "Brain Lower-Grade Glioma", "LIHC": "Liver Hepatocellular Carcinoma",
+    "LUAD": "Lung Adenocarcinoma", "LUSC": "Lung Squamous Cell Carcinoma", "MESO": "Mesothelioma",
+    "OV": "Ovarian Serous Cystadenocarcinoma", "PAAD": "Pancreatic Adenocarcinoma",
+    "PCPG": "Pheochromocytoma & Paraganglioma", "PRAD": "Prostate Adenocarcinoma", "READ": "Rectum Adenocarcinoma",
+    "SARC": "Sarcoma", "SKCM": "Skin Cutaneous Melanoma", "STAD": "Stomach Adenocarcinoma",
+    "TGCT": "Testicular Germ Cell Tumors", "THCA": "Thyroid Carcinoma", "THYM": "Thymoma",
+    "UCEC": "Uterine Corpus Endometrial Carcinoma", "UCS": "Uterine Carcinosarcoma", "UVM": "Uveal Melanoma"}
+
 
 def build_rep(expr, labels):
     """labels: Series sample-barcode -> group label (NaN = drop). Returns (TFs x groups mean, group_size)."""
@@ -94,6 +109,10 @@ def main():
     score_and_write(expr, st, "sampletype", "SampleType", manifest)
 
     (OUT / "manifest.json").write_text(json.dumps(manifest, separators=(",", ":")))
+    # tumor-type code -> full name, for the dashboard's expanded label (like DepMap modeltype_desc)
+    types_present = manifest["divisions"]["type"]["groups"].keys()
+    (OUT / "type_desc.json").write_text(json.dumps(
+        {c: TCGA_TYPE_NAMES[c] for c in types_present if c in TCGA_TYPE_NAMES}, separators=(",", ":")))
     # cross-group breadth (TCGA-specific): # of type+subtype groups where the TF is a specific MTF
     breadth = {}
     for div in ("type", "subtype"):

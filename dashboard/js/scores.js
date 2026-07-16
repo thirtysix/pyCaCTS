@@ -4,17 +4,20 @@
    and out-links. DepMap: five levels incl. single cell line. TCGA: tumor type / molecular subtype / sample
    type. The current view is downloadable as TSV. */
 const Scores = (() => {
-  let dataset = "depmap", manifest, mtDesc = null, linesIdx = null, info = {}, tcgaBreadth = null,
+  let dataset = "depmap", manifest, mtDesc = null, typeDesc = null, linesIdx = null, info = {}, tcgaBreadth = null,
       curDiv = "subtype", curOpts = [], combo;
   const manifests = {};
   const DS = () => U.DATASETS[dataset];
   const dp = f => DS().prefix + f;
   const isLine = () => curDiv === "line";
+  const codeDesc = () => (dataset === "depmap" && curDiv === "modeltype") ? mtDesc
+    : (dataset === "tcga" && curDiv === "type") ? typeDesc : null;
   const state = { rows: [], sort: { col: "rank", dir: "asc" }, filter: "", fdrMax: 1 };
 
   async function loadManifest() {
     manifest = manifests[dataset] ||= await DataLoader.loadJSON(dp("manifest.json"));
     if (dataset === "depmap" && !mtDesc) mtDesc = await DataLoader.loadJSON("data/modeltype_desc.json");
+    if (dataset === "tcga" && !typeDesc) typeDesc = await DataLoader.loadJSON("data/tcga/type_desc.json");
     if (dataset === "tcga" && !tcgaBreadth) tcgaBreadth = await DataLoader.loadJSON("data/tcga/breadth.json");
   }
   async function ensure(div) { if (div === "line") linesIdx ||= await DataLoader.loadJSON("data/lines_index.json"); }
@@ -24,9 +27,9 @@ const Scores = (() => {
       key: l.a, label: `${l.n} · ${l.s || "–"}`, search: `${l.n} ${l.a} ${l.s || ""}`.toLowerCase(),
       name: l.n, sub: l.s }));
     const groups = Object.entries(manifest.divisions[curDiv].groups).sort((a, b) => b[1] - a[1]);
-    if (curDiv === "modeltype") return groups.map(([g, n]) => ({   // show + search the code's description
-      key: g, label: mtDesc && mtDesc[g] ? `${g} · ${mtDesc[g]}` : g,
-      search: `${g} ${mtDesc && mtDesc[g] ? mtDesc[g] : ""}`.toLowerCase(), n }));
+    const cd = codeDesc();
+    if (cd) return groups.map(([g, n]) => ({   // show + search the code's expanded name (e.g. SKCM · Skin Cutaneous Melanoma)
+      key: g, label: cd[g] ? `${g} · ${cd[g]}` : g, search: `${g} ${cd[g] || ""}`.toLowerCase(), n }));
     return groups.map(([g, n]) => ({ key: g, label: g, search: g.toLowerCase(), n }));
   }
 
@@ -50,9 +53,9 @@ const Scores = (() => {
     let html;
     if (isLine()) html = `<b>${U.esc(o.name)}</b> &middot; ${U.esc(o.sub || "–")} &middot; <span class="mono">${o.key}</span>`;
     else {
-      const unit = DS().unit;
+      const unit = DS().unit, cd = codeDesc();
       html = `${o.n.toLocaleString()} ${unit}${o.n === 1 ? "" : "s"}`;
-      if (curDiv === "modeltype" && mtDesc && mtDesc[o.key]) html = `<b>${U.esc(o.key)}</b> &rarr; ${U.esc(mtDesc[o.key])} &middot; ${html}`;
+      if (cd && cd[o.key]) html = `<b>${U.esc(o.key)}</b> &rarr; ${U.esc(cd[o.key])} &middot; ${html}`;
     }
     U.el("scores-desc").innerHTML = html;
   }

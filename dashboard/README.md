@@ -12,6 +12,8 @@ from `data/`; no build step.
   CaCTS score, the two gates behind the
   class (top-5% score, top-5% expression), MTF class, filterable empirical-null FDR, TF family, per-group
   CRISPR essentiality (Chronos), cross-group breadth, and NCBI / GeneCards / DepMap out-links; TSV download.
+- **Tumor vs model**: for a cancer, its specific master TFs in the TCGA tumor beside the matched DepMap
+  cell-line models (a curated crosswalk), split into shared / tumor-only / model-only; TSV download.
 - **TF finder**: where a given TF is a specific master regulator.
 - **About & methods**: method, MTF-calling rule, and credit to the original CaCTS.
 
@@ -28,8 +30,10 @@ Regenerate `data/` from the analysis with:
   Lambert 2018 table, `PYCACTS_TF_ANNOT`, and the mtfs_*.tsv from the first script).
 - `scripts/stage_essentiality.py`, `ess_<div>.tsv` per-group mean CRISPR Chronos (needs `CRISPRGeneEffect.csv`).
 - `scripts/stage_tcga.py`, the `data/tcga/` bundle (scores / expr / mtfs at tumor-type, molecular-subtype,
-  and sample-type levels + manifest + breadth; needs the TCGA expression, CaCTS sample map, and Xena subtype
-  calls; see `../data/README.md`).
+  and sample-type levels + manifest + breadth + `type_desc.json`; needs the TCGA expression, CaCTS sample
+  map, and Xena subtype calls; see `../data/README.md`).
+- `scripts/build_crosswalk.py`, `crosswalk.json` (the curated TCGA-type → DepMap-group pairing for the
+  Tumor-vs-model tab; needs both manifests).
 
 Divisions shipped: lineage (29 groups), primary disease (79), subtype (191), model type (192), plus the
 per-cell-line level (~1,450 lines). All from DepMap/CCLE expression scored against the CaCTS 1,671-TF

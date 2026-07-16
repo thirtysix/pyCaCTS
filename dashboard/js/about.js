@@ -32,7 +32,10 @@ const About = (() => {
       dataset's own reference set, so a TF's DepMap and TCGA scores are independent, and the difference is
       the point (the tumor vs its cell-line models). Two caveats: there is no CRISPR essentiality for tumors
       (that column is blank for TCGA), and the sample-type level is cross-cutting across all cancers, so it
-      reads most cleanly within a single tumor type.</p>
+      reads most cleanly within a single tumor type. The <b>Tumor vs model</b> tab pairs each tumor type
+      with its matched DepMap group (a curated crosswalk) and splits their specific master TFs into
+      <b>shared</b> (preserved in the model), <b>tumor-only</b>, and <b>model-only</b> (e.g. ovarian: PAX8
+      shared, but WT1 / SOX17 tumor-only, lost in the cell-line models).</p>
 
       <h3>How an MTF is called</h3>
       <p>Following CaCTS, a factor is a <b>specific MTF</b> in a group if it is in the <b>top 5% by CaCTS score</b>

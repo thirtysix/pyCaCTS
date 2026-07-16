@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   TabManager.registerInit("overview", Overview.init);
   TabManager.registerInit("atlas", Atlas.init);
   TabManager.registerInit("scores", Scores.init);
+  TabManager.registerInit("compare", Compare.init);
   TabManager.registerInit("finder", Finder.init);
   TabManager.registerInit("about", About.init);
   TabManager.init();

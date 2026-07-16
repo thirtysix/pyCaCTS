@@ -27,6 +27,7 @@
       <button data-tab="overview" class="active"><span class="ico">◧</span> Overview</button>
       <button data-tab="atlas"><span class="ico">▦</span> MTF atlas</button>
       <button data-tab="scores"><span class="ico">≣</span> TF scores</button>
+      <button data-tab="compare"><span class="ico">⇄</span> Tumor vs model</button>
       <button data-tab="finder"><span class="ico">⌕</span> TF finder</button>
       <button data-tab="about"><span class="ico">ⓘ</span> About &amp; methods</button>
     </nav>
@@ -133,6 +134,29 @@
       </div>
     </section>
 
+    <!-- Tumor vs model -->
+    <section class="panel" data-tab="compare">
+      <div class="phead"><div class="eyebrow">Compare</div><h1>Tumor vs model</h1>
+        <p class="lede">For a cancer, its <b>specific master TFs</b> in the TCGA tumor beside those in the matched DepMap cell-line models. The <b>shared</b> set is the master-TF program the model preserves; <b>tumor-only</b> factors are lost in culture (often microenvironment / lineage TFs), <b>model-only</b> ones are gained. Specificity is scored independently in each panel (tumor across TCGA types, model across DepMap subtypes), so this compares which factors each calls a master regulator.</p></div>
+      <div class="controls">
+        <div class="combo" id="cmp-combo">
+          <input id="cmp-group" class="sel combo-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" autocomplete="off" spellcheck="false" aria-label="Cancer" title="Choose a cancer (TCGA type paired with its DepMap group), or type to filter." placeholder="Choose a cancer…">
+          <div class="combo-pop" id="cmp-pop" role="listbox"></div>
+        </div>
+        <button id="cmp-dl" class="dl-btn" title="download the shared / tumor-only / model-only master TFs as TSV">⬇ TSV</button>
+      </div>
+      <div class="desc" id="cmp-desc"></div>
+      <div class="panel-strip" id="cmp-summary"></div>
+      <div class="three">
+        <div class="card"><div class="card-h"><span class="pill spec" title="a specific master TF in both the tumor and its cell-line models">shared</span><h3 title="preserved from tumor to model">Shared master TFs</h3></div>
+          <div class="card-b listbox" id="cmp-shared"></div></div>
+        <div class="card"><div class="card-h"><span class="pill tumor" title="a specific master TF in the TCGA tumor but not the DepMap models">tumor only</span><h3 title="present in the tumor, not the model">TCGA-tumor only</h3></div>
+          <div class="card-b listbox" id="cmp-tumor"></div></div>
+        <div class="card"><div class="card-h"><span class="pill nons" title="a specific master TF in the DepMap models but not the TCGA tumor">model only</span><h3 title="present in the model, not the tumor">DepMap-model only</h3></div>
+          <div class="card-b listbox" id="cmp-model"></div></div>
+      </div>
+    </section>
+
     <!-- TF finder -->
     <section class="panel" data-tab="finder">
       <div class="phead"><div class="eyebrow">Look up</div><h1>Where is a TF a master regulator?</h1>
@@ -157,6 +181,7 @@
 <script src="js/overview.js"></script>
 <script src="js/atlas.js"></script>
 <script src="js/scores.js"></script>
+<script src="js/compare.js"></script>
 <script src="js/finder.js"></script>
 <script src="js/about.js"></script>
 <script src="js/main.js"></script>

@@ -1,15 +1,19 @@
 /* atlas.js: browse specific / non-specific MTFs for every group, for either dataset (DepMap or TCGA). */
 const Atlas = (() => {
-  let dataset = "depmap", manifest, mtDesc = null, linesIdx = null, curDiv, curOpts = [], curSpec = [], curNons = [], combo;
+  let dataset = "depmap", manifest, mtDesc = null, typeDesc = null, linesIdx = null, curDiv, curOpts = [], curSpec = [], curNons = [], combo;
   const manifests = {}, byGroup = {};          // caches; byGroup keyed by "dataset:div"
   const DS = () => U.DATASETS[dataset];
   const dp = f => DS().prefix + f;             // data-path for the current dataset
   const isLine = () => curDiv === "line";
   const bg = () => byGroup[`${dataset}:${curDiv}`];
+  // code -> full-name map for "coded" levels (DepMap model type, TCGA tumor type), else null
+  const codeDesc = () => (dataset === "depmap" && curDiv === "modeltype") ? mtDesc
+    : (dataset === "tcga" && curDiv === "type") ? typeDesc : null;
 
   async function loadManifest() {
     manifest = manifests[dataset] ||= await DataLoader.loadJSON(dp("manifest.json"));
     if (dataset === "depmap" && !mtDesc) mtDesc = await DataLoader.loadJSON("data/modeltype_desc.json");
+    if (dataset === "tcga" && !typeDesc) typeDesc = await DataLoader.loadJSON("data/tcga/type_desc.json");
   }
 
   async function ensure(div) {
@@ -29,9 +33,9 @@ const Atlas = (() => {
       key: l.a, label: `${l.n} · ${l.s || "–"}`, search: `${l.n} ${l.a} ${l.s || ""}`.toLowerCase(),
       name: l.n, sub: l.s }));
     const groups = Object.entries(manifest.divisions[curDiv].groups).sort((a, b) => b[1] - a[1]);
-    if (curDiv === "modeltype") return groups.map(([g, n]) => ({   // show + search the code's description
-      key: g, label: mtDesc && mtDesc[g] ? `${g} · ${mtDesc[g]}` : g,
-      search: `${g} ${mtDesc && mtDesc[g] ? mtDesc[g] : ""}`.toLowerCase(), n }));
+    const cd = codeDesc();
+    if (cd) return groups.map(([g, n]) => ({   // show + search the code's expanded name (e.g. SKCM · Skin Cutaneous Melanoma)
+      key: g, label: cd[g] ? `${g} · ${cd[g]}` : g, search: `${g} ${cd[g] || ""}`.toLowerCase(), n }));
     return groups.map(([g, n]) => ({ key: g, label: g, search: g.toLowerCase(), n }));
   }
 
@@ -73,7 +77,8 @@ const Atlas = (() => {
       const d = bg()[o.key], unit = DS().unit;
       renderLists(d ? d.spec : [], d ? d.nons : []);
       let ds = `${o.n.toLocaleString()} ${unit}${o.n === 1 ? "" : "s"} in this group`;
-      if (curDiv === "modeltype" && mtDesc && mtDesc[o.key]) ds = `<b>${U.esc(o.key)}</b> &rarr; ${U.esc(mtDesc[o.key])} &middot; ${ds}`;
+      const cd = codeDesc();
+      if (cd && cd[o.key]) ds = `<b>${U.esc(o.key)}</b> &rarr; ${U.esc(cd[o.key])} &middot; ${ds}`;
       setDesc(ds);
     }
   }
