@@ -52,9 +52,20 @@ type). It needs three downloads (paths via env vars; see the README worked examp
 
 | Input | env var | What | Source |
 | :-- | :-- | :-- | :-- |
-| TCGA pan-cancer expression | `PYCACTS_TCGA_EXPR` | UCSC Xena `EB++AdjustPANCAN` gene-symbol matrix, log2, batch-corrected | pancanatlas.xenahubs.net |
+| TCGA expression (TPM) | `PYCACTS_TCGA_EXPR` | Xena **Toil** `tcga_RSEM_gene_tpm` re-encoded to log2(TPM+1) by `convert_toil_tcga_tpm.py` (same units as DepMap; a literal 1 TPM floor) | toil-xena-hub S3 |
 | sample → tumor type | `PYCACTS_TCGA_TYPES` | CaCTS `SuppTable1-34-TCGAID.txt` (33 types) | github.com/lawrenson-lab/CaCTS `files/` |
 | sample → molecular subtype | `PYCACTS_TCGA_SUBTYPE` | UCSC Xena `TCGASubtype.20170308.tsv` (`Subtype_Selected`) | pancanatlas.xenahubs.net |
 
+`convert_toil_tcga_tpm.py` prepares `PYCACTS_TCGA_EXPR` from two Toil-hub downloads: the RSEM gene-TPM
+matrix (`PYCACTS_TOIL_TPM`, log2(TPM+0.001), Ensembl-keyed) and the gencode.v23 gene probemap
+(`PYCACTS_TOIL_MAP`, Ensembl → symbol). It maps to symbols, keeps the CaCTS TF universe, and re-encodes to
+log2(TPM+1). The earlier batch-corrected `EB++AdjustPANCAN` matrix was replaced because it is not TPM (so a
+1 TPM abundance floor could not be applied literally); Toil is uniformly re-quantified TPM.
+
 The staged `data/tcga/*.tsv` are aggregate per-group statistics derived from the above; the raw downloads
 are not committed. TCGA/Xena data are freely available; see the citations in the top-level README.
+
+Both panels call an MTF **specific** when its empirical-null **FDR &lt; 0.10** (data-driven specificity gate,
+replacing CaCTS's fixed top-5%-by-score cutoff) **and** its mean expression is **&ge; 1 TPM** (a light
+abundance floor that keeps genuinely expressed lineage TFs, e.g. ovarian SOX17/WT1, while dropping
+near-silent JSD artifacts). `pycacts/stats.py` computes the FDR; `filter.mtf_categories_fdr` does the call.

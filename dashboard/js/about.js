@@ -25,10 +25,12 @@ const About = (() => {
       <h3>TCGA tumors</h3>
       <p>The <b>Data</b> toggle (on the MTF-atlas and TF-scores tabs) switches from the DepMap cell-line
       panel to <b>TCGA</b> tumors, scored the same way at three levels: <b>tumor type</b> (33, e.g. SKCM,
-      BRCA, LUAD), <b>molecular subtype</b> (~95 curated TCGA subtype calls, e.g. BRCA.LumA, GBM.Proneural),
+      BRCA, LUAD), <b>molecular subtype</b> (~94 curated TCGA subtype calls, e.g. BRCA.LumA, GBM.Proneural),
       and <b>sample type</b> (primary / metastatic / recurrent / normal, from the sample barcode).
-      Expression is the UCSC Xena PanCanAtlas batch-corrected pan-cancer matrix; tumor types follow the CaCTS
-      33-type map and subtypes the TCGA subtype working-group calls. Specificity is computed relative to each
+      Expression is the UCSC Xena <b>Toil</b> RSEM <b>TPM</b> matrix (TCGA uniformly re-quantified), re-encoded
+      to log₂(TPM+1) so it is in the same units as DepMap and the <b>1 TPM</b> abundance floor applies
+      identically to both panels; tumor types follow the CaCTS 33-type map and subtypes the TCGA
+      subtype working-group calls. Specificity is computed relative to each
       dataset's own reference set, so a TF's DepMap and TCGA scores are independent, and the difference is
       the point (the tumor vs its cell-line models). Two caveats: there is no CRISPR essentiality for tumors
       (that column is blank for TCGA), and the sample-type level is cross-cutting across all cancers, so it
@@ -42,37 +44,40 @@ const About = (() => {
       cancer's own samples</b>, so specificity is read <em>inside</em> one disease rather than across all
       of TCGA. Two axes are offered: <b>molecular subtype</b> (the TCGA subtype working-group calls, e.g.
       BRCA into LumA / LumB / Basal / Her2 / Normal) and <b>tumor vs adjacent-normal</b> tissue (from the
-      sample barcode). Because every subgroup shares the cancer's lineage, the strict specific-MTF gate
-      (top-5% score &cap; top-5% expression) is sparse here, so each subgroup lists its <b>top TFs by CaCTS
-      specificity among the well-expressed ones</b> (the top-5%-expression set, ranked by score), with the
-      few that still clear the strict rule flagged. Breast is the clean validation: LumA and LumB surface
-      <b>ESR1, FOXA1, GATA3</b> (the canonical luminal-ER program), Basal surfaces proliferation factors
-      (FOXM1, MYBL2), and the immune LUAD subtype surfaces IRF1 / STAT1. Metastatic and normal samples
-      inherit their patient's cancer via the sample barcode. A stage axis is not shown: the AJCC-stage
-      clinical table is not freely fetchable from the Xena mirror.</p>
+      sample barcode). Each subgroup lists its <b>specific</b> MTFs (empirical-null FDR &lt; 0.10 AND mean ≥
+      1 TPM), ordered by CaCTS specificity, with the FDR shown. Because every subgroup shares the cancer's
+      lineage, the signal favours the factors that most distinguish one subgroup from the others: breast LumA
+      surfaces the progesterone receptor <b>PGR</b>; some subgroups have many specific TFs and some (e.g. lung
+      adenocarcinoma normal tissue) none, which is itself informative. Metastatic and normal samples inherit
+      their patient's cancer via the sample barcode. A stage axis is not shown: the AJCC-stage clinical table
+      is not freely fetchable from the Xena mirror.</p>
 
       <h3>How an MTF is called</h3>
-      <p>Following CaCTS, a factor is a <b>specific MTF</b> in a group if it is in the <b>top 5% by CaCTS score</b>
-      <em>and</em> the <b>top 5% by mean expression</b> there. A <b>non-specific MTF</b>, CaCTS's
-      <em>candidate ubiquitous (multi-cancer) master regulator</em>, has high expression (top 5%) but low
-      lineage-specificity (CaCTS rank outside the top 5%). In a 1,651-TF universe, "top 5%" = the top ~83 TFs.</p>
-      <div class="callout"><b>Two orthogonal axes.</b> Specificity (CaCTS score) and abundance (expression) are
-      independent. The MTF call requires both; the <b>TF scores</b> tab exposes the pure specificity signal
-      (score / rank) on its own, so you can see factors that are highly specific yet don't clear the abundance
-      gate, which CaCTS's authors note "may also be MTFs."</div>
+      <p>A factor is a <b>specific MTF</b> in a group if it is both <b>significantly group-specific</b>
+      (empirical-null <b>FDR &lt; 0.10</b> on its CaCTS score, see below) <em>and</em> <b>expressed</b>
+      (mean <b>≥ 1 TPM</b>, i.e. log₂(TPM+1) ≥ 1). A <b>non-specific MTF</b>, CaCTS's <em>candidate ubiquitous
+      (multi-cancer) master regulator</em>, is highly expressed (top 5%) but not group-specific (FDR ≥ 0.10).
+      This replaces CaCTS's original fixed cutoffs (top 5% by score ∩ top 5% by expression) with a data-driven
+      significance threshold and a light 1 TPM abundance floor: the floor keeps genuinely expressed lineage
+      factors that the aggressive top-5%-expression gate dropped (ovarian <b>SOX17 / WT1 / MECOM</b> are all
+      recovered as specific) while still excluding near-silent JSD artifacts.</p>
+      <div class="callout"><b>Two orthogonal axes.</b> Specificity (CaCTS score / FDR) and abundance
+      (expression) are independent. The MTF call requires both; the <b>TF scores</b> tab shows the FDR and
+      expression as their own sortable columns, so you can see factors that are highly specific yet sit below
+      the abundance floor, which CaCTS's authors note "may also be MTFs."</div>
 
-      <h3>The empirical-null FDR column</h3>
-      <p>The <b>TF scores</b> tab also reports an <b>empirical-null FDR</b> per TF for the selected group, and lets
-      you filter by it. The group's non-specific majority (the high-JSD side of its own score distribution) defines
-      the null; each TF gets a left-tail p-value against it; Benjamini-Hochberg gives the FDR. It answers
-      <em>"is this TF significantly more group-specific than the background?"</em>, a data-driven, non-arbitrary
-      alternative to the top-5% cutoff (e.g. filter to FDR &lt; 0.10). It is recomputed for whichever group and
-      level you select.</p>
+      <h3>The empirical-null FDR</h3>
+      <p>The specificity gate is an <b>empirical-null FDR</b>, computed per TF for the selected group. The
+      group's non-specific majority (the high-JSD side of its own score distribution) defines the null; each TF
+      gets a left-tail p-value against it; Benjamini-Hochberg gives the FDR. It answers <em>"is this TF
+      significantly more group-specific than the background?"</em>, a data-driven, non-arbitrary threshold that
+      replaces CaCTS's fixed top-5%-by-score cutoff. The <b>TF scores</b> tab shows it per TF and lets you
+      filter further (e.g. FDR &lt; 0.05); it is recomputed for whichever group and level you select.</p>
 
       <h3>The TF-scores table</h3>
       <p>The <b>TF scores</b> tab puts every TF in one table for the selected group. Alongside the CaCTS
-      score and class it shows the <b>two gates</b> behind the class as their own columns (top-5% by score,
-      top-5% by expression), each TF's <b>family</b> (DNA-binding domain, Lambert et al. 2018), <b>per-group
+      score and class it shows the <b>two gates</b> behind the class as their own columns (empirical-null
+      FDR &lt; 0.10, and mean expression ≥ 1 TPM), each TF's <b>family</b> (DNA-binding domain, Lambert et al. 2018), <b>per-group
       CRISPR essentiality</b> (mean Chronos across the group's DepMap cell lines; lower = stronger
       dependency, ~ -1 = common-essential, 0 = neutral; not staged at the single-cell-line level),
       <b>cross-group breadth</b> (in how many lineage / disease / subtype / model-type groups the TF is a

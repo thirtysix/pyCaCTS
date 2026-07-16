@@ -9,9 +9,9 @@ from `data/`; no build step.
   between DepMap cell lines (lineage, primary disease, subtype, model type, each cell line) and TCGA tumors
   (tumor type, molecular subtype, sample type).
 - **TF scores**: every TF in one sortable table for a chosen group (DepMap or TCGA via the Data toggle):
-  CaCTS score, the two gates behind the
-  class (top-5% score, top-5% expression), MTF class, filterable empirical-null FDR, TF family, per-group
-  CRISPR essentiality (Chronos), cross-group breadth, and NCBI / GeneCards / DepMap out-links; TSV download.
+  CaCTS score, the two gates behind the class (empirical-null FDR &lt; 0.10, and mean ≥ 1 TPM), MTF class,
+  filterable empirical-null FDR, TF family, per-group CRISPR essentiality (Chronos), cross-group breadth,
+  and NCBI / GeneCards / DepMap out-links; TSV download.
 - **Tumor vs model**: for a cancer, its specific master TFs in the TCGA tumor beside the matched DepMap
   cell-line models (a curated crosswalk), split into shared / tumor-only / model-only; TSV download.
 - **Within-cancer**: CaCTS re-scored inside one cancer (reference set = that cancer's own samples), across
@@ -32,9 +32,11 @@ Regenerate `data/` from the analysis with:
 - `scripts/build_gene_info.py`, `gene_info.json` (gene name, TF family, IDs, cross-group breadth; needs the
   Lambert 2018 table, `PYCACTS_TF_ANNOT`, and the mtfs_*.tsv from the first script).
 - `scripts/stage_essentiality.py`, `ess_<div>.tsv` per-group mean CRISPR Chronos (needs `CRISPRGeneEffect.csv`).
+- `scripts/convert_toil_tcga_tpm.py`, the TCGA expression matrix: Xena Toil `tcga_RSEM_gene_tpm` mapped to
+  gene symbols and re-encoded to log2(TPM+1) (same units as DepMap, so a literal 1 TPM abundance floor).
 - `scripts/stage_tcga.py`, the `data/tcga/` bundle (scores / expr / mtfs at tumor-type, molecular-subtype,
-  and sample-type levels + manifest + breadth + `type_desc.json`; needs the TCGA expression, CaCTS sample
-  map, and Xena subtype calls; see `../data/README.md`).
+  and sample-type levels + manifest + breadth + `type_desc.json`; needs the converted TCGA expression, CaCTS
+  sample map, and Xena subtype calls; see `../data/README.md`).
 - `scripts/build_crosswalk.py`, `crosswalk.json` (the curated TCGA-type to DepMap-group pairing for the
   Tumor-vs-model tab; needs both manifests).
 - `scripts/stage_tcga_within.py`, the `within_{subtype,tumornormal}_mtfs.tsv` + `within_manifest.json`

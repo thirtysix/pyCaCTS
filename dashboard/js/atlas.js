@@ -59,7 +59,7 @@ const Atlas = (() => {
     curSpec = spec; curNons = nons;            // keep for TSV download
     U.el("atlas-hint").textContent = `${spec.length} specific · ${nons.length} non-specific`;
     U.el("atlas-spec").innerHTML = spec.length ? spec.map(row).join("")
-      : `<div class="empty">No factor clears both the top-5% specificity and top-5% expression cutoffs here.</div>`;
+      : `<div class="empty">No factor clears both the FDR &lt; 0.10 and ≥ 1 TPM cutoffs here.</div>`;
     U.el("atlas-nons").innerHTML = nons.length ? nons.map(row).join("") : `<div class="empty">None.</div>`;
   }
 

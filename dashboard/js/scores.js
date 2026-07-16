@@ -1,5 +1,5 @@
 /* scores.js: every TF's CaCTS specificity score for a chosen group, sortable, for either dataset.
-   One table: class (specific / non-specific), the two gates behind it (top-5% score, top-5% expression),
+   One table: class (specific / non-specific), the two gates behind it (empirical-null FDR < 0.10, mean ≥ 1 TPM),
    empirical-null FDR, gene name + family, per-group CRISPR essentiality (DepMap only), cross-group breadth,
    and out-links. DepMap: five levels incl. single cell line. TCGA: tumor type / molecular subtype / sample
    type. The current view is downloadable as TSV. */
@@ -62,10 +62,10 @@ const Scores = (() => {
 
   async function load(o) {
     const recs = await recsFor(o);
-    const rows = U.classify(recs), fdr = U.empiricalFDR(recs);
+    const rows = U.classify(recs);                          // classify computes the empirical-null FDR (r.fdr)
     const ess = {}; recs.forEach(r => ess[r.tf] = r.ess);
     rows.forEach(r => {
-      r.fdr = fdr[r.tf]; r.ess = ess[r.tf];
+      r.ess = ess[r.tf];
       const gi = info[r.tf] || {};
       r.name = gi.name || ""; r.family = gi.family || "";
       r.breadth = dataset === "tcga" ? (tcgaBreadth[r.tf] || 0) : (gi.breadth || 0);
@@ -75,8 +75,8 @@ const Scores = (() => {
   }
 
   const CLS = {
-    specific: '<span class="cls spec" title="top-5% by CaCTS score AND top-5% by expression">specific</span>',
-    non_specific: '<span class="cls nons" title="top-5% expression but not top-5% specificity, a candidate ubiquitous MTF">non-specific</span>',
+    specific: '<span class="cls spec" title="empirical-null FDR < 0.10 AND mean expression >= 1 TPM">specific</span>',
+    non_specific: '<span class="cls nons" title="top-5% expression but not FDR-significant, a candidate ubiquitous MTF">non-specific</span>',
     "": '<span class="cls none" title="not a called MTF in this group">–</span>',
   };
   const LSIG = Math.log(0.10);                             // ln-FDR significance line (FDR < 0.10)
@@ -120,9 +120,9 @@ const Scores = (() => {
         <td><span class="tf-sym" title="${U.esc(r.name || r.tf)}">${r.tf}</span></td>
         <td class="fam" title="DNA-binding-domain family">${U.esc(r.family || "–")}</td>
         <td class="num mono">${r.cacts.toFixed(4)}</td>
-        <td class="ctr">${chk(r.top5s)}</td>
+        <td class="ctr">${chk(r.sig)}</td>
         <td class="num mono">${r.expr.toFixed(1)}</td>
-        <td class="ctr">${chk(r.top5e)}</td>
+        <td class="ctr">${chk(r.floored)}</td>
         <td class="num mono">${r.exprrank}</td>
         <td class="num mono${r.fdr != null && r.fdr < LSIG ? " sig" : ""}" title="empirical-null FDR = ${r.fdr == null ? "n/a" : fmtFDR(r.fdr)}">${fmtFDR(r.fdr)}</td>
         <td>${CLS[r.cat]}</td>
@@ -145,8 +145,8 @@ const Scores = (() => {
     const cols = [
       { label: "rank", key: "rank" }, { label: "tf", key: "tf" }, { label: "gene_name", key: "name" },
       { label: "tf_family", key: "family" }, { label: "cacts_score", get: r => r.cacts.toFixed(6) },
-      { label: "top5pct_cacts", get: r => r.top5s ? 1 : 0 }, { label: "expr_log2", get: r => r.expr.toFixed(4) },
-      { label: "top5pct_expr", get: r => r.top5e ? 1 : 0 }, { label: "expr_rank", key: "exprrank" },
+      { label: "fdr_lt_0.10", get: r => r.sig ? 1 : 0 }, { label: "expr_log2tpm", get: r => r.expr.toFixed(4) },
+      { label: "expr_ge_1tpm", get: r => r.floored ? 1 : 0 }, { label: "expr_rank", key: "exprrank" },
       { label: "empirical_fdr", get: r => r.fdr == null ? "" : Math.exp(r.fdr).toExponential(3) },
       { label: "class", get: r => r.cat || "" },
       { label: "mean_chronos", get: r => (r.ess == null || isNaN(r.ess)) ? "" : (+r.ess).toFixed(3) },

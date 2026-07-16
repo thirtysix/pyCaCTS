@@ -1,475 +1,901 @@
-division	group	group_size	tf	category	jsd_rank	cacts_score	group_expr_log2tpm
-SampleType	Additional New Primary	11	NFE2L1	non_specific	736	0.450327	12.91
-SampleType	Additional New Primary	11	YBX1	non_specific	1137	0.459934	12.51
-SampleType	Additional New Primary	11	SON	non_specific	913	0.454011	12.49
-SampleType	Additional New Primary	11	NME2	non_specific	915	0.454074	12.48
-SampleType	Additional New Primary	11	ATF4	non_specific	1015	0.456282	12.29
-SampleType	Additional New Primary	11	STAT1	non_specific	769	0.450837	12.26
-SampleType	Additional New Primary	11	MAZ	non_specific	823	0.452351	12.22
-SampleType	Additional New Primary	11	HMGA1	non_specific	515	0.443659	12.12
-SampleType	Additional New Primary	11	PA2G4	non_specific	818	0.452315	11.9
-SampleType	Additional New Primary	11	UBTF	non_specific	766	0.450809	11.79
-SampleType	Additional New Primary	11	JUND	non_specific	668	0.448417	11.78
-SampleType	Additional New Primary	11	SOX4	non_specific	591	0.446158	11.73
-SampleType	Additional New Primary	11	BCLAF1	non_specific	852	0.452964	11.67
-SampleType	Additional New Primary	11	GATAD2A	non_specific	561	0.445182	11.65
-SampleType	Additional New Primary	11	RERE	non_specific	812	0.452117	11.65
-SampleType	Additional New Primary	11	BAZ2A	non_specific	732	0.450233	11.64
-SampleType	Additional New Primary	11	USF2	non_specific	708	0.449627	11.61
-SampleType	Additional New Primary	11	MBD3	non_specific	565	0.445289	11.6
-SampleType	Additional New Primary	11	SAFB	non_specific	623	0.446913	11.58
-SampleType	Additional New Primary	11	SRCAP	non_specific	1034	0.456718	11.58
-SampleType	Additional New Primary	11	XBP1	non_specific	1134	0.459888	11.52
-SampleType	Additional New Primary	11	STAT3	non_specific	1175	0.461298	11.48
-SampleType	Additional New Primary	11	CREBL2	non_specific	441	0.440396	11.45
-SampleType	Additional New Primary	11	GPBP1L1	non_specific	750	0.450599	11.43
-SampleType	Additional New Primary	11	TSC22D1	non_specific	1182	0.461571	11.42
-SampleType	Additional New Primary	11	KLF13	non_specific	787	0.451376	11.42
-SampleType	Additional New Primary	11	AEBP1	non_specific	996	0.455864	11.37
-SampleType	Additional New Primary	11	KDM2A	non_specific	980	0.455417	11.33
-SampleType	Additional New Primary	11	ZNF207	non_specific	1043	0.457037	11.32
-SampleType	Additional New Primary	11	EPAS1	non_specific	675	0.448708	11.28
-SampleType	Additional New Primary	11	ZNF664	non_specific	983	0.455443	11.26
-SampleType	Additional New Primary	11	ETV5	non_specific	291	0.426614	11.24
-SampleType	Additional New Primary	11	SPEN	non_specific	885	0.453583	11.19
-SampleType	Additional New Primary	11	MXD4	non_specific	665	0.448367	11.16
-SampleType	Additional New Primary	11	SREBF2	non_specific	1183	0.46167	11.15
-SampleType	Additional New Primary	11	ADNP	non_specific	956	0.454828	11.14
-SampleType	Additional New Primary	11	HIF1A	non_specific	1085	0.458266	11.13
-SampleType	Additional New Primary	11	STAT2	non_specific	944	0.454583	11.12
-SampleType	Additional New Primary	11	JUNB	non_specific	1103	0.458766	11.11
-SampleType	Additional New Primary	11	SP1	non_specific	1010	0.456204	11.09
-SampleType	Additional New Primary	11	CIC	non_specific	775	0.451007	11.09
-SampleType	Additional New Primary	11	PBX2	non_specific	598	0.446316	11.09
-SampleType	Additional New Primary	11	TCF3	non_specific	641	0.447639	11.09
-SampleType	Additional New Primary	11	ZNF428	non_specific	321	0.430268	11.03
-SampleType	Additional New Primary	11	KDM5B	non_specific	800	0.451662	10.99
-SampleType	Additional New Primary	11	ARID1A	non_specific	1136	0.459901	10.96
-SampleType	Additional New Primary	11	GPBP1	non_specific	870	0.453312	10.95
-SampleType	Additional New Primary	11	CGGBP1	non_specific	1011	0.456261	10.93
-SampleType	Additional New Primary	11	NFKB2	non_specific	376	0.435813	10.91
-SampleType	Additional New Primary	11	GLYR1	non_specific	1028	0.456561	10.9
-SampleType	Additional New Primary	11	GTF2I	non_specific	1051	0.457223	10.9
-SampleType	Additional New Primary	11	ETS1	non_specific	893	0.453683	10.89
-SampleType	Additional New Primary	11	NR1H2	non_specific	704	0.449494	10.89
-SampleType	Additional New Primary	11	MEF2D	non_specific	963	0.454957	10.87
-SampleType	Additional New Primary	11	GTF3A	non_specific	991	0.455802	10.87
-SampleType	Additional New Primary	11	HSF1	non_specific	804	0.45179	10.86
-SampleType	Additional New Primary	11	SAFB2	non_specific	808	0.451829	10.86
-SampleType	Additional New Primary	11	ZNF770	non_specific	442	0.440462	10.84
-SampleType	Additional New Primary	11	PREB	non_specific	618	0.446802	10.82
-SampleType	Additional New Primary	11	CENPB	non_specific	1013	0.456275	10.8
-SampleType	Additional New Primary	11	SREBF1	non_specific	1021	0.456397	10.77
-SampleType	Additional New Primary	11	ATMIN	non_specific	659	0.448182	10.77
-SampleType	Additional New Primary	11	REPIN1	non_specific	1053	0.457282	10.77
-SampleType	Additional New Primary	11	HKR1	non_specific	339	0.433016	10.77
-SampleType	Additional New Primary	11	BPTF	non_specific	1016	0.456297	10.76
-SampleType	Additional New Primary	11	AKAP8L	non_specific	495	0.442918	10.75
-SampleType	Additional New Primary	11	HBP1	non_specific	842	0.452734	10.73
-SampleType	Additional New Primary	11	BHLHE40	non_specific	1171	0.461156	10.73
-SampleType	Additional New Primary	11	DRAP1	non_specific	676	0.448759	10.73
-SampleType	Additional New Primary	11	ZNF146	non_specific	938	0.454377	10.73
-SampleType	Additional New Primary	11	PATZ1	non_specific	636	0.447435	10.72
-SampleType	Additional New Primary	11	IRF9	non_specific	575	0.445552	10.7
-SampleType	Additional New Primary	11	MECP2	non_specific	898	0.45379	10.67
-SampleType	Additional New Primary	11	NR4A1	non_specific	758	0.450703	10.66
-SampleType	Additional New Primary	11	ZSCAN18	non_specific	407	0.43837	10.66
-SampleType	Additional New Primary	11	STAT5B	non_specific	1104	0.458851	10.66
-SampleType	Additional New Primary	11	STAT6	non_specific	1274	0.465148	10.65
-SampleType	Additional New Primary	11	NCOA1	non_specific	801	0.451662	10.65
-SampleType	Additional New Primary	11	MBD6	non_specific	783	0.451258	10.64
-SampleType	Metastatic	395	SOX10	specific	17	0.289233	12.41
-SampleType	Metastatic	395	TFAP2A	specific	27	0.343693	11.29
-SampleType	Metastatic	395	ARNT2	specific	71	0.393602	11.21
-SampleType	Metastatic	395	MITF	specific	79	0.397632	11.62
-SampleType	Metastatic	395	AEBP1	non_specific	131	0.419794	14.04
-SampleType	Metastatic	395	YBX1	non_specific	364	0.448564	13.42
-SampleType	Metastatic	395	NME2	non_specific	311	0.446708	13.06
-SampleType	Metastatic	395	NFE2L1	non_specific	385	0.449172	13.0
-SampleType	Metastatic	395	STAT1	non_specific	258	0.444096	12.77
-SampleType	Metastatic	395	ATF4	non_specific	563	0.45349	12.51
-SampleType	Metastatic	395	HMGA1	non_specific	217	0.440049	12.38
-SampleType	Metastatic	395	MAZ	non_specific	423	0.450508	12.36
-SampleType	Metastatic	395	SON	non_specific	713	0.456399	12.3
-SampleType	Metastatic	395	ETV5	non_specific	115	0.413365	12.09
-SampleType	Metastatic	395	SREBF2	non_specific	381	0.44906	12.06
-SampleType	Metastatic	395	STAT3	non_specific	588	0.453865	12.02
-SampleType	Metastatic	395	PA2G4	non_specific	441	0.450896	12.0
-SampleType	Metastatic	395	BHLHE40	non_specific	263	0.444343	11.9
-SampleType	Metastatic	395	STAT6	non_specific	333	0.447465	11.89
-SampleType	Metastatic	395	TSC22D1	non_specific	688	0.455791	11.84
-SampleType	Metastatic	395	USF2	non_specific	321	0.446966	11.8
-SampleType	Metastatic	395	ETS1	non_specific	219	0.440538	11.79
-SampleType	Metastatic	395	SRCAP	non_specific	621	0.454522	11.74
-SampleType	Metastatic	395	STAT2	non_specific	292	0.445975	11.72
-SampleType	Metastatic	395	UBTF	non_specific	524	0.452852	11.65
-SampleType	Metastatic	395	GATAD2A	non_specific	289	0.445814	11.6
-SampleType	Metastatic	395	HMG20B	non_specific	199	0.437319	11.58
-SampleType	Metastatic	395	RERE	non_specific	560	0.453457	11.55
-SampleType	Metastatic	395	XBP1	non_specific	835	0.45965	11.54
-SampleType	Metastatic	395	ZNF207	non_specific	630	0.454675	11.49
-SampleType	Metastatic	395	CREB3L2	non_specific	269	0.444547	11.47
-SampleType	Metastatic	395	BAZ2A	non_specific	534	0.453056	11.44
-SampleType	Metastatic	395	ATF6B	non_specific	329	0.447298	11.42
-SampleType	Metastatic	395	CENPB	non_specific	339	0.447633	11.39
-SampleType	Metastatic	395	SREBF1	non_specific	347	0.447861	11.35
-SampleType	Metastatic	395	ADNP	non_specific	468	0.451756	11.35
-SampleType	Metastatic	395	SAFB	non_specific	429	0.450606	11.33
-SampleType	Metastatic	395	KLF6	non_specific	783	0.458063	11.33
-SampleType	Metastatic	395	HSF1	non_specific	280	0.445222	11.3
-SampleType	Metastatic	395	DNMT1	non_specific	286	0.445643	11.29
-SampleType	Metastatic	395	NFE2L2	non_specific	444	0.45101	11.29
-SampleType	Metastatic	395	ARID1A	non_specific	658	0.455124	11.29
-SampleType	Metastatic	395	SKI	non_specific	304	0.446535	11.28
-SampleType	Metastatic	395	MYC	non_specific	239	0.442286	11.25
-SampleType	Metastatic	395	GTF2I	non_specific	485	0.452145	11.25
-SampleType	Metastatic	395	REPIN1	non_specific	416	0.450307	11.25
-SampleType	Metastatic	395	EPAS1	non_specific	390	0.44936	11.24
-SampleType	Metastatic	395	CIC	non_specific	382	0.449086	11.22
-SampleType	Metastatic	395	TSC22D4	non_specific	306	0.446642	11.22
-SampleType	Metastatic	395	EGR1	non_specific	956	0.463026	11.21
-SampleType	Metastatic	395	ZNF664	non_specific	695	0.456103	11.21
-SampleType	Metastatic	395	SP1	non_specific	623	0.45456	11.21
-SampleType	Metastatic	395	KDM2A	non_specific	752	0.457293	11.2
-SampleType	Metastatic	395	HIF1A	non_specific	759	0.457444	11.19
-SampleType	Metastatic	395	ZEB2	non_specific	236	0.44192	11.17
-SampleType	Metastatic	395	MEF2D	non_specific	422	0.450504	11.17
-SampleType	Metastatic	395	BCLAF1	non_specific	851	0.460086	11.17
-SampleType	Metastatic	395	TEAD1	non_specific	144	0.424713	11.12
-SampleType	Metastatic	395	MBD3	non_specific	493	0.45232	11.12
-SampleType	Metastatic	395	FOS	non_specific	1075	0.467329	11.11
-SampleType	Metastatic	395	CGGBP1	non_specific	590	0.453875	11.1
-SampleType	Metastatic	395	RELA	non_specific	409	0.45003	11.1
-SampleType	Metastatic	395	GTF3A	non_specific	509	0.452572	11.09
-SampleType	Metastatic	395	RBCK1	non_specific	387	0.449278	11.07
-SampleType	Metastatic	395	ZNF24	non_specific	437	0.450793	11.06
-SampleType	Metastatic	395	NR4A1	non_specific	288	0.445729	10.99
-SampleType	Metastatic	395	ZFP91	non_specific	520	0.452796	10.97
-SampleType	Metastatic	395	GLYR1	non_specific	683	0.455625	10.96
-SampleType	Metastatic	395	CREBL2	non_specific	354	0.448006	10.94
-SampleType	Metastatic	395	SPEN	non_specific	749	0.45723	10.94
-SampleType	Metastatic	395	NR1H2	non_specific	372	0.44883	10.94
-SampleType	Metastatic	395	JUND	non_specific	886	0.460978	10.9
-SampleType	Metastatic	395	MECP2	non_specific	430	0.450623	10.88
-SampleType	Metastatic	395	KDM5B	non_specific	569	0.45354	10.87
-SampleType	Metastatic	395	SOX4	non_specific	808	0.458738	10.86
-SampleType	Metastatic	395	POGK	non_specific	327	0.447255	10.85
-SampleType	Metastatic	395	AHR	non_specific	270	0.444599	10.84
-SampleType	Metastatic	395	KLF13	non_specific	842	0.459853	10.83
-SampleType	Metastatic	395	FOXK2	non_specific	348	0.447892	10.82
-SampleType	Primary Blood-Derived Cancer	173	NFE2	specific	13	0.292268	11.9
-SampleType	Primary Blood-Derived Cancer	173	MYB	specific	17	0.329558	12.57
-SampleType	Primary Blood-Derived Cancer	173	TFEC	specific	29	0.372725	11.32
-SampleType	Primary Blood-Derived Cancer	173	IKZF1	specific	42	0.389158	12.24
-SampleType	Primary Blood-Derived Cancer	173	FOSB	specific	48	0.39419	13.49
-SampleType	Primary Blood-Derived Cancer	173	FLI1	specific	69	0.407506	11.55
-SampleType	Primary Blood-Derived Cancer	173	RUNX1	specific	73	0.408949	13.07
-SampleType	Primary Blood-Derived Cancer	173	FOS	non_specific	164	0.425748	14.27
-SampleType	Primary Blood-Derived Cancer	173	SON	non_specific	395	0.440348	13.56
-SampleType	Primary Blood-Derived Cancer	173	YBX1	non_specific	624	0.448904	13.39
-SampleType	Primary Blood-Derived Cancer	173	KLF6	non_specific	236	0.432898	13.17
-SampleType	Primary Blood-Derived Cancer	173	TSC22D3	non_specific	254	0.434293	12.8
-SampleType	Primary Blood-Derived Cancer	173	ATF4	non_specific	654	0.450038	12.77
-SampleType	Primary Blood-Derived Cancer	173	XBP1	non_specific	464	0.443427	12.74
-SampleType	Primary Blood-Derived Cancer	173	SRCAP	non_specific	443	0.442786	12.61
-SampleType	Primary Blood-Derived Cancer	173	ARID1A	non_specific	310	0.436847	12.6
-SampleType	Primary Blood-Derived Cancer	173	EGR1	non_specific	494	0.444533	12.57
-SampleType	Primary Blood-Derived Cancer	173	ZNF207	non_specific	408	0.440815	12.5
-SampleType	Primary Blood-Derived Cancer	173	STAT6	non_specific	368	0.439153	12.49
-SampleType	Primary Blood-Derived Cancer	173	BCLAF1	non_specific	423	0.441921	12.48
-SampleType	Primary Blood-Derived Cancer	173	ZEB2	non_specific	147	0.423277	12.44
-SampleType	Primary Blood-Derived Cancer	173	ETV6	non_specific	114	0.418585	12.35
-SampleType	Primary Blood-Derived Cancer	173	MAZ	non_specific	679	0.45084	12.34
-SampleType	Primary Blood-Derived Cancer	173	AKNA	non_specific	123	0.420376	12.28
-SampleType	Primary Blood-Derived Cancer	173	KDM2A	non_specific	437	0.442565	12.25
-SampleType	Primary Blood-Derived Cancer	173	BPTF	non_specific	273	0.434957	12.23
-SampleType	Primary Blood-Derived Cancer	173	ELF1	non_specific	163	0.425592	12.2
-SampleType	Primary Blood-Derived Cancer	173	SPEN	non_specific	372	0.439217	12.2
-SampleType	Primary Blood-Derived Cancer	173	BAZ2A	non_specific	440	0.442604	12.18
-SampleType	Primary Blood-Derived Cancer	173	PA2G4	non_specific	625	0.449026	12.14
-SampleType	Primary Blood-Derived Cancer	173	STAT5A	non_specific	152	0.423741	12.12
-SampleType	Primary Blood-Derived Cancer	173	STAT5B	non_specific	358	0.438703	12.04
-SampleType	Primary Blood-Derived Cancer	173	SP1	non_specific	449	0.442918	12.03
-SampleType	Primary Blood-Derived Cancer	173	KLF13	non_specific	456	0.443041	12.01
-SampleType	Primary Blood-Derived Cancer	173	SATB1	non_specific	81	0.412209	11.99
-SampleType	Primary Blood-Derived Cancer	173	NME2	non_specific	885	0.460738	11.97
-SampleType	Primary Blood-Derived Cancer	173	WHSC1	non_specific	311	0.436866	11.95
-SampleType	Primary Blood-Derived Cancer	173	ARID1B	non_specific	293	0.436265	11.91
-SampleType	Primary Blood-Derived Cancer	173	GPBP1L1	non_specific	488	0.44439	11.86
-SampleType	Primary Blood-Derived Cancer	173	STAT3	non_specific	800	0.456203	11.85
-SampleType	Primary Blood-Derived Cancer	173	DNMT1	non_specific	337	0.437831	11.83
-SampleType	Primary Blood-Derived Cancer	173	KDM5B	non_specific	386	0.439837	11.8
-SampleType	Primary Blood-Derived Cancer	173	ASH1L	non_specific	353	0.438476	11.79
-SampleType	Primary Blood-Derived Cancer	173	ZNF609	non_specific	243	0.433359	11.78
-SampleType	Primary Blood-Derived Cancer	173	STAT2	non_specific	526	0.445778	11.73
-SampleType	Primary Blood-Derived Cancer	173	MEF2D	non_specific	435	0.442331	11.73
-SampleType	Primary Blood-Derived Cancer	173	RREB1	non_specific	150	0.423655	11.71
-SampleType	Primary Blood-Derived Cancer	173	ZXDC	non_specific	235	0.432791	11.67
-SampleType	Primary Blood-Derived Cancer	173	UBTF	non_specific	732	0.452772	11.65
-SampleType	Primary Blood-Derived Cancer	173	JUNB	non_specific	689	0.451166	11.65
-SampleType	Primary Blood-Derived Cancer	173	CGGBP1	non_specific	533	0.445922	11.65
-SampleType	Primary Blood-Derived Cancer	173	ZBTB44	non_specific	245	0.4335	11.63
-SampleType	Primary Blood-Derived Cancer	173	ADNP	non_specific	600	0.448402	11.59
-SampleType	Primary Blood-Derived Cancer	173	HMGA1	non_specific	691	0.451287	11.58
-SampleType	Primary Blood-Derived Cancer	173	ATF6B	non_specific	513	0.445234	11.56
-SampleType	Primary Blood-Derived Cancer	173	MLXIP	non_specific	256	0.434385	11.55
-SampleType	Primary Blood-Derived Cancer	173	SOX4	non_specific	612	0.448665	11.55
-SampleType	Primary Blood-Derived Cancer	173	SREBF2	non_specific	797	0.456099	11.55
-SampleType	Primary Blood-Derived Cancer	173	MAFG	non_specific	224	0.43183	11.54
-SampleType	Primary Blood-Derived Cancer	173	NFAT5	non_specific	365	0.439088	11.53
-SampleType	Primary Blood-Derived Cancer	173	GTF3A	non_specific	538	0.446177	11.52
-SampleType	Primary Blood-Derived Cancer	173	FOSL2	non_specific	269	0.434819	11.52
-SampleType	Primary Blood-Derived Cancer	173	SP100	non_specific	286	0.435856	11.49
-SampleType	Primary Blood-Derived Cancer	173	ZNF655	non_specific	315	0.437046	11.48
-SampleType	Primary Blood-Derived Cancer	173	ZNF292	non_specific	186	0.428185	11.47
-SampleType	Primary Blood-Derived Cancer	173	FOXP1	non_specific	177	0.427323	11.47
-SampleType	Primary Blood-Derived Cancer	173	MGA	non_specific	213	0.430833	11.46
-SampleType	Primary Blood-Derived Cancer	173	NFE2L1	non_specific	985	0.469401	11.45
-SampleType	Primary Blood-Derived Cancer	173	MYC	non_specific	379	0.439402	11.45
-SampleType	Primary Blood-Derived Cancer	173	ETS2	non_specific	453	0.442999	11.41
-SampleType	Primary Blood-Derived Cancer	173	STAT1	non_specific	911	0.4626	11.4
-SampleType	Primary Blood-Derived Cancer	173	RERE	non_specific	802	0.456246	11.35
-SampleType	Primary Blood-Derived Cancer	173	CREBZF	non_specific	297	0.436457	11.35
-SampleType	Primary Blood-Derived Cancer	173	HIF1A	non_specific	796	0.456099	11.28
-SampleType	Primary Blood-Derived Cancer	173	ZFP91	non_specific	605	0.448519	11.26
-SampleType	Primary Blood-Derived Cancer	173	TET3	non_specific	148	0.423302	11.26
-SampleType	Primary Blood-Derived Cancer	173	PBX2	non_specific	474	0.443954	11.25
-SampleType	Primary Blood-Derived Cancer	173	TET2	non_specific	125	0.420493	11.24
-SampleType	Primary Blood-Derived Cancer	173	SP3	non_specific	534	0.446045	11.22
-SampleType	Primary Solid Tumor	9706	YBX1	non_specific	816	0.455289	12.88
-SampleType	Primary Solid Tumor	9706	NME2	non_specific	426	0.449084	12.87
-SampleType	Primary Solid Tumor	9706	NFE2L1	non_specific	528	0.451613	12.81
-SampleType	Primary Solid Tumor	9706	ATF4	non_specific	647	0.453457	12.51
-SampleType	Primary Solid Tumor	9706	TSC22D1	non_specific	440	0.449562	12.3
-SampleType	Primary Solid Tumor	9706	XBP1	non_specific	442	0.449597	12.28
-SampleType	Primary Solid Tumor	9706	STAT1	non_specific	508	0.451308	12.23
-SampleType	Primary Solid Tumor	9706	STAT3	non_specific	523	0.45154	12.2
-SampleType	Primary Solid Tumor	9706	MAZ	non_specific	599	0.452771	12.19
-SampleType	Primary Solid Tumor	9706	SON	non_specific	1077	0.458587	12.14
-SampleType	Primary Solid Tumor	9706	JUN	non_specific	371	0.44666	12.03
-SampleType	Primary Solid Tumor	9706	BHLHE40	non_specific	323	0.443212	11.98
-SampleType	Primary Solid Tumor	9706	AEBP1	non_specific	383	0.447499	11.97
-SampleType	Primary Solid Tumor	9706	EPAS1	non_specific	299	0.440688	11.84
-SampleType	Primary Solid Tumor	9706	PA2G4	non_specific	662	0.45362	11.8
-SampleType	Primary Solid Tumor	9706	SRCAP	non_specific	743	0.454431	11.75
-SampleType	Primary Solid Tumor	9706	SREBF2	non_specific	679	0.453742	11.72
-SampleType	Primary Solid Tumor	9706	FOS	non_specific	1095	0.458895	11.72
-SampleType	Primary Solid Tumor	9706	JUNB	non_specific	484	0.450725	11.68
-SampleType	Primary Solid Tumor	9706	ZNF664	non_specific	441	0.44957	11.67
-SampleType	Primary Solid Tumor	9706	STAT6	non_specific	478	0.450658	11.66
-SampleType	Primary Solid Tumor	9706	HIF1A	non_specific	481	0.450699	11.66
-SampleType	Primary Solid Tumor	9706	EGR1	non_specific	986	0.457234	11.63
-SampleType	Primary Solid Tumor	9706	UBTF	non_specific	748	0.454504	11.53
-SampleType	Primary Solid Tumor	9706	ZNF207	non_specific	791	0.455014	11.47
-SampleType	Primary Solid Tumor	9706	SREBF1	non_specific	365	0.446298	11.46
-SampleType	Primary Solid Tumor	9706	KDM2A	non_specific	666	0.45364	11.46
-SampleType	Primary Solid Tumor	9706	BCLAF1	non_specific	910	0.456334	11.43
-SampleType	Primary Solid Tumor	9706	RERE	non_specific	837	0.455466	11.41
-SampleType	Primary Solid Tumor	9706	KLF6	non_specific	964	0.45697	11.4
-SampleType	Primary Solid Tumor	9706	JUND	non_specific	691	0.453883	11.39
-SampleType	Primary Solid Tumor	9706	HMGA1	non_specific	702	0.454013	11.39
-SampleType	Primary Solid Tumor	9706	SOX4	non_specific	495	0.451078	11.38
-SampleType	Primary Solid Tumor	9706	NFE2L2	non_specific	445	0.449772	11.38
-SampleType	Primary Solid Tumor	9706	SP1	non_specific	694	0.453919	11.25
-SampleType	Primary Solid Tumor	9706	ETS2	non_specific	352	0.445679	11.23
-SampleType	Primary Solid Tumor	9706	BAZ2A	non_specific	906	0.456311	11.21
-SampleType	Primary Solid Tumor	9706	USF2	non_specific	824	0.455392	11.2
-SampleType	Primary Solid Tumor	9706	CENPB	non_specific	474	0.450546	11.19
-SampleType	Primary Solid Tumor	9706	GPBP1L1	non_specific	740	0.454386	11.16
-SampleType	Primary Solid Tumor	9706	ARID1A	non_specific	970	0.457023	11.16
-SampleType	Primary Solid Tumor	9706	ADNP	non_specific	759	0.454645	11.15
-SampleType	Primary Solid Tumor	9706	TSC22D3	non_specific	1006	0.457536	11.13
-SampleType	Primary Solid Tumor	9706	REPIN1	non_specific	561	0.452167	11.12
-SampleType	Primary Solid Tumor	9706	ATF6B	non_specific	539	0.451774	11.11
-SampleType	Primary Solid Tumor	9706	GLYR1	non_specific	650	0.453488	11.11
-SampleType	Primary Solid Tumor	9706	GTF2I	non_specific	730	0.454295	11.1
-SampleType	Primary Solid Tumor	9706	RELA	non_specific	483	0.45071	11.05
-SampleType	Primary Solid Tumor	9706	RBCK1	non_specific	450	0.449932	11.03
-SampleType	Primary Solid Tumor	9706	STAT2	non_specific	923	0.456437	10.99
-SampleType	Primary Solid Tumor	9706	HSF1	non_specific	457	0.450044	10.98
-SampleType	Primary Solid Tumor	9706	GTF3A	non_specific	732	0.45431	10.97
-SampleType	Primary Solid Tumor	9706	SAFB	non_specific	875	0.455987	10.96
-SampleType	Primary Solid Tumor	9706	ZBTB4	non_specific	604	0.452843	10.94
-SampleType	Primary Solid Tumor	9706	NFIX	non_specific	425	0.449069	10.92
-SampleType	Primary Solid Tumor	9706	RXRA	non_specific	462	0.450258	10.9
-SampleType	Primary Solid Tumor	9706	MBD3	non_specific	854	0.455659	10.89
-SampleType	Primary Solid Tumor	9706	KLF13	non_specific	1107	0.459075	10.89
-SampleType	Primary Solid Tumor	9706	ZNF146	non_specific	555	0.45206	10.88
-SampleType	Primary Solid Tumor	9706	GATAD2A	non_specific	924	0.456454	10.87
-SampleType	Primary Solid Tumor	9706	ZFP91	non_specific	742	0.454415	10.86
-SampleType	Primary Solid Tumor	9706	GPBP1	non_specific	761	0.454665	10.86
-SampleType	Primary Solid Tumor	9706	CUX1	non_specific	530	0.451648	10.86
-SampleType	Primary Solid Tumor	9706	SPEN	non_specific	1074	0.458583	10.84
-SampleType	Primary Solid Tumor	9706	KDM5B	non_specific	714	0.454165	10.82
-SampleType	Primary Solid Tumor	9706	CREB3L2	non_specific	729	0.454288	10.81
-SampleType	Primary Solid Tumor	9706	SKI	non_specific	665	0.453633	10.81
-SampleType	Primary Solid Tumor	9706	CGGBP1	non_specific	1046	0.458196	10.8
-SampleType	Primary Solid Tumor	9706	TFDP1	non_specific	505	0.451217	10.78
-SampleType	Primary Solid Tumor	9706	CIC	non_specific	869	0.455852	10.77
-SampleType	Primary Solid Tumor	9706	PURB	non_specific	590	0.452623	10.75
-SampleType	Primary Solid Tumor	9706	ZNF24	non_specific	835	0.455463	10.74
-SampleType	Primary Solid Tumor	9706	TCF3	non_specific	637	0.453347	10.71
-SampleType	Primary Solid Tumor	9706	WHSC1	non_specific	827	0.455413	10.69
-SampleType	Primary Solid Tumor	9706	SP3	non_specific	708	0.454056	10.69
-SampleType	Primary Solid Tumor	9706	NR1H2	non_specific	605	0.452864	10.67
-SampleType	Primary Solid Tumor	9706	FOXP4	non_specific	307	0.441485	10.67
-SampleType	Primary Solid Tumor	9706	MXD4	non_specific	865	0.455835	10.66
-SampleType	Primary Solid Tumor	9706	ETS1	non_specific	996	0.457387	10.65
-SampleType	Recurrent Solid Tumor	46	YBX1	non_specific	820	0.45383	12.99
-SampleType	Recurrent Solid Tumor	46	TSC22D1	non_specific	423	0.443627	12.75
-SampleType	Recurrent Solid Tumor	46	NFE2L1	non_specific	928	0.455603	12.5
-SampleType	Recurrent Solid Tumor	46	NFIX	non_specific	260	0.426908	12.43
-SampleType	Recurrent Solid Tumor	46	NME2	non_specific	886	0.454892	12.42
-SampleType	Recurrent Solid Tumor	46	ATF4	non_specific	931	0.455688	12.34
-SampleType	Recurrent Solid Tumor	46	MAZ	non_specific	728	0.452428	12.22
-SampleType	Recurrent Solid Tumor	46	SON	non_specific	1144	0.459525	12.06
-SampleType	Recurrent Solid Tumor	46	STAT3	non_specific	823	0.453889	12.02
-SampleType	Recurrent Solid Tumor	46	JUN	non_specific	526	0.447735	11.96
-SampleType	Recurrent Solid Tumor	46	EPAS1	non_specific	378	0.44039	11.86
-SampleType	Recurrent Solid Tumor	46	SREBF2	non_specific	757	0.452887	11.78
-SampleType	Recurrent Solid Tumor	46	ZNF664	non_specific	531	0.448039	11.78
-SampleType	Recurrent Solid Tumor	46	STAT1	non_specific	1060	0.45783	11.74
-SampleType	Recurrent Solid Tumor	46	HIF1A	non_specific	601	0.449728	11.73
-SampleType	Recurrent Solid Tumor	46	TCF12	non_specific	368	0.439748	11.66
-SampleType	Recurrent Solid Tumor	46	CENPB	non_specific	432	0.444228	11.63
-SampleType	Recurrent Solid Tumor	46	EGR1	non_specific	1097	0.458431	11.54
-SampleType	Recurrent Solid Tumor	46	PA2G4	non_specific	1028	0.457213	11.54
-SampleType	Recurrent Solid Tumor	46	SRCAP	non_specific	1082	0.458263	11.47
-SampleType	Recurrent Solid Tumor	46	TSC22D4	non_specific	417	0.443247	11.45
-SampleType	Recurrent Solid Tumor	46	USF2	non_specific	707	0.452	11.44
-SampleType	Recurrent Solid Tumor	46	FOS	non_specific	1244	0.462756	11.44
-SampleType	Recurrent Solid Tumor	46	UBTF	non_specific	939	0.455815	11.44
-SampleType	Recurrent Solid Tumor	46	JUND	non_specific	841	0.454153	11.37
-SampleType	Recurrent Solid Tumor	46	REPIN1	non_specific	554	0.44875	11.35
-SampleType	Recurrent Solid Tumor	46	RERE	non_specific	981	0.456536	11.33
-SampleType	Recurrent Solid Tumor	46	ZNF207	non_specific	1013	0.45699	11.33
-SampleType	Recurrent Solid Tumor	46	AEBP1	non_specific	1000	0.456887	11.3
-SampleType	Recurrent Solid Tumor	46	MBD3	non_specific	607	0.449803	11.29
-SampleType	Recurrent Solid Tumor	46	BCLAF1	non_specific	1103	0.45862	11.27
-SampleType	Recurrent Solid Tumor	46	SOX4	non_specific	754	0.452845	11.26
-SampleType	Recurrent Solid Tumor	46	ID2	non_specific	321	0.435117	11.17
-SampleType	Recurrent Solid Tumor	46	TSC22D3	non_specific	1043	0.457561	11.13
-SampleType	Recurrent Solid Tumor	46	SREBF1	non_specific	672	0.451192	11.13
-SampleType	Recurrent Solid Tumor	46	NFE2L2	non_specific	799	0.45351	11.12
-SampleType	Recurrent Solid Tumor	46	GTF2I	non_specific	827	0.453965	11.12
-SampleType	Recurrent Solid Tumor	46	JUNB	non_specific	1115	0.458855	11.11
-SampleType	Recurrent Solid Tumor	46	GLYR1	non_specific	815	0.453745	11.09
-SampleType	Recurrent Solid Tumor	46	THRA	non_specific	316	0.434671	11.08
-SampleType	Recurrent Solid Tumor	46	ADNP	non_specific	942	0.455851	11.07
-SampleType	Recurrent Solid Tumor	46	RELA	non_specific	641	0.450454	11.07
-SampleType	Recurrent Solid Tumor	46	ARID1A	non_specific	1105	0.458627	11.05
-SampleType	Recurrent Solid Tumor	46	TCF4	non_specific	348	0.437799	11.05
-SampleType	Recurrent Solid Tumor	46	CGGBP1	non_specific	884	0.454809	11.03
-SampleType	Recurrent Solid Tumor	46	SKI	non_specific	638	0.450452	11.02
-SampleType	Recurrent Solid Tumor	46	XBP1	non_specific	1310	0.467002	11.01
-SampleType	Recurrent Solid Tumor	46	KDM2A	non_specific	1160	0.460137	11.0
-SampleType	Recurrent Solid Tumor	46	ZFP91	non_specific	724	0.452327	11.0
-SampleType	Recurrent Solid Tumor	46	GTF3A	non_specific	825	0.453909	10.99
-SampleType	Recurrent Solid Tumor	46	KLF13	non_specific	1055	0.457729	10.98
-SampleType	Recurrent Solid Tumor	46	PURB	non_specific	571	0.449216	10.98
-SampleType	Recurrent Solid Tumor	46	GPBP1	non_specific	766	0.453057	10.97
-SampleType	Recurrent Solid Tumor	46	MXD4	non_specific	686	0.451512	10.95
-SampleType	Recurrent Solid Tumor	46	SAFB	non_specific	963	0.45625	10.94
-SampleType	Recurrent Solid Tumor	46	ZBTB4	non_specific	758	0.452919	10.94
-SampleType	Recurrent Solid Tumor	46	NFIB	non_specific	223	0.417839	10.92
-SampleType	Recurrent Solid Tumor	46	WHSC1	non_specific	710	0.452071	10.92
-SampleType	Recurrent Solid Tumor	46	RBCK1	non_specific	704	0.451903	10.9
-SampleType	Recurrent Solid Tumor	46	ZNF24	non_specific	784	0.453279	10.89
-SampleType	Recurrent Solid Tumor	46	TCF3	non_specific	649	0.450709	10.88
-SampleType	Recurrent Solid Tumor	46	HMGA1	non_specific	1201	0.461493	10.87
-SampleType	Recurrent Solid Tumor	46	ARNT2	non_specific	161	0.39962	10.86
-SampleType	Recurrent Solid Tumor	46	ZNF358	non_specific	358	0.438867	10.85
-SampleType	Recurrent Solid Tumor	46	DRAP1	non_specific	507	0.447025	10.84
-SampleType	Recurrent Solid Tumor	46	DNMT1	non_specific	737	0.452622	10.82
-SampleType	Recurrent Solid Tumor	46	SPEN	non_specific	1116	0.458894	10.82
-SampleType	Recurrent Solid Tumor	46	BCL6	non_specific	319	0.435006	10.82
-SampleType	Recurrent Solid Tumor	46	TEAD1	non_specific	272	0.429632	10.82
-SampleType	Recurrent Solid Tumor	46	ATF6B	non_specific	958	0.456111	10.82
-SampleType	Recurrent Solid Tumor	46	STAT2	non_specific	1133	0.45916	10.81
-SampleType	Recurrent Solid Tumor	46	KLF6	non_specific	1287	0.465439	10.81
-SampleType	Recurrent Solid Tumor	46	STAT5B	non_specific	992	0.456683	10.8
-SampleType	Recurrent Solid Tumor	46	CIC	non_specific	925	0.455565	10.79
-SampleType	Recurrent Solid Tumor	46	RXRA	non_specific	714	0.452104	10.78
-SampleType	Recurrent Solid Tumor	46	PBX1	non_specific	236	0.422226	10.77
-SampleType	Recurrent Solid Tumor	46	VEZF1	non_specific	537	0.448212	10.77
-SampleType	Recurrent Solid Tumor	46	GATAD2A	non_specific	1070	0.458054	10.77
-SampleType	Recurrent Solid Tumor	46	TFE3	non_specific	527	0.447744	10.76
-SampleType	Solid Tissue Normal	737	ELF3	specific	64	0.374195	11.06
-SampleType	Solid Tissue Normal	737	FOS	non_specific	239	0.431174	13.84
-SampleType	Solid Tissue Normal	737	EGR1	non_specific	232	0.43013	13.67
-SampleType	Solid Tissue Normal	737	EPAS1	non_specific	177	0.421246	13.23
-SampleType	Solid Tissue Normal	737	NFE2L1	non_specific	461	0.447795	13.11
-SampleType	Solid Tissue Normal	737	JUN	non_specific	252	0.432386	13.09
-SampleType	Solid Tissue Normal	737	TSC22D1	non_specific	351	0.442142	12.86
-SampleType	Solid Tissue Normal	737	YBX1	non_specific	901	0.457094	12.73
-SampleType	Solid Tissue Normal	737	XBP1	non_specific	390	0.444532	12.66
-SampleType	Solid Tissue Normal	737	KLF6	non_specific	331	0.440521	12.6
-SampleType	Solid Tissue Normal	737	STAT3	non_specific	436	0.446838	12.55
-SampleType	Solid Tissue Normal	737	JUNB	non_specific	322	0.43984	12.47
-SampleType	Solid Tissue Normal	737	ATF4	non_specific	764	0.454554	12.42
-SampleType	Solid Tissue Normal	737	SON	non_specific	780	0.45494	12.41
-SampleType	Solid Tissue Normal	737	NR4A1	non_specific	200	0.425393	12.37
-SampleType	Solid Tissue Normal	737	BHLHE40	non_specific	316	0.439559	12.24
-SampleType	Solid Tissue Normal	737	NME2	non_specific	957	0.458171	12.17
-SampleType	Solid Tissue Normal	737	TSC22D3	non_specific	380	0.444022	12.09
-SampleType	Solid Tissue Normal	737	JUND	non_specific	392	0.444602	12.05
-SampleType	Solid Tissue Normal	737	STAT6	non_specific	405	0.445295	12.05
-SampleType	Solid Tissue Normal	737	ETS2	non_specific	265	0.434254	12.01
-SampleType	Solid Tissue Normal	737	FOSB	non_specific	162	0.416291	12.0
-SampleType	Solid Tissue Normal	737	SREBF2	non_specific	545	0.450158	11.98
-SampleType	Solid Tissue Normal	737	AEBP1	non_specific	458	0.447718	11.95
-SampleType	Solid Tissue Normal	737	NFE2L2	non_specific	352	0.442198	11.91
-SampleType	Solid Tissue Normal	737	RERE	non_specific	525	0.449704	11.82
-SampleType	Solid Tissue Normal	737	STAT1	non_specific	902	0.457094	11.8
-SampleType	Solid Tissue Normal	737	ZBTB4	non_specific	357	0.442373	11.66
-SampleType	Solid Tissue Normal	737	ZNF664	non_specific	535	0.449968	11.64
-SampleType	Solid Tissue Normal	737	HIF1A	non_specific	599	0.451336	11.62
-SampleType	Solid Tissue Normal	737	BCLAF1	non_specific	719	0.453837	11.61
-SampleType	Solid Tissue Normal	737	SRCAP	non_specific	893	0.456975	11.56
-SampleType	Solid Tissue Normal	737	KLF9	non_specific	223	0.428884	11.51
-SampleType	Solid Tissue Normal	737	GPBP1L1	non_specific	554	0.45032	11.45
-SampleType	Solid Tissue Normal	737	NFIX	non_specific	337	0.441403	11.43
-SampleType	Solid Tissue Normal	737	RXRA	non_specific	358	0.442578	11.41
-SampleType	Solid Tissue Normal	737	KDM2A	non_specific	773	0.454672	11.39
-SampleType	Solid Tissue Normal	737	UBTF	non_specific	872	0.456756	11.37
-SampleType	Solid Tissue Normal	737	SP1	non_specific	643	0.45256	11.35
-SampleType	Solid Tissue Normal	737	KLF10	non_specific	305	0.439006	11.33
-SampleType	Solid Tissue Normal	737	KLF13	non_specific	650	0.452678	11.33
-SampleType	Solid Tissue Normal	737	MAZ	non_specific	1228	0.464775	11.31
-SampleType	Solid Tissue Normal	737	PA2G4	non_specific	1082	0.460529	11.3
-SampleType	Solid Tissue Normal	737	GLYR1	non_specific	580	0.450969	11.28
-SampleType	Solid Tissue Normal	737	CREB3L2	non_specific	454	0.447576	11.26
-SampleType	Solid Tissue Normal	737	FOSL2	non_specific	304	0.43897	11.25
-SampleType	Solid Tissue Normal	737	PBX1	non_specific	151	0.414462	11.24
-SampleType	Solid Tissue Normal	737	ETS1	non_specific	491	0.448757	11.23
-SampleType	Solid Tissue Normal	737	ARID1A	non_specific	855	0.456455	11.2
-SampleType	Solid Tissue Normal	737	GTF2I	non_specific	663	0.452864	11.2
-SampleType	Solid Tissue Normal	737	ATF3	non_specific	161	0.41608	11.19
-SampleType	Solid Tissue Normal	737	ZNF207	non_specific	1022	0.459246	11.17
-SampleType	Solid Tissue Normal	737	BAZ2A	non_specific	906	0.457183	11.15
-SampleType	Solid Tissue Normal	737	STAT5B	non_specific	616	0.451798	11.13
-SampleType	Solid Tissue Normal	737	CSRNP1	non_specific	247	0.431947	11.13
-SampleType	Solid Tissue Normal	737	FOXN3	non_specific	416	0.445695	11.12
-SampleType	Solid Tissue Normal	737	HBP1	non_specific	447	0.447316	11.09
-SampleType	Solid Tissue Normal	737	ZBTB38	non_specific	325	0.439944	11.07
-SampleType	Solid Tissue Normal	737	SKI	non_specific	524	0.449674	11.07
-SampleType	Solid Tissue Normal	737	NFIB	non_specific	157	0.415692	11.05
-SampleType	Solid Tissue Normal	737	CGGBP1	non_specific	762	0.454535	11.05
-SampleType	Solid Tissue Normal	737	KLF3	non_specific	348	0.442087	11.04
-SampleType	Solid Tissue Normal	737	CREBL2	non_specific	435	0.446747	11.03
-SampleType	Solid Tissue Normal	737	TEAD1	non_specific	207	0.426425	11.02
-SampleType	Solid Tissue Normal	737	ZFP91	non_specific	632	0.452169	11.01
-SampleType	Solid Tissue Normal	737	ID2	non_specific	295	0.437728	11.0
-SampleType	Solid Tissue Normal	737	MBNL2	non_specific	282	0.436389	11.0
-SampleType	Solid Tissue Normal	737	SPEN	non_specific	847	0.45635	11.0
-SampleType	Solid Tissue Normal	737	SREBF1	non_specific	675	0.453133	10.99
-SampleType	Solid Tissue Normal	737	CUX1	non_specific	529	0.449822	10.98
-SampleType	Solid Tissue Normal	737	CENPB	non_specific	712	0.453732	10.97
-SampleType	Solid Tissue Normal	737	USF2	non_specific	989	0.458717	10.97
-SampleType	Solid Tissue Normal	737	ZNF24	non_specific	629	0.45212	10.97
-SampleType	Solid Tissue Normal	737	AHR	non_specific	360	0.442701	10.96
-SampleType	Solid Tissue Normal	737	RELA	non_specific	628	0.45208	10.96
-SampleType	Solid Tissue Normal	737	SMAD4	non_specific	471	0.44799	10.92
-SampleType	Solid Tissue Normal	737	ADNP	non_specific	947	0.458071	10.92
-SampleType	Solid Tissue Normal	737	NR3C1	non_specific	411	0.445454	10.89
-SampleType	Solid Tissue Normal	737	ASH1L	non_specific	615	0.451794	10.89
+division	group	group_size	tf	category	jsd_rank	cacts_score	group_expr_log2tpm	fdr_log10
+SampleType	Additional New Primary	11	PRDM14	specific	1	0.02014	2.02	-29.564
+SampleType	Additional New Primary	11	ANHX	specific	2	0.023532	1.59	-29.424
+SampleType	Additional New Primary	11	ZNF705D	specific	3	0.024425	1.28	-29.424
+SampleType	Additional New Primary	11	TBPL2	specific	5	0.029091	1.45	-28.982
+SampleType	Additional New Primary	11	VSX2	specific	6	0.03439	1.57	-28.315
+SampleType	Additional New Primary	11	OTX2	specific	7	0.037698	1.69	-27.921
+SampleType	Additional New Primary	11	NANOG	specific	11	0.046441	4.32	-26.915
+SampleType	Additional New Primary	11	ZNF729	specific	14	0.058442	1.24	-25.412
+SampleType	Additional New Primary	11	PHOX2B	specific	15	0.058826	1.62	-25.391
+SampleType	Additional New Primary	11	T	specific	16	0.060135	1.35	-25.247
+SampleType	Additional New Primary	11	ZFP42	specific	17	0.070067	2.39	-23.983
+SampleType	Additional New Primary	11	DMRT1	specific	20	0.072739	1.98	-23.712
+SampleType	Additional New Primary	11	NANOGP8	specific	21	0.073181	3.19	-23.677
+SampleType	Additional New Primary	11	HOXB1	specific	24	0.08283	1.12	-22.522
+SampleType	Additional New Primary	11	NKX6-3	specific	25	0.085506	1.75	-22.209
+SampleType	Additional New Primary	11	FOXR1	specific	26	0.088056	1.03	-21.913
+SampleType	Additional New Primary	11	FOXI3	specific	28	0.098342	1.79	-20.703
+SampleType	Additional New Primary	11	ZSCAN10	specific	30	0.100919	1.13	-20.437
+SampleType	Additional New Primary	11	LIN28A	specific	32	0.107566	2.73	-19.677
+SampleType	Additional New Primary	11	LIN28B	specific	33	0.109054	1.68	-19.518
+SampleType	Additional New Primary	11	DRGX	specific	36	0.119747	1.14	-18.339
+SampleType	Additional New Primary	11	PHOX2A	specific	37	0.124211	2.58	-17.853
+SampleType	Additional New Primary	11	INSM2	specific	38	0.133091	1.04	-16.895
+SampleType	Additional New Primary	11	AIRE	specific	42	0.143965	1.2	-15.787
+SampleType	Additional New Primary	11	ZNF728	specific	44	0.156652	1.37	-14.511
+SampleType	Additional New Primary	11	FOXH1	specific	45	0.161032	2.6	-14.085
+SampleType	Additional New Primary	11	ZNF534	specific	47	0.16936	1.36	-13.294
+SampleType	Additional New Primary	11	ZNF676	specific	50	0.176192	2.11	-12.673
+SampleType	Additional New Primary	11	IRX4	specific	51	0.177386	2.22	-12.572
+SampleType	Additional New Primary	11	POU5F1	specific	53	0.180391	6.31	-12.307
+SampleType	Additional New Primary	11	CDX1	specific	56	0.188183	3.12	-11.621
+SampleType	Additional New Primary	11	ZNF560	specific	58	0.191295	2.26	-11.358
+SampleType	Additional New Primary	11	NPAS4	specific	59	0.193078	1.01	-11.208
+SampleType	Additional New Primary	11	TLX2	specific	63	0.198289	1.34	-10.78
+SampleType	Additional New Primary	11	BNC1	specific	64	0.198857	2.25	-10.738
+SampleType	Additional New Primary	11	FEV	specific	65	0.199125	1.53	-10.722
+SampleType	Additional New Primary	11	VENTX	specific	72	0.224658	3.25	-8.667
+SampleType	Additional New Primary	11	EGR4	specific	73	0.226009	1.0	-8.567
+SampleType	Additional New Primary	11	ISL1	specific	76	0.237125	1.37	-7.741
+SampleType	Additional New Primary	11	NR5A1	specific	77	0.237307	1.01	-7.734
+SampleType	Additional New Primary	11	BARX1	specific	78	0.241869	2.11	-7.416
+SampleType	Additional New Primary	11	ALX4	specific	80	0.243302	1.2	-7.324
+SampleType	Additional New Primary	11	MNX1	specific	81	0.243555	2.04	-7.311
+SampleType	Additional New Primary	11	SALL4	specific	82	0.258052	3.1	-6.307
+SampleType	Additional New Primary	11	ZNF98	specific	83	0.264331	1.96	-5.896
+SampleType	Additional New Primary	11	ZNF492	specific	84	0.266381	1.3	-5.768
+SampleType	Additional New Primary	11	GATA4	specific	85	0.269806	2.45	-5.553
+SampleType	Additional New Primary	11	PAX2	specific	87	0.277082	1.58	-5.113
+SampleType	Additional New Primary	11	MIXL1	specific	88	0.277111	1.42	-5.113
+SampleType	Additional New Primary	11	INSM1	specific	89	0.279407	1.83	-4.978
+SampleType	Additional New Primary	11	TCF15	specific	90	0.28274	2.04	-4.783
+SampleType	Additional New Primary	11	ZNF208	specific	92	0.283619	2.66	-4.74
+SampleType	Additional New Primary	11	SCRT1	specific	94	0.284765	1.02	-4.682
+SampleType	Additional New Primary	11	HAND2	specific	95	0.286612	2.77	-4.579
+SampleType	Additional New Primary	11	CPEB1	specific	96	0.288537	4.63	-4.472
+SampleType	Additional New Primary	11	SOX17	specific	98	0.289903	3.81	-4.402
+SampleType	Additional New Primary	11	TFAP2B	specific	101	0.297059	1.42	-4.015
+SampleType	Additional New Primary	11	TET1	specific	102	0.297359	1.93	-4.002
+SampleType	Additional New Primary	11	GBX2	specific	104	0.30165	1.34	-3.779
+SampleType	Additional New Primary	11	NR6A1	specific	105	0.302153	3.09	-3.756
+SampleType	Additional New Primary	11	MYCN	specific	107	0.305179	4.22	-3.604
+SampleType	Additional New Primary	11	ZNF483	specific	108	0.307004	1.83	-3.513
+SampleType	Additional New Primary	11	TBX1	specific	109	0.308238	2.73	-3.454
+SampleType	Additional New Primary	11	TFCP2L1	specific	111	0.3099	3.47	-3.377
+SampleType	Additional New Primary	11	ZNF578	specific	113	0.311785	2.02	-3.289
+SampleType	Additional New Primary	11	SIX2	specific	114	0.314701	1.93	-3.148
+SampleType	Additional New Primary	11	EMX1	specific	121	0.325631	1.73	-2.653
+SampleType	Additional New Primary	11	TFAP2C	specific	123	0.327977	4.09	-2.553
+SampleType	Additional New Primary	11	MYT1	specific	124	0.329307	1.53	-2.497
+SampleType	Additional New Primary	11	SOX15	specific	125	0.331002	4.03	-2.425
+SampleType	Additional New Primary	11	LHX1	specific	126	0.331693	1.05	-2.398
+SampleType	Additional New Primary	11	NKX6-2	specific	129	0.336773	1.48	-2.188
+SampleType	Additional New Primary	11	PEG3	specific	136	0.347163	2.58	-1.787
+SampleType	Additional New Primary	11	HNF1B	specific	138	0.34989	1.95	-1.687
+SampleType	Additional New Primary	11	CUX2	specific	139	0.351	1.22	-1.648
+SampleType	Additional New Primary	11	ZSCAN1	specific	140	0.351617	1.32	-1.627
+SampleType	Additional New Primary	11	ZNF625	specific	141	0.351715	3.41	-1.627
+SampleType	Additional New Primary	11	IRX6	specific	142	0.35182	1.44	-1.626
+SampleType	Additional New Primary	11	HOXA1	specific	143	0.352262	1.81	-1.612
+SampleType	Additional New Primary	11	ZNF727	specific	144	0.352571	1.08	-1.603
+SampleType	Additional New Primary	11	DPF1	specific	145	0.35352	2.53	-1.571
+SampleType	Additional New Primary	11	ZNF215	specific	146	0.353695	1.23	-1.567
+SampleType	Additional New Primary	11	FOXO6	specific	147	0.354826	2.06	-1.528
+SampleType	Additional New Primary	11	HIC2	specific	149	0.356073	3.07	-1.488
+SampleType	Additional New Primary	11	ZNF781	specific	150	0.356303	2.46	-1.483
+SampleType	Additional New Primary	11	ZNF296	specific	152	0.35676	2.91	-1.472
+SampleType	Additional New Primary	11	ZFHX2	specific	154	0.358876	1.74	-1.401
+SampleType	Additional New Primary	11	FOXA3	specific	155	0.359795	1.48	-1.372
+SampleType	Additional New Primary	11	ZNF540	specific	156	0.361048	2.22	-1.33
+SampleType	Additional New Primary	11	ZNF454	specific	157	0.36143	1.08	-1.321
+SampleType	Additional New Primary	11	FOXS1	specific	159	0.363501	2.3	-1.253
+SampleType	Additional New Primary	11	HOXB8	specific	160	0.364476	2.21	-1.223
+SampleType	Additional New Primary	11	NPAS1	specific	161	0.364922	2.13	-1.21
+SampleType	Additional New Primary	11	HOXC9	specific	163	0.365723	2.78	-1.191
+SampleType	Additional New Primary	11	MESP2	specific	165	0.366337	1.12	-1.175
+SampleType	Additional New Primary	11	ZNF682	specific	166	0.366369	3.31	-1.175
+SampleType	Additional New Primary	11	HNF1A	specific	167	0.367693	1.11	-1.133
+SampleType	Additional New Primary	11	TBX21	specific	169	0.370165	1.38	-1.058
+SampleType	Additional New Primary	11	MEF2B	specific	170	0.370866	1.78	-1.038
+SampleType	Additional New Primary	11	ZNF470	specific	171	0.371171	2.68	-1.031
+SampleType	Additional New Primary	11	MSC	specific	172	0.371741	3.82	-1.015
+SampleType	Additional New Primary	11	TEAD4	specific	173	0.372195	5.13	-1.003
+SampleType	Additional New Primary	11	YBX1	non_specific	1025	0.465847	8.13	-0.013
+SampleType	Additional New Primary	11	ATF4	non_specific	866	0.457999	7.72	-0.013
+SampleType	Additional New Primary	11	MAZ	non_specific	827	0.456109	7.38	-0.013
+SampleType	Additional New Primary	11	HMGA1	non_specific	599	0.443913	7.25	-0.013
+SampleType	Additional New Primary	11	USF2	non_specific	696	0.449615	7.13	-0.013
+SampleType	Additional New Primary	11	DRAP1	non_specific	642	0.446503	7.13	-0.013
+SampleType	Additional New Primary	11	YBX3	non_specific	815	0.455422	7.03	-0.013
+SampleType	Additional New Primary	11	JUND	non_specific	781	0.453987	6.84	-0.013
+SampleType	Additional New Primary	11	ZNF428	non_specific	294	0.41212	6.73	-0.199
+SampleType	Additional New Primary	11	SON	non_specific	686	0.448999	6.71	-0.013
+SampleType	Additional New Primary	11	HMGN3	non_specific	632	0.445748	6.69	-0.013
+SampleType	Additional New Primary	11	PA2G4	non_specific	795	0.454585	6.63	-0.013
+SampleType	Additional New Primary	11	ZNF706	non_specific	805	0.455031	6.58	-0.013
+SampleType	Additional New Primary	11	IRF9	non_specific	568	0.441919	6.54	-0.013
+SampleType	Additional New Primary	11	NFE2L1	non_specific	713	0.450394	6.51	-0.013
+SampleType	Additional New Primary	11	GTF3A	non_specific	860	0.457789	6.51	-0.013
+SampleType	Additional New Primary	11	XBP1	non_specific	1069	0.468153	6.47	-0.013
+SampleType	Additional New Primary	11	PIN1	non_specific	553	0.441103	6.38	-0.013
+SampleType	Additional New Primary	11	SAFB	non_specific	610	0.444815	6.12	-0.013
+SampleType	Additional New Primary	11	MBD3	non_specific	528	0.440015	6.1	-0.013
+SampleType	Additional New Primary	11	STAT1	non_specific	693	0.449383	6.06	-0.013
+SampleType	Additional New Primary	11	CAMTA1	non_specific	740	0.451492	6.06	-0.013
+SampleType	Additional New Primary	11	JUNB	non_specific	1064	0.46778	6.05	-0.013
+SampleType	Additional New Primary	11	GLMP	non_specific	672	0.448038	5.99	-0.013
+SampleType	Additional New Primary	11	GTF2I	non_specific	874	0.458426	5.98	-0.013
+SampleType	Additional New Primary	11	PHF1	non_specific	650	0.447059	5.93	-0.013
+SampleType	Additional New Primary	11	ZNF207	non_specific	1033	0.466258	5.92	-0.013
+SampleType	Additional New Primary	11	PREB	non_specific	524	0.439504	5.9	-0.013
+SampleType	Additional New Primary	11	CXXC1	non_specific	559	0.441627	5.85	-0.013
+SampleType	Additional New Primary	11	AKAP8L	non_specific	520	0.439445	5.85	-0.013
+SampleType	Additional New Primary	11	GPBP1L1	non_specific	738	0.451473	5.84	-0.013
+SampleType	Additional New Primary	11	HSF1	non_specific	893	0.458996	5.83	-0.013
+SampleType	Additional New Primary	11	THAP4	non_specific	521	0.439461	5.83	-0.013
+SampleType	Additional New Primary	11	TCF3	non_specific	596	0.443658	5.78	-0.013
+SampleType	Additional New Primary	11	IRF3	non_specific	741	0.451585	5.75	-0.013
+SampleType	Additional New Primary	11	NR1H2	non_specific	750	0.452061	5.75	-0.013
+SampleType	Additional New Primary	11	PBX2	non_specific	621	0.445358	5.72	-0.013
+SampleType	Additional New Primary	11	HMG20B	non_specific	862	0.457842	5.72	-0.013
+SampleType	Additional New Primary	11	ZNF511	non_specific	401	0.428349	5.72	-0.039
+SampleType	Additional New Primary	11	SAFB2	non_specific	571	0.44228	5.65	-0.013
+SampleType	Additional New Primary	11	UBTF	non_specific	765	0.452848	5.63	-0.013
+SampleType	Additional New Primary	11	TSC22D1	non_specific	1073	0.468336	5.62	-0.013
+SampleType	Additional New Primary	11	RBCK1	non_specific	982	0.463815	5.61	-0.013
+SampleType	Additional New Primary	11	CEBPZ	non_specific	469	0.434825	5.6	-0.013
+SampleType	Additional New Primary	11	STAT2	non_specific	902	0.459303	5.59	-0.013
+SampleType	Additional New Primary	11	TSC22D3	non_specific	1168	0.474501	5.58	-0.008
+SampleType	Additional New Primary	11	AEBP1	non_specific	927	0.460829	5.57	-0.013
+SampleType	Additional New Primary	11	KLF13	non_specific	460	0.434082	5.53	-0.013
+SampleType	Additional New Primary	11	HKR1	non_specific	350	0.422834	5.52	-0.072
+SampleType	Additional New Primary	11	USF1	non_specific	796	0.454636	5.5	-0.013
+SampleType	Additional New Primary	11	CXXC5	non_specific	749	0.45204	5.43	-0.013
+SampleType	Additional New Primary	11	ZSCAN18	non_specific	397	0.427859	5.43	-0.042
+SampleType	Additional New Primary	11	PCGF2	non_specific	305	0.414395	5.42	-0.169
+SampleType	Additional New Primary	11	GATAD2A	non_specific	618	0.445219	5.4	-0.013
+SampleType	Additional New Primary	11	GPBP1	non_specific	833	0.45654	5.4	-0.013
+SampleType	Additional New Primary	11	BCLAF1	non_specific	884	0.45877	5.34	-0.013
+SampleType	Additional New Primary	11	E2F4	non_specific	791	0.454501	5.32	-0.013
+SampleType	Additional New Primary	11	CREBL2	non_specific	398	0.428015	5.32	-0.041
+SampleType	Additional New Primary	11	REPIN1	non_specific	1049	0.466981	5.32	-0.013
+SampleType	Additional New Primary	11	YY1	non_specific	728	0.451096	5.31	-0.013
+SampleType	Additional New Primary	11	ZNF358	non_specific	743	0.451698	5.3	-0.013
+SampleType	Additional New Primary	11	TSC22D4	non_specific	1083	0.468828	5.29	-0.013
+SampleType	Additional New Primary	11	MBD2	non_specific	908	0.459804	5.28	-0.013
+SampleType	Additional New Primary	11	RBPJ	non_specific	609	0.444729	5.28	-0.013
+SampleType	Additional New Primary	11	CHCHD3	non_specific	890	0.458889	5.27	-0.013
+SampleType	Additional New Primary	11	THAP7	non_specific	481	0.435763	5.27	-0.013
+SampleType	Additional New Primary	11	THYN1	non_specific	869	0.458113	5.26	-0.013
+SampleType	Additional New Primary	11	MAX	non_specific	966	0.463034	5.26	-0.013
+SampleType	Additional New Primary	11	SLC2A4RG	non_specific	921	0.460551	5.25	-0.013
+SampleType	Additional New Primary	11	SREBF1	non_specific	990	0.4642	5.25	-0.013
+SampleType	Additional New Primary	11	MYBL2	non_specific	242	0.397834	5.25	-0.432
+SampleType	Additional New Primary	11	NFKB2	non_specific	360	0.424215	5.24	-0.06
+SampleType	Additional New Primary	11	FOS	non_specific	1365	0.499045	5.21	-0.0
+SampleType	Additional New Primary	11	HBP1	non_specific	802	0.454844	5.2	-0.013
+SampleType	Additional New Primary	11	DDIT3	non_specific	711	0.450282	5.2	-0.013
+SampleType	Additional New Primary	11	ETV5	non_specific	273	0.40825	5.17	-0.247
+SampleType	Additional New Primary	11	GLYR1	non_specific	919	0.460315	5.15	-0.013
+SampleType	Additional New Primary	11	MXD4	non_specific	660	0.447438	5.14	-0.013
+SampleType	Additional New Primary	11	KAT7	non_specific	523	0.439483	5.14	-0.013
+SampleType	Additional New Primary	11	NFATC4	non_specific	191	0.381975	5.13	-0.751
+SampleType	Additional New Primary	11	HIF1A	non_specific	1085	0.469093	5.12	-0.013
+SampleType	Metastatic	392	PAX3	specific	1	0.04508	4.4	-12.541
+SampleType	Metastatic	392	ALX1	specific	3	0.104154	3.48	-9.194
+SampleType	Metastatic	392	FOXD3	specific	5	0.136843	2.99	-7.538
+SampleType	Metastatic	392	EN2	specific	7	0.146971	2.35	-7.136
+SampleType	Metastatic	392	SOX10	specific	9	0.175971	7.38	-5.78
+SampleType	Metastatic	392	HOXD13	specific	10	0.196446	2.2	-4.863
+SampleType	Metastatic	392	ZNF280A	specific	12	0.204781	1.09	-4.569
+SampleType	Metastatic	392	HOXC13	specific	15	0.223095	1.59	-3.885
+SampleType	Metastatic	392	RXRG	specific	16	0.2403	3.82	-3.227
+SampleType	Metastatic	392	POU3F1	specific	17	0.256283	1.45	-2.657
+SampleType	Metastatic	392	TFAP2A	specific	19	0.270951	5.95	-2.193
+SampleType	Metastatic	392	HOXC11	specific	20	0.275844	1.09	-2.052
+SampleType	Metastatic	392	HMGA2	specific	23	0.281872	2.41	-1.916
+SampleType	Metastatic	392	IRX6	specific	24	0.286794	1.9	-1.778
+SampleType	Metastatic	392	IRF4	specific	25	0.289907	3.77	-1.699
+SampleType	Metastatic	392	SOX5	specific	26	0.293763	2.59	-1.598
+SampleType	Metastatic	392	HOXB13	specific	28	0.300328	1.56	-1.44
+SampleType	Metastatic	392	PKNOX2	specific	29	0.300649	3.26	-1.44
+SampleType	Metastatic	392	HOXC8	specific	30	0.306822	1.66	-1.277
+SampleType	Metastatic	392	SHOX2	specific	32	0.314409	1.76	-1.095
+SampleType	Metastatic	392	MITF	specific	34	0.318403	5.58	-1.013
+SampleType	Metastatic	392	YBX1	non_specific	340	0.443746	9.33	-0.019
+SampleType	Metastatic	392	AEBP1	non_specific	100	0.393202	8.18	-0.019
+SampleType	Metastatic	392	ATF4	non_specific	452	0.44957	8.13	-0.019
+SampleType	Metastatic	392	MAZ	non_specific	374	0.445958	7.85	-0.019
+SampleType	Metastatic	392	HMGA1	non_specific	205	0.430818	7.82	-0.019
+SampleType	Metastatic	392	USF2	non_specific	302	0.440616	7.53	-0.019
+SampleType	Metastatic	392	GLMP	non_specific	135	0.410725	7.41	-0.019
+SampleType	Metastatic	392	YBX3	non_specific	527	0.452684	7.15	-0.019
+SampleType	Metastatic	392	DRAP1	non_specific	405	0.44722	7.1	-0.019
+SampleType	Metastatic	392	PA2G4	non_specific	383	0.446205	6.98	-0.019
+SampleType	Metastatic	392	HMG20B	non_specific	182	0.425539	6.92	-0.019
+SampleType	Metastatic	392	ZNF706	non_specific	424	0.44813	6.86	-0.019
+SampleType	Metastatic	392	NFE2L1	non_specific	322	0.442659	6.82	-0.019
+SampleType	Metastatic	392	GTF3A	non_specific	491	0.45124	6.77	-0.019
+SampleType	Metastatic	392	XBP1	non_specific	736	0.462512	6.71	-0.019
+SampleType	Metastatic	392	STAT1	non_specific	214	0.43252	6.7	-0.019
+SampleType	Metastatic	392	HSF1	non_specific	327	0.44308	6.42	-0.019
+SampleType	Metastatic	392	ZNF207	non_specific	590	0.455653	6.33	-0.019
+SampleType	Metastatic	392	STAT2	non_specific	281	0.438884	6.33	-0.019
+SampleType	Metastatic	392	RBCK1	non_specific	381	0.44615	6.26	-0.019
+SampleType	Metastatic	392	STAT6	non_specific	353	0.444791	6.25	-0.019
+SampleType	Metastatic	392	ETV5	non_specific	76	0.371438	6.24	-0.16
+SampleType	Metastatic	392	ATF6B	non_specific	344	0.444114	6.18	-0.019
+SampleType	Metastatic	392	PIN1	non_specific	390	0.44663	6.17	-0.019
+SampleType	Metastatic	392	SON	non_specific	738	0.462558	6.17	-0.019
+SampleType	Metastatic	392	FOS	non_specific	959	0.475466	6.15	-0.019
+SampleType	Metastatic	392	TSC22D4	non_specific	352	0.444757	6.14	-0.019
+SampleType	Metastatic	392	JUND	non_specific	889	0.471009	6.13	-0.019
+SampleType	Metastatic	392	CAMTA1	non_specific	464	0.45001	6.11	-0.019
+SampleType	Metastatic	392	CHCHD3	non_specific	237	0.434881	6.09	-0.019
+SampleType	Metastatic	392	HMGN3	non_specific	711	0.460991	6.09	-0.019
+SampleType	Metastatic	392	BHLHE40	non_specific	240	0.435073	6.07	-0.019
+SampleType	Metastatic	392	SAFB	non_specific	386	0.446449	6.06	-0.019
+SampleType	Metastatic	392	TSC22D1	non_specific	620	0.45676	6.05	-0.019
+SampleType	Metastatic	392	MYC	non_specific	206	0.43143	6.05	-0.019
+SampleType	Metastatic	392	PHF1	non_specific	341	0.44384	6.05	-0.019
+SampleType	Metastatic	392	GTF2I	non_specific	626	0.457098	6.03	-0.019
+SampleType	Metastatic	392	REPIN1	non_specific	431	0.448529	5.97	-0.019
+SampleType	Metastatic	392	TGIF1	non_specific	272	0.437987	5.96	-0.019
+SampleType	Metastatic	392	NR1H2	non_specific	377	0.446026	5.96	-0.019
+SampleType	Metastatic	392	SREBF1	non_specific	361	0.445104	5.91	-0.019
+SampleType	Metastatic	392	NFE2L2	non_specific	499	0.451552	5.9	-0.019
+SampleType	Metastatic	392	IRF9	non_specific	677	0.459252	5.88	-0.019
+SampleType	Metastatic	392	JUNB	non_specific	931	0.473567	5.82	-0.019
+SampleType	Metastatic	392	LEF1	non_specific	65	0.361758	5.82	-0.281
+SampleType	Metastatic	392	IRF3	non_specific	459	0.449848	5.81	-0.019
+SampleType	Metastatic	392	UBTF	non_specific	421	0.447986	5.8	-0.019
+SampleType	Metastatic	392	CENPB	non_specific	289	0.439493	5.8	-0.019
+SampleType	Metastatic	392	MBD3	non_specific	435	0.448802	5.79	-0.019
+SampleType	Metastatic	392	STAT3	non_specific	591	0.455692	5.74	-0.019
+SampleType	Metastatic	392	MAX	non_specific	443	0.449177	5.73	-0.019
+SampleType	Metastatic	392	NR4A1	non_specific	269	0.437816	5.73	-0.019
+SampleType	Metastatic	392	PCGF2	non_specific	119	0.404048	5.73	-0.019
+SampleType	Metastatic	392	GATAD2A	non_specific	244	0.435514	5.72	-0.019
+SampleType	Metastatic	392	ETV4	non_specific	49	0.340546	5.71	-0.623
+SampleType	Metastatic	392	RELA	non_specific	432	0.448542	5.69	-0.019
+SampleType	Metastatic	392	SREBF2	non_specific	367	0.445732	5.65	-0.019
+SampleType	Metastatic	392	MBD2	non_specific	447	0.449295	5.64	-0.019
+SampleType	Metastatic	392	ERF	non_specific	262	0.437112	5.61	-0.019
+SampleType	Metastatic	392	PREB	non_specific	422	0.448017	5.61	-0.019
+SampleType	Metastatic	392	TSC22D3	non_specific	935	0.473794	5.61	-0.019
+SampleType	Metastatic	392	NME2	non_specific	137	0.411552	5.59	-0.019
+SampleType	Metastatic	392	SMAD2	non_specific	351	0.444689	5.57	-0.019
+SampleType	Metastatic	392	ETS1	non_specific	162	0.42102	5.55	-0.019
+SampleType	Metastatic	392	ZNF358	non_specific	356	0.444869	5.53	-0.019
+SampleType	Metastatic	392	TCF3	non_specific	494	0.45139	5.52	-0.019
+SampleType	Metastatic	392	PLSCR1	non_specific	449	0.449372	5.52	-0.019
+SampleType	Metastatic	392	ZNF428	non_specific	414	0.447583	5.5	-0.019
+SampleType	Metastatic	392	EGR1	non_specific	867	0.469798	5.5	-0.019
+SampleType	Metastatic	392	PBX2	non_specific	519	0.452344	5.49	-0.019
+SampleType	Metastatic	392	USF1	non_specific	588	0.455601	5.47	-0.019
+SampleType	Metastatic	392	THAP4	non_specific	471	0.450266	5.46	-0.019
+SampleType	Metastatic	392	NFYC	non_specific	411	0.447513	5.46	-0.019
+SampleType	Metastatic	392	E2F4	non_specific	492	0.451374	5.43	-0.019
+SampleType	Metastatic	392	DDIT3	non_specific	333	0.443404	5.42	-0.019
+SampleType	Metastatic	392	TFDP1	non_specific	514	0.452212	5.39	-0.019
+SampleType	Metastatic	392	CXXC1	non_specific	585	0.455433	5.38	-0.019
+SampleType	Metastatic	392	SP100	non_specific	511	0.452041	5.37	-0.019
+SampleType	Metastatic	392	PHF19	non_specific	203	0.43071	5.37	-0.019
+SampleType	Metastatic	392	CXXC5	non_specific	553	0.454009	5.37	-0.019
+SampleType	Primary Blood-Derived Cancer	173	FOS	non_specific	391	0.404878	9.34	-0.052
+SampleType	Primary Blood-Derived Cancer	173	YBX1	non_specific	898	0.448458	9.07	-0.052
+SampleType	Primary Blood-Derived Cancer	173	XBP1	non_specific	674	0.430456	8.14	-0.052
+SampleType	Primary Blood-Derived Cancer	173	MAZ	non_specific	836	0.442849	8.0	-0.052
+SampleType	Primary Blood-Derived Cancer	173	ZNF207	non_specific	507	0.415617	7.99	-0.052
+SampleType	Primary Blood-Derived Cancer	173	ATF4	non_specific	927	0.452586	7.98	-0.052
+SampleType	Primary Blood-Derived Cancer	173	FOSB	non_specific	78	0.327471	7.94	-0.052
+SampleType	Primary Blood-Derived Cancer	173	TSC22D3	non_specific	526	0.41774	7.86	-0.052
+SampleType	Primary Blood-Derived Cancer	173	STAT6	non_specific	396	0.405579	7.8	-0.052
+SampleType	Primary Blood-Derived Cancer	173	SON	non_specific	605	0.425233	7.71	-0.052
+SampleType	Primary Blood-Derived Cancer	173	KLF6	non_specific	318	0.395029	7.7	-0.052
+SampleType	Primary Blood-Derived Cancer	173	JUND	non_specific	763	0.435986	7.61	-0.052
+SampleType	Primary Blood-Derived Cancer	173	MYB	non_specific	19	0.206525	7.51	-0.052
+SampleType	Primary Blood-Derived Cancer	173	HMGA1	non_specific	797	0.439335	7.45	-0.052
+SampleType	Primary Blood-Derived Cancer	173	RUNX1	non_specific	72	0.324416	7.43	-0.052
+SampleType	Primary Blood-Derived Cancer	173	GTF3A	non_specific	770	0.436647	7.39	-0.052
+SampleType	Primary Blood-Derived Cancer	173	YBX3	non_specific	886	0.447475	7.38	-0.052
+SampleType	Primary Blood-Derived Cancer	173	PA2G4	non_specific	801	0.43947	7.27	-0.052
+SampleType	Primary Blood-Derived Cancer	173	GTF2I	non_specific	616	0.426089	7.25	-0.052
+SampleType	Primary Blood-Derived Cancer	173	JUNB	non_specific	813	0.440518	7.16	-0.052
+SampleType	Primary Blood-Derived Cancer	173	SPI1	non_specific	243	0.382469	7.14	-0.052
+SampleType	Primary Blood-Derived Cancer	173	NFE2	non_specific	15	0.165312	7.08	-0.052
+SampleType	Primary Blood-Derived Cancer	173	ZEB2	non_specific	167	0.366113	7.08	-0.052
+SampleType	Primary Blood-Derived Cancer	173	ATF6B	non_specific	574	0.422564	7.0	-0.052
+SampleType	Primary Blood-Derived Cancer	173	DNMT1	non_specific	368	0.402162	6.92	-0.052
+SampleType	Primary Blood-Derived Cancer	173	EGR1	non_specific	720	0.433483	6.87	-0.052
+SampleType	Primary Blood-Derived Cancer	173	BPTF	non_specific	351	0.399781	6.84	-0.052
+SampleType	Primary Blood-Derived Cancer	173	DMTF1	non_specific	293	0.391608	6.82	-0.052
+SampleType	Primary Blood-Derived Cancer	173	GPBP1L1	non_specific	602	0.424849	6.82	-0.052
+SampleType	Primary Blood-Derived Cancer	173	BCLAF1	non_specific	524	0.417052	6.82	-0.052
+SampleType	Primary Blood-Derived Cancer	173	SP100	non_specific	451	0.410806	6.81	-0.052
+SampleType	Primary Blood-Derived Cancer	173	STAT2	non_specific	648	0.428747	6.71	-0.052
+SampleType	Primary Blood-Derived Cancer	173	ELF1	non_specific	302	0.392513	6.69	-0.052
+SampleType	Primary Blood-Derived Cancer	173	SATB1	non_specific	88	0.336772	6.66	-0.052
+SampleType	Primary Blood-Derived Cancer	173	KDM2A	non_specific	423	0.408213	6.66	-0.052
+SampleType	Primary Blood-Derived Cancer	173	IKZF1	non_specific	37	0.274928	6.65	-0.052
+SampleType	Primary Blood-Derived Cancer	173	USF2	non_specific	993	0.461632	6.62	-0.052
+SampleType	Primary Blood-Derived Cancer	173	BAZ2A	non_specific	321	0.395692	6.56	-0.052
+SampleType	Primary Blood-Derived Cancer	173	FLI1	non_specific	98	0.341285	6.56	-0.052
+SampleType	Primary Blood-Derived Cancer	173	ARID1A	non_specific	338	0.397784	6.51	-0.052
+SampleType	Primary Blood-Derived Cancer	173	ZNF706	non_specific	959	0.456737	6.51	-0.052
+SampleType	Primary Blood-Derived Cancer	173	ETV6	non_specific	106	0.344991	6.49	-0.052
+SampleType	Primary Blood-Derived Cancer	173	MAX	non_specific	644	0.428279	6.48	-0.052
+SampleType	Primary Blood-Derived Cancer	173	PBX2	non_specific	593	0.424186	6.47	-0.052
+SampleType	Primary Blood-Derived Cancer	173	STAT5A	non_specific	262	0.385594	6.46	-0.052
+SampleType	Primary Blood-Derived Cancer	173	AKNA	non_specific	204	0.374882	6.44	-0.052
+SampleType	Primary Blood-Derived Cancer	173	HSF1	non_specific	841	0.443185	6.42	-0.052
+SampleType	Primary Blood-Derived Cancer	173	MLXIP	non_specific	291	0.391416	6.4	-0.052
+SampleType	Primary Blood-Derived Cancer	173	STAT3	non_specific	791	0.438521	6.37	-0.052
+SampleType	Primary Blood-Derived Cancer	173	MYC	non_specific	578	0.422974	6.35	-0.052
+SampleType	Primary Blood-Derived Cancer	173	HIF1A	non_specific	747	0.434776	6.32	-0.052
+SampleType	Primary Blood-Derived Cancer	173	LYL1	non_specific	57	0.311588	6.32	-0.052
+SampleType	Primary Blood-Derived Cancer	173	SAFB	non_specific	817	0.440856	6.27	-0.052
+SampleType	Primary Blood-Derived Cancer	173	CUX1	non_specific	665	0.429878	6.25	-0.052
+SampleType	Primary Blood-Derived Cancer	173	STAT5B	non_specific	369	0.402364	6.25	-0.052
+SampleType	Primary Blood-Derived Cancer	173	ZNF384	non_specific	458	0.411435	6.21	-0.052
+SampleType	Primary Blood-Derived Cancer	173	FOXP1	non_specific	165	0.364464	6.21	-0.052
+SampleType	Primary Blood-Derived Cancer	173	USF1	non_specific	754	0.435336	6.18	-0.052
+SampleType	Primary Blood-Derived Cancer	173	REPIN1	non_specific	839	0.443143	6.16	-0.052
+SampleType	Primary Blood-Derived Cancer	173	GPBP1	non_specific	740	0.434427	6.16	-0.052
+SampleType	Primary Blood-Derived Cancer	173	HMGN3	non_specific	977	0.459161	6.16	-0.052
+SampleType	Primary Blood-Derived Cancer	173	RBPJ	non_specific	534	0.418408	6.14	-0.052
+SampleType	Primary Blood-Derived Cancer	173	AKAP8L	non_specific	689	0.431411	6.13	-0.052
+SampleType	Primary Blood-Derived Cancer	173	CXXC1	non_specific	729	0.433954	6.12	-0.052
+SampleType	Primary Blood-Derived Cancer	173	HHEX	non_specific	104	0.34454	6.11	-0.052
+SampleType	Primary Blood-Derived Cancer	173	IRF1	non_specific	585	0.423809	6.1	-0.052
+SampleType	Primary Blood-Derived Cancer	173	E2F4	non_specific	692	0.431684	6.1	-0.052
+SampleType	Primary Blood-Derived Cancer	173	IRF9	non_specific	935	0.45378	6.09	-0.052
+SampleType	Primary Blood-Derived Cancer	173	SAFB2	non_specific	679	0.430696	6.04	-0.052
+SampleType	Primary Blood-Derived Cancer	173	ZNF655	non_specific	530	0.418196	6.03	-0.052
+SampleType	Primary Blood-Derived Cancer	173	GLYR1	non_specific	736	0.434307	6.02	-0.052
+SampleType	Primary Blood-Derived Cancer	173	ETS2	non_specific	483	0.414068	6.02	-0.052
+SampleType	Primary Blood-Derived Cancer	173	ELF2	non_specific	277	0.38885	6.02	-0.052
+SampleType	Primary Blood-Derived Cancer	173	PHF21A	non_specific	271	0.388095	6.02	-0.052
+SampleType	Primary Blood-Derived Cancer	173	CGGBP1	non_specific	584	0.423779	6.01	-0.052
+SampleType	Primary Blood-Derived Cancer	173	TFDP1	non_specific	741	0.434458	5.99	-0.052
+SampleType	Primary Blood-Derived Cancer	173	PLAGL1	non_specific	62	0.314055	5.98	-0.052
+SampleType	Primary Blood-Derived Cancer	173	DRAP1	non_specific	1070	0.474434	5.97	-0.051
+SampleType	Primary Blood-Derived Cancer	173	SREBF2	non_specific	767	0.436362	5.97	-0.052
+SampleType	Primary Blood-Derived Cancer	173	SETDB1	non_specific	456	0.411307	5.96	-0.052
+SampleType	Primary Blood-Derived Cancer	173	BAZ2B	non_specific	169	0.366765	5.96	-0.052
+SampleType	Primary Blood-Derived Cancer	173	FOSL2	non_specific	432	0.409075	5.93	-0.052
+SampleType	Primary Blood-Derived Cancer	173	NFE2L2	non_specific	912	0.450562	5.93	-0.052
+SampleType	Primary Solid Tumor	9186	FOXE1	specific	11	0.261481	1.1	-22.058
+SampleType	Primary Solid Tumor	9186	FOXA1	specific	13	0.271072	2.87	-19.966
+SampleType	Primary Solid Tumor	9186	SPDEF	specific	14	0.275865	2.38	-18.956
+SampleType	Primary Solid Tumor	9186	GRHL2	specific	17	0.288168	2.76	-16.483
+SampleType	Primary Solid Tumor	9186	FOXQ1	specific	18	0.293291	1.9	-15.494
+SampleType	Primary Solid Tumor	9186	OVOL1	specific	21	0.306276	2.01	-13.124
+SampleType	Primary Solid Tumor	9186	PAX9	specific	25	0.309249	1.36	-12.668
+SampleType	Primary Solid Tumor	9186	GRHL3	specific	26	0.316099	1.66	-11.5
+SampleType	Primary Solid Tumor	9186	TP63	specific	27	0.316712	1.91	-11.412
+SampleType	Primary Solid Tumor	9186	ZNF750	specific	28	0.318271	1.65	-11.167
+SampleType	Primary Solid Tumor	9186	OVOL2	specific	30	0.326817	2.47	-9.812
+SampleType	Primary Solid Tumor	9186	BARX2	specific	31	0.32764	2.18	-9.698
+SampleType	Primary Solid Tumor	9186	POU2F3	specific	35	0.331483	1.4	-9.158
+SampleType	Primary Solid Tumor	9186	EHF	specific	36	0.331649	3.28	-9.145
+SampleType	Primary Solid Tumor	9186	PITX1	specific	42	0.342303	2.9	-7.659
+SampleType	Primary Solid Tumor	9186	ZIC2	specific	44	0.342877	1.07	-7.599
+SampleType	Primary Solid Tumor	9186	ELF3	specific	46	0.345156	6.05	-7.316
+SampleType	Primary Solid Tumor	9186	IRF6	specific	49	0.347585	4.26	-7.015
+SampleType	Primary Solid Tumor	9186	OTX1	specific	51	0.351486	1.22	-6.519
+SampleType	Primary Solid Tumor	9186	HNF4G	specific	52	0.3521	1.23	-6.448
+SampleType	Primary Solid Tumor	9186	FOXA2	specific	53	0.355006	1.19	-6.088
+SampleType	Primary Solid Tumor	9186	HES2	specific	55	0.357573	1.53	-5.785
+SampleType	Primary Solid Tumor	9186	SIX1	specific	57	0.35793	1.99	-5.757
+SampleType	Primary Solid Tumor	9186	GRHL1	specific	58	0.358472	2.5	-5.699
+SampleType	Primary Solid Tumor	9186	HNF4A	specific	59	0.358557	1.39	-5.696
+SampleType	Primary Solid Tumor	9186	SP6	specific	62	0.362352	1.43	-5.264
+SampleType	Primary Solid Tumor	9186	CREB3L1	specific	65	0.364654	3.62	-5.021
+SampleType	Primary Solid Tumor	9186	DLX5	specific	68	0.365886	1.44	-4.897
+SampleType	Primary Solid Tumor	9186	HOXB13	specific	72	0.368832	1.15	-4.593
+SampleType	Primary Solid Tumor	9186	OSR2	specific	73	0.368969	2.12	-4.584
+SampleType	Primary Solid Tumor	9186	HNF1A	specific	76	0.371222	1.09	-4.356
+SampleType	Primary Solid Tumor	9186	SIM2	specific	77	0.371407	1.58	-4.342
+SampleType	Primary Solid Tumor	9186	FOXJ1	specific	79	0.372746	1.6	-4.211
+SampleType	Primary Solid Tumor	9186	IRX2	specific	81	0.373652	1.71	-4.126
+SampleType	Primary Solid Tumor	9186	KLF5	specific	84	0.374403	4.28	-4.064
+SampleType	Primary Solid Tumor	9186	SIX4	specific	85	0.374612	1.47	-4.047
+SampleType	Primary Solid Tumor	9186	PITX2	specific	88	0.376093	1.09	-3.91
+SampleType	Primary Solid Tumor	9186	HOXD11	specific	89	0.377128	1.01	-3.81
+SampleType	Primary Solid Tumor	9186	ZBTB7C	specific	92	0.378409	2.22	-3.696
+SampleType	Primary Solid Tumor	9186	SP5	specific	93	0.378729	1.06	-3.669
+SampleType	Primary Solid Tumor	9186	NKX3-1	specific	95	0.379824	1.57	-3.57
+SampleType	Primary Solid Tumor	9186	HNF1B	specific	101	0.381694	1.67	-3.416
+SampleType	Primary Solid Tumor	9186	SOX9	specific	107	0.384087	4.11	-3.214
+SampleType	Primary Solid Tumor	9186	TOX3	specific	110	0.385664	1.86	-3.081
+SampleType	Primary Solid Tumor	9186	YBX2	specific	113	0.389139	1.69	-2.781
+SampleType	Primary Solid Tumor	9186	SIX2	specific	116	0.391208	1.35	-2.613
+SampleType	Primary Solid Tumor	9186	PRRX2	specific	118	0.391643	2.15	-2.583
+SampleType	Primary Solid Tumor	9186	GATA6	specific	119	0.392452	1.9	-2.52
+SampleType	Primary Solid Tumor	9186	ZNF385B	specific	120	0.392482	1.22	-2.52
+SampleType	Primary Solid Tumor	9186	TEAD3	specific	121	0.393326	3.83	-2.453
+SampleType	Primary Solid Tumor	9186	IRX3	specific	123	0.395718	3.49	-2.266
+SampleType	Primary Solid Tumor	9186	MECOM	specific	124	0.395732	2.81	-2.266
+SampleType	Primary Solid Tumor	9186	FOXF1	specific	125	0.396194	1.29	-2.233
+SampleType	Primary Solid Tumor	9186	HOXD10	specific	126	0.396284	1.32	-2.229
+SampleType	Primary Solid Tumor	9186	RORC	specific	127	0.39686	2.8	-2.188
+SampleType	Primary Solid Tumor	9186	TBX3	specific	130	0.397748	3.02	-2.127
+SampleType	Primary Solid Tumor	9186	ZNF165	specific	131	0.398295	1.62	-2.087
+SampleType	Primary Solid Tumor	9186	TP73	specific	136	0.400047	1.3	-1.969
+SampleType	Primary Solid Tumor	9186	FOXF2	specific	137	0.401209	1.54	-1.884
+SampleType	Primary Solid Tumor	9186	HES1	specific	138	0.401396	5.32	-1.873
+SampleType	Primary Solid Tumor	9186	IRX5	specific	140	0.402393	1.88	-1.806
+SampleType	Primary Solid Tumor	9186	MSX2	specific	142	0.402989	1.64	-1.769
+SampleType	Primary Solid Tumor	9186	ESR1	specific	143	0.403119	1.67	-1.762
+SampleType	Primary Solid Tumor	9186	FOXA3	specific	144	0.403213	1.19	-1.758
+SampleType	Primary Solid Tumor	9186	ETV7	specific	146	0.404212	2.4	-1.692
+SampleType	Primary Solid Tumor	9186	HES4	specific	148	0.405401	3.29	-1.614
+SampleType	Primary Solid Tumor	9186	MLXIPL	specific	152	0.406196	1.96	-1.57
+SampleType	Primary Solid Tumor	9186	HMGA2	specific	154	0.406761	1.36	-1.537
+SampleType	Primary Solid Tumor	9186	BARX1	specific	158	0.408134	1.01	-1.454
+SampleType	Primary Solid Tumor	9186	AR	specific	159	0.408289	1.72	-1.447
+SampleType	Primary Solid Tumor	9186	TWIST2	specific	162	0.408834	1.53	-1.418
+SampleType	Primary Solid Tumor	9186	FOXD1	specific	163	0.409098	1.34	-1.403
+SampleType	Primary Solid Tumor	9186	THRB	specific	164	0.409448	1.92	-1.385
+SampleType	Primary Solid Tumor	9186	OSR1	specific	165	0.409464	1.37	-1.385
+SampleType	Primary Solid Tumor	9186	CASZ1	specific	170	0.412901	2.61	-1.177
+SampleType	Primary Solid Tumor	9186	ID1	specific	171	0.413536	5.72	-1.14
+SampleType	Primary Solid Tumor	9186	PBX1	specific	174	0.413768	4.05	-1.133
+SampleType	Primary Solid Tumor	9186	SOX7	specific	175	0.414506	1.83	-1.091
+SampleType	Primary Solid Tumor	9186	TFAP2A	specific	178	0.41564	3.05	-1.03
+SampleType	Primary Solid Tumor	9186	ARNTL2	specific	180	0.415804	2.31	-1.025
+SampleType	Primary Solid Tumor	9186	TBX15	specific	181	0.41599	1.1	-1.017
+SampleType	Primary Solid Tumor	9186	YBX1	non_specific	617	0.455697	8.67	-0.01
+SampleType	Primary Solid Tumor	9186	ATF4	non_specific	526	0.452756	7.97	-0.01
+SampleType	Primary Solid Tumor	9186	MAZ	non_specific	553	0.453527	7.5	-0.01
+SampleType	Primary Solid Tumor	9186	YBX3	non_specific	429	0.449256	7.3	-0.01
+SampleType	Primary Solid Tumor	9186	XBP1	non_specific	424	0.449023	7.29	-0.01
+SampleType	Primary Solid Tumor	9186	DRAP1	non_specific	426	0.449136	7.01	-0.01
+SampleType	Primary Solid Tumor	9186	ZNF706	non_specific	414	0.448531	6.84	-0.01
+SampleType	Primary Solid Tumor	9186	USF2	non_specific	661	0.456595	6.83	-0.01
+SampleType	Primary Solid Tumor	9186	JUNB	non_specific	452	0.450216	6.75	-0.01
+SampleType	Primary Solid Tumor	9186	HMGA1	non_specific	719	0.457604	6.67	-0.01
+SampleType	Primary Solid Tumor	9186	FOS	non_specific	934	0.4638	6.63	-0.01
+SampleType	Primary Solid Tumor	9186	JUND	non_specific	764	0.459196	6.62	-0.01
+SampleType	Primary Solid Tumor	9186	PA2G4	non_specific	614	0.45552	6.6	-0.01
+SampleType	Primary Solid Tumor	9186	GTF3A	non_specific	664	0.456617	6.55	-0.01
+SampleType	Primary Solid Tumor	9186	NFE2L1	non_specific	472	0.451097	6.48	-0.01
+SampleType	Primary Solid Tumor	9186	HMGN3	non_specific	504	0.452085	6.44	-0.01
+SampleType	Primary Solid Tumor	9186	TSC22D1	non_specific	392	0.447407	6.41	-0.01
+SampleType	Primary Solid Tumor	9186	RBCK1	non_specific	386	0.447179	6.22	-0.01
+SampleType	Primary Solid Tumor	9186	ZNF207	non_specific	750	0.458744	6.21	-0.01
+SampleType	Primary Solid Tumor	9186	AEBP1	non_specific	336	0.443179	6.21	-0.05
+SampleType	Primary Solid Tumor	9186	SON	non_specific	869	0.46185	6.2	-0.01
+SampleType	Primary Solid Tumor	9186	IRF9	non_specific	486	0.451523	6.17	-0.01
+SampleType	Primary Solid Tumor	9186	TSC22D3	non_specific	797	0.459979	6.13	-0.01
+SampleType	Primary Solid Tumor	9186	CAMTA1	non_specific	456	0.450427	6.1	-0.01
+SampleType	Primary Solid Tumor	9186	HSF1	non_specific	516	0.452453	6.07	-0.01
+SampleType	Primary Solid Tumor	9186	BHLHE40	non_specific	269	0.435651	6.05	-0.222
+SampleType	Primary Solid Tumor	9186	STAT1	non_specific	442	0.449731	6.05	-0.01
+SampleType	Primary Solid Tumor	9186	JUN	non_specific	308	0.440217	6.0	-0.111
+SampleType	Primary Solid Tumor	9186	ID2	non_specific	370	0.446327	5.98	-0.01
+SampleType	Primary Solid Tumor	9186	SREBF1	non_specific	340	0.443299	5.97	-0.05
+SampleType	Primary Solid Tumor	9186	GLMP	non_specific	419	0.448777	5.97	-0.01
+SampleType	Primary Solid Tumor	9186	TGIF1	non_specific	292	0.438693	5.94	-0.142
+SampleType	Primary Solid Tumor	9186	NFE2L2	non_specific	458	0.450488	5.93	-0.01
+SampleType	Primary Solid Tumor	9186	STAT6	non_specific	552	0.453506	5.93	-0.01
+SampleType	Primary Solid Tumor	9186	HMG20B	non_specific	531	0.452944	5.89	-0.01
+SampleType	Primary Solid Tumor	9186	GTF2I	non_specific	838	0.461068	5.88	-0.01
+SampleType	Primary Solid Tumor	9186	SLC2A4RG	non_specific	326	0.442045	5.88	-0.074
+SampleType	Primary Solid Tumor	9186	ID3	non_specific	202	0.421958	5.87	-0.73
+SampleType	Primary Solid Tumor	9186	PIN1	non_specific	598	0.455204	5.86	-0.01
+SampleType	Primary Solid Tumor	9186	IRF3	non_specific	432	0.449326	5.83	-0.01
+SampleType	Primary Solid Tumor	9186	STAT3	non_specific	545	0.453378	5.83	-0.01
+SampleType	Primary Solid Tumor	9186	EGR1	non_specific	824	0.460825	5.82	-0.01
+SampleType	Primary Solid Tumor	9186	ATF6B	non_specific	567	0.453985	5.82	-0.01
+SampleType	Primary Solid Tumor	9186	MBD2	non_specific	357	0.445235	5.78	-0.011
+SampleType	Primary Solid Tumor	9186	REPIN1	non_specific	587	0.454828	5.74	-0.01
+SampleType	Primary Solid Tumor	9186	HIF1A	non_specific	506	0.452121	5.7	-0.01
+SampleType	Primary Solid Tumor	9186	GPBP1L1	non_specific	686	0.457049	5.64	-0.01
+SampleType	Primary Solid Tumor	9186	NR1H2	non_specific	600	0.455251	5.64	-0.01
+SampleType	Primary Solid Tumor	9186	THAP4	non_specific	374	0.446553	5.59	-0.01
+SampleType	Primary Solid Tumor	9186	PHF1	non_specific	674	0.456892	5.59	-0.01
+SampleType	Primary Solid Tumor	9186	SAFB	non_specific	799	0.460013	5.58	-0.01
+SampleType	Primary Solid Tumor	9186	RELA	non_specific	496	0.451959	5.58	-0.01
+SampleType	Primary Solid Tumor	9186	CENPB	non_specific	395	0.447464	5.53	-0.01
+SampleType	Primary Solid Tumor	9186	STAT2	non_specific	833	0.460989	5.53	-0.01
+SampleType	Primary Solid Tumor	9186	EPAS1	non_specific	263	0.434353	5.53	-0.264
+SampleType	Primary Solid Tumor	9186	CUX1	non_specific	471	0.451039	5.52	-0.01
+SampleType	Primary Solid Tumor	9186	PLSCR1	non_specific	436	0.449459	5.51	-0.01
+SampleType	Primary Solid Tumor	9186	UBTF	non_specific	645	0.4564	5.51	-0.01
+SampleType	Primary Solid Tumor	9186	TSC22D4	non_specific	884	0.462447	5.51	-0.01
+SampleType	Primary Solid Tumor	9186	PREB	non_specific	481	0.451351	5.5	-0.01
+SampleType	Primary Solid Tumor	9186	THYN1	non_specific	483	0.451434	5.48	-0.01
+SampleType	Primary Solid Tumor	9186	TCF3	non_specific	532	0.452961	5.47	-0.01
+SampleType	Primary Solid Tumor	9186	MBD3	non_specific	737	0.458322	5.46	-0.01
+SampleType	Primary Solid Tumor	9186	ZNF664	non_specific	379	0.446671	5.42	-0.01
+SampleType	Primary Solid Tumor	9186	TFDP1	non_specific	482	0.451414	5.42	-0.01
+SampleType	Primary Solid Tumor	9186	USF1	non_specific	710	0.457467	5.41	-0.01
+SampleType	Primary Solid Tumor	9186	MAX	non_specific	751	0.458824	5.4	-0.01
+SampleType	Primary Solid Tumor	9186	ZNF358	non_specific	418	0.448719	5.4	-0.01
+SampleType	Primary Solid Tumor	9186	GPBP1	non_specific	669	0.456796	5.39	-0.01
+SampleType	Primary Solid Tumor	9186	CHCHD3	non_specific	622	0.455782	5.38	-0.01
+SampleType	Primary Solid Tumor	9186	MYC	non_specific	530	0.452898	5.33	-0.01
+SampleType	Primary Solid Tumor	9186	BCLAF1	non_specific	819	0.460715	5.28	-0.01
+SampleType	Primary Solid Tumor	9186	CXXC5	non_specific	705	0.457404	5.26	-0.01
+SampleType	Primary Solid Tumor	9186	CREB3	non_specific	309	0.440426	5.25	-0.105
+SampleType	Primary Solid Tumor	9186	YY1	non_specific	546	0.45343	5.24	-0.01
+SampleType	Primary Solid Tumor	9186	GLYR1	non_specific	717	0.45758	5.24	-0.01
+SampleType	Primary Solid Tumor	9186	SREBF2	non_specific	733	0.458076	5.23	-0.01
+SampleType	Primary Solid Tumor	9186	E2F4	non_specific	694	0.457265	5.23	-0.01
+SampleType	Primary Solid Tumor	9186	ZNF428	non_specific	632	0.456112	5.22	-0.01
+SampleType	Primary Solid Tumor	9186	SP100	non_specific	689	0.457104	5.21	-0.01
+SampleType	Recurrent Solid Tumor	44	GSX1	specific	1	0.052485	1.12	-51.209
+SampleType	Recurrent Solid Tumor	44	RFX4	specific	3	0.07771	2.84	-45.258
+SampleType	Recurrent Solid Tumor	44	SOX3	specific	4	0.080319	1.15	-44.741
+SampleType	Recurrent Solid Tumor	44	FOXG1	specific	7	0.100342	2.12	-40.208
+SampleType	Recurrent Solid Tumor	44	POU3F4	specific	9	0.104513	1.28	-39.355
+SampleType	Recurrent Solid Tumor	44	NR2E1	specific	10	0.112452	1.7	-37.6
+SampleType	Recurrent Solid Tumor	44	HMX1	specific	15	0.145038	1.28	-30.811
+SampleType	Recurrent Solid Tumor	44	OLIG2	specific	16	0.149117	3.75	-30.016
+SampleType	Recurrent Solid Tumor	44	NKX2-2	specific	20	0.158237	2.3	-28.31
+SampleType	Recurrent Solid Tumor	44	ASCL1	specific	21	0.159669	2.65	-28.053
+SampleType	Recurrent Solid Tumor	44	SOX21	specific	22	0.164125	2.32	-27.227
+SampleType	Recurrent Solid Tumor	44	SOX11	specific	23	0.164166	2.03	-27.227
+SampleType	Recurrent Solid Tumor	44	HES5	specific	24	0.167323	1.58	-26.646
+SampleType	Recurrent Solid Tumor	44	SOX1	specific	26	0.172085	1.13	-25.789
+SampleType	Recurrent Solid Tumor	44	POU3F2	specific	27	0.174872	2.52	-25.29
+SampleType	Recurrent Solid Tumor	44	SALL3	specific	29	0.187471	2.09	-23.054
+SampleType	Recurrent Solid Tumor	44	SOX2	specific	35	0.215679	4.81	-18.43
+SampleType	Recurrent Solid Tumor	44	ZIC2	specific	36	0.216906	1.79	-18.249
+SampleType	Recurrent Solid Tumor	44	ZIC4	specific	37	0.218012	1.31	-18.087
+SampleType	Recurrent Solid Tumor	44	PURG	specific	39	0.225279	1.39	-16.991
+SampleType	Recurrent Solid Tumor	44	ZIC1	specific	40	0.228931	3.8	-16.453
+SampleType	Recurrent Solid Tumor	44	NPAS3	specific	41	0.230992	2.93	-16.157
+SampleType	Recurrent Solid Tumor	44	SCRT1	specific	42	0.239835	1.22	-14.884
+SampleType	Recurrent Solid Tumor	44	LHX2	specific	45	0.248863	3.12	-13.656
+SampleType	Recurrent Solid Tumor	44	PAX6	specific	49	0.251143	2.85	-13.383
+SampleType	Recurrent Solid Tumor	44	MYT1L	specific	51	0.254697	1.23	-12.924
+SampleType	Recurrent Solid Tumor	44	NKX6-2	specific	52	0.260655	2.03	-12.153
+SampleType	Recurrent Solid Tumor	44	ZNF488	specific	54	0.265239	1.98	-11.585
+SampleType	Recurrent Solid Tumor	44	OLIG1	specific	55	0.2677	4.62	-11.284
+SampleType	Recurrent Solid Tumor	44	FOXJ1	specific	56	0.268235	2.53	-11.226
+SampleType	Recurrent Solid Tumor	44	NKX2-5	specific	57	0.270331	1.06	-10.975
+SampleType	Recurrent Solid Tumor	44	SOX8	specific	60	0.28096	4.04	-9.727
+SampleType	Recurrent Solid Tumor	44	RORB	specific	63	0.28338	1.12	-9.469
+SampleType	Recurrent Solid Tumor	44	POU3F3	specific	65	0.287057	2.8	-9.066
+SampleType	Recurrent Solid Tumor	44	INSM1	specific	70	0.298259	1.69	-7.881
+SampleType	Recurrent Solid Tumor	44	CXXC4	specific	71	0.299005	1.77	-7.809
+SampleType	Recurrent Solid Tumor	44	GBX2	specific	72	0.299721	1.36	-7.74
+SampleType	Recurrent Solid Tumor	44	ZSCAN1	specific	75	0.305216	1.62	-7.207
+SampleType	Recurrent Solid Tumor	44	ZNF365	specific	77	0.305989	2.08	-7.141
+SampleType	Recurrent Solid Tumor	44	VAX2	specific	80	0.308573	2.34	-6.901
+SampleType	Recurrent Solid Tumor	44	SALL1	specific	81	0.310546	3.4	-6.713
+SampleType	Recurrent Solid Tumor	44	ZNF536	specific	83	0.311205	1.31	-6.66
+SampleType	Recurrent Solid Tumor	44	GSC	specific	90	0.317564	1.08	-6.092
+SampleType	Recurrent Solid Tumor	44	FOXD1	specific	91	0.319881	2.06	-5.884
+SampleType	Recurrent Solid Tumor	44	DPF1	specific	94	0.323791	2.89	-5.546
+SampleType	Recurrent Solid Tumor	44	EMX2	specific	97	0.325195	2.45	-5.435
+SampleType	Recurrent Solid Tumor	44	DPF3	specific	99	0.326909	1.86	-5.294
+SampleType	Recurrent Solid Tumor	44	RCOR2	specific	100	0.326988	3.18	-5.292
+SampleType	Recurrent Solid Tumor	44	MYT1	specific	101	0.329542	1.53	-5.076
+SampleType	Recurrent Solid Tumor	44	ZFHX4	specific	102	0.331055	1.37	-4.952
+SampleType	Recurrent Solid Tumor	44	ZNF883	specific	103	0.333934	2.43	-4.716
+SampleType	Recurrent Solid Tumor	44	OTX1	specific	104	0.337134	1.3	-4.46
+SampleType	Recurrent Solid Tumor	44	TBX15	specific	105	0.339082	1.61	-4.308
+SampleType	Recurrent Solid Tumor	44	MSX1	specific	106	0.340338	2.98	-4.213
+SampleType	Recurrent Solid Tumor	44	ST18	specific	108	0.343618	1.31	-3.967
+SampleType	Recurrent Solid Tumor	44	CSRNP3	specific	109	0.344865	1.26	-3.877
+SampleType	Recurrent Solid Tumor	44	TIGD3	specific	111	0.350474	1.14	-3.473
+SampleType	Recurrent Solid Tumor	44	ZNF835	specific	113	0.35054	1.52	-3.473
+SampleType	Recurrent Solid Tumor	44	PROX1	specific	114	0.350951	1.83	-3.447
+SampleType	Recurrent Solid Tumor	44	ZNF843	specific	116	0.353046	1.24	-3.305
+SampleType	Recurrent Solid Tumor	44	HEY1	specific	120	0.357923	4.51	-2.983
+SampleType	Recurrent Solid Tumor	44	SATB2	specific	121	0.358974	2.5	-2.916
+SampleType	Recurrent Solid Tumor	44	HES6	specific	122	0.359125	5.6	-2.909
+SampleType	Recurrent Solid Tumor	44	SOX9	specific	123	0.359557	4.63	-2.884
+SampleType	Recurrent Solid Tumor	44	NR2F1	specific	124	0.3604	4.46	-2.832
+SampleType	Recurrent Solid Tumor	44	HOXD11	specific	128	0.362363	1.08	-2.717
+SampleType	Recurrent Solid Tumor	44	SOX6	specific	130	0.363405	2.61	-2.656
+SampleType	Recurrent Solid Tumor	44	ZNF454	specific	131	0.363944	1.06	-2.625
+SampleType	Recurrent Solid Tumor	44	ARNT2	specific	132	0.364527	4.18	-2.591
+SampleType	Recurrent Solid Tumor	44	MEIS3	specific	133	0.364776	4.05	-2.579
+SampleType	Recurrent Solid Tumor	44	SIX1	specific	134	0.364871	1.93	-2.576
+SampleType	Recurrent Solid Tumor	44	ZNF423	specific	139	0.367365	2.54	-2.436
+SampleType	Recurrent Solid Tumor	44	ZBTB7C	specific	142	0.369744	2.32	-2.3
+SampleType	Recurrent Solid Tumor	44	TOX3	specific	144	0.370475	2.0	-2.262
+SampleType	Recurrent Solid Tumor	44	KLF15	specific	145	0.370671	3.24	-2.253
+SampleType	Recurrent Solid Tumor	44	THAP10	specific	146	0.371379	2.45	-2.214
+SampleType	Recurrent Solid Tumor	44	PEG3	specific	147	0.371632	2.3	-2.202
+SampleType	Recurrent Solid Tumor	44	PRRX1	specific	149	0.373672	4.33	-2.089
+SampleType	Recurrent Solid Tumor	44	GRHL3	specific	150	0.374549	1.27	-2.041
+SampleType	Recurrent Solid Tumor	44	PKNOX2	specific	152	0.375509	2.33	-1.993
+SampleType	Recurrent Solid Tumor	44	ZNF711	specific	153	0.375546	2.71	-1.993
+SampleType	Recurrent Solid Tumor	44	MYRF	specific	154	0.375994	3.41	-1.97
+SampleType	Recurrent Solid Tumor	44	TUB	specific	155	0.376057	2.7	-1.969
+SampleType	Recurrent Solid Tumor	44	GLIS3	specific	156	0.376453	2.68	-1.952
+SampleType	Recurrent Solid Tumor	44	ZNF853	specific	159	0.378424	3.31	-1.848
+SampleType	Recurrent Solid Tumor	44	DLX1	specific	161	0.37958	1.49	-1.793
+SampleType	Recurrent Solid Tumor	44	ZFP37	specific	163	0.380269	1.7	-1.758
+SampleType	Recurrent Solid Tumor	44	SALL2	specific	164	0.380408	3.89	-1.754
+SampleType	Recurrent Solid Tumor	44	DZIP1	specific	165	0.38101	3.4	-1.724
+SampleType	Recurrent Solid Tumor	44	HEY2	specific	168	0.382549	2.45	-1.651
+SampleType	Recurrent Solid Tumor	44	EBF4	specific	171	0.382699	3.92	-1.65
+SampleType	Recurrent Solid Tumor	44	ZNF425	specific	173	0.383385	1.91	-1.619
+SampleType	Recurrent Solid Tumor	44	ETV1	specific	174	0.383948	4.22	-1.592
+SampleType	Recurrent Solid Tumor	44	DLX5	specific	175	0.384485	1.32	-1.567
+SampleType	Recurrent Solid Tumor	44	HES4	specific	177	0.385295	3.65	-1.531
+SampleType	Recurrent Solid Tumor	44	PRDM5	specific	178	0.385412	1.8	-1.527
+SampleType	Recurrent Solid Tumor	44	MESP1	specific	179	0.385918	3.09	-1.504
+SampleType	Recurrent Solid Tumor	44	SHOX2	specific	180	0.386712	1.26	-1.466
+SampleType	Recurrent Solid Tumor	44	CUX2	specific	181	0.386902	1.02	-1.459
+SampleType	Recurrent Solid Tumor	44	KCNIP3	specific	182	0.38869	3.07	-1.373
+SampleType	Recurrent Solid Tumor	44	FOXF2	specific	183	0.388832	1.64	-1.369
+SampleType	Recurrent Solid Tumor	44	SIM2	specific	184	0.389152	1.45	-1.355
+SampleType	Recurrent Solid Tumor	44	OSR1	specific	185	0.38966	1.52	-1.333
+SampleType	Recurrent Solid Tumor	44	THRB	specific	186	0.389896	2.13	-1.324
+SampleType	Recurrent Solid Tumor	44	MLXIPL	specific	187	0.391011	2.13	-1.274
+SampleType	Recurrent Solid Tumor	44	NFIB	specific	188	0.391038	4.03	-1.274
+SampleType	Recurrent Solid Tumor	44	HIF3A	specific	189	0.391087	1.73	-1.274
+SampleType	Recurrent Solid Tumor	44	ZNF469	specific	190	0.392796	1.19	-1.197
+SampleType	Recurrent Solid Tumor	44	SOX5	specific	191	0.39282	1.64	-1.197
+SampleType	Recurrent Solid Tumor	44	FOXO6	specific	192	0.393566	1.7	-1.165
+SampleType	Recurrent Solid Tumor	44	ZNF774	specific	195	0.395395	1.49	-1.088
+SampleType	Recurrent Solid Tumor	44	PITX1	specific	198	0.395859	2.24	-1.074
+SampleType	Recurrent Solid Tumor	44	GLI2	specific	200	0.396741	1.33	-1.039
+SampleType	Recurrent Solid Tumor	44	SMAD9	specific	203	0.397527	2.12	-1.011
+SampleType	Recurrent Solid Tumor	44	YBX1	non_specific	676	0.450674	8.95	-0.018
+SampleType	Recurrent Solid Tumor	44	ATF4	non_specific	804	0.455289	7.85	-0.018
+SampleType	Recurrent Solid Tumor	44	MAZ	non_specific	734	0.452845	7.53	-0.018
+SampleType	Recurrent Solid Tumor	44	DRAP1	non_specific	480	0.442189	7.31	-0.018
+SampleType	Recurrent Solid Tumor	44	TSC22D4	non_specific	256	0.416248	7.23	-0.395
+SampleType	Recurrent Solid Tumor	44	USF2	non_specific	702	0.451579	7.05	-0.018
+SampleType	Recurrent Solid Tumor	44	TSC22D1	non_specific	383	0.434747	6.91	-0.051
+SampleType	Recurrent Solid Tumor	44	ID2	non_specific	299	0.424969	6.77	-0.195
+SampleType	Recurrent Solid Tumor	44	GTF3A	non_specific	743	0.453004	6.7	-0.018
+SampleType	Recurrent Solid Tumor	44	JUND	non_specific	879	0.457666	6.68	-0.018
+SampleType	Recurrent Solid Tumor	44	ZNF706	non_specific	777	0.454249	6.61	-0.018
+SampleType	Recurrent Solid Tumor	44	YBX3	non_specific	1117	0.46656	6.56	-0.011
+SampleType	Recurrent Solid Tumor	44	ID3	non_specific	214	0.401885	6.54	-0.849
+SampleType	Recurrent Solid Tumor	44	PIN1	non_specific	411	0.437412	6.52	-0.021
+SampleType	Recurrent Solid Tumor	44	PA2G4	non_specific	926	0.458976	6.46	-0.018
+SampleType	Recurrent Solid Tumor	44	FOS	non_specific	1148	0.468182	6.45	-0.009
+SampleType	Recurrent Solid Tumor	44	HMGN3	non_specific	719	0.452303	6.43	-0.018
+SampleType	Recurrent Solid Tumor	44	HMGA1	non_specific	1056	0.463726	6.41	-0.016
+SampleType	Recurrent Solid Tumor	44	JUNB	non_specific	916	0.458651	6.41	-0.018
+SampleType	Recurrent Solid Tumor	44	CAMTA1	non_specific	486	0.442563	6.39	-0.018
+SampleType	Recurrent Solid Tumor	44	RBCK1	non_specific	571	0.446759	6.23	-0.018
+SampleType	Recurrent Solid Tumor	44	NFIX	non_specific	220	0.404455	6.23	-0.757
+SampleType	Recurrent Solid Tumor	44	XBP1	non_specific	1248	0.473896	6.23	0.0
+SampleType	Recurrent Solid Tumor	44	SON	non_specific	1005	0.461577	6.21	-0.018
+SampleType	Recurrent Solid Tumor	44	IRF9	non_specific	716	0.452134	6.15	-0.018
+SampleType	Recurrent Solid Tumor	44	CXXC5	non_specific	351	0.431475	6.14	-0.091
+SampleType	Recurrent Solid Tumor	44	NFE2L1	non_specific	951	0.460022	6.13	-0.018
+SampleType	Recurrent Solid Tumor	44	TSC22D3	non_specific	959	0.460271	6.12	-0.018
+SampleType	Recurrent Solid Tumor	44	ZNF207	non_specific	1007	0.461618	6.1	-0.018
+SampleType	Recurrent Solid Tumor	44	ZNF358	non_specific	335	0.428858	6.07	-0.138
+SampleType	Recurrent Solid Tumor	44	REPIN1	non_specific	549	0.44607	6.06	-0.018
+SampleType	Recurrent Solid Tumor	44	JUN	non_specific	471	0.441553	5.96	-0.018
+SampleType	Recurrent Solid Tumor	44	CENPB	non_specific	389	0.435216	5.95	-0.046
+SampleType	Recurrent Solid Tumor	44	GTF2I	non_specific	942	0.459576	5.94	-0.018
+SampleType	Recurrent Solid Tumor	44	THYN1	non_specific	434	0.439015	5.91	-0.018
+SampleType	Recurrent Solid Tumor	44	HSF1	non_specific	899	0.458105	5.86	-0.018
+SampleType	Recurrent Solid Tumor	44	HIF1A	non_specific	608	0.44833	5.83	-0.018
+SampleType	Recurrent Solid Tumor	44	MBD3	non_specific	623	0.448686	5.79	-0.018
+SampleType	Recurrent Solid Tumor	44	NFE2L2	non_specific	783	0.454534	5.79	-0.018
+SampleType	Recurrent Solid Tumor	44	EGR1	non_specific	1017	0.461956	5.78	-0.018
+SampleType	Recurrent Solid Tumor	44	USF1	non_specific	578	0.447174	5.76	-0.018
+SampleType	Recurrent Solid Tumor	44	AEBP1	non_specific	813	0.45544	5.76	-0.018
+SampleType	Recurrent Solid Tumor	44	RELA	non_specific	569	0.446728	5.76	-0.018
+SampleType	Recurrent Solid Tumor	44	STAT3	non_specific	810	0.455413	5.75	-0.018
+SampleType	Recurrent Solid Tumor	44	HMG20B	non_specific	885	0.457765	5.72	-0.018
+SampleType	Recurrent Solid Tumor	44	ZNF428	non_specific	467	0.441259	5.71	-0.018
+SampleType	Recurrent Solid Tumor	44	ATF6B	non_specific	870	0.457267	5.7	-0.018
+SampleType	Recurrent Solid Tumor	44	PHF1	non_specific	798	0.455008	5.65	-0.018
+SampleType	Recurrent Solid Tumor	44	STAT1	non_specific	974	0.460712	5.65	-0.018
+SampleType	Recurrent Solid Tumor	44	DDIT3	non_specific	405	0.436503	5.64	-0.034
+SampleType	Recurrent Solid Tumor	44	THRA	non_specific	276	0.420926	5.62	-0.278
+SampleType	Recurrent Solid Tumor	44	ZNF664	non_specific	463	0.440882	5.61	-0.018
+SampleType	Recurrent Solid Tumor	44	IRF3	non_specific	860	0.456838	5.57	-0.018
+SampleType	Recurrent Solid Tumor	44	SREBF1	non_specific	797	0.454981	5.56	-0.018
+SampleType	Recurrent Solid Tumor	44	TCF3	non_specific	669	0.450474	5.55	-0.018
+SampleType	Recurrent Solid Tumor	44	CHCHD3	non_specific	677	0.450705	5.55	-0.018
+SampleType	Recurrent Solid Tumor	44	EPAS1	non_specific	378	0.434033	5.54	-0.061
+SampleType	Recurrent Solid Tumor	44	SAFB	non_specific	1006	0.461609	5.52	-0.018
+SampleType	Recurrent Solid Tumor	44	ID1	non_specific	272	0.420179	5.52	-0.295
+SampleType	Recurrent Solid Tumor	44	TFDP1	non_specific	648	0.449424	5.48	-0.018
+SampleType	Recurrent Solid Tumor	44	TCF12	non_specific	360	0.431988	5.48	-0.089
+SampleType	Recurrent Solid Tumor	44	NR1H2	non_specific	953	0.460134	5.47	-0.018
+SampleType	Recurrent Solid Tumor	44	ZNF32	non_specific	401	0.436125	5.47	-0.04
+SampleType	Recurrent Solid Tumor	44	GPBP1	non_specific	781	0.454461	5.47	-0.018
+SampleType	Recurrent Solid Tumor	44	PREB	non_specific	718	0.452283	5.46	-0.018
+SampleType	Recurrent Solid Tumor	44	STAT2	non_specific	1045	0.463284	5.45	-0.016
+SampleType	Recurrent Solid Tumor	44	GLMP	non_specific	1057	0.463742	5.44	-0.016
+SampleType	Recurrent Solid Tumor	44	SLC2A4RG	non_specific	812	0.455429	5.42	-0.018
+SampleType	Recurrent Solid Tumor	44	UBTF	non_specific	930	0.459047	5.42	-0.018
+SampleType	Recurrent Solid Tumor	44	CREB3	non_specific	388	0.435165	5.42	-0.046
+SampleType	Recurrent Solid Tumor	44	FAM200B	non_specific	450	0.440154	5.4	-0.018
+SampleType	Recurrent Solid Tumor	44	CUX1	non_specific	793	0.454858	5.39	-0.018
+SampleType	Recurrent Solid Tumor	44	DNTTIP1	non_specific	488	0.442601	5.36	-0.018
+SampleType	Recurrent Solid Tumor	44	AKAP8L	non_specific	767	0.454016	5.36	-0.018
+SampleType	Recurrent Solid Tumor	44	ZSCAN18	non_specific	343	0.430363	5.36	-0.109
+SampleType	Recurrent Solid Tumor	44	PLSCR1	non_specific	779	0.454336	5.35	-0.018
+SampleType	Recurrent Solid Tumor	44	ERF	non_specific	570	0.446737	5.3	-0.018
+SampleType	Recurrent Solid Tumor	44	CXXC1	non_specific	897	0.458049	5.29	-0.018
+SampleType	Recurrent Solid Tumor	44	DEAF1	non_specific	445	0.43987	5.27	-0.018
+SampleType	Recurrent Solid Tumor	44	THAP4	non_specific	858	0.456795	5.25	-0.018
+SampleType	Recurrent Solid Tumor	44	GLYR1	non_specific	873	0.457413	5.24	-0.018
+SampleType	Recurrent Solid Tumor	44	SREBF2	non_specific	891	0.457881	5.24	-0.018
+SampleType	Solid Tissue Normal	727	FOXI1	specific	3	0.145064	1.57	-23.648
+SampleType	Solid Tissue Normal	727	ELF5	specific	4	0.166117	2.26	-20.585
+SampleType	Solid Tissue Normal	727	TCF21	specific	7	0.181948	2.24	-18.57
+SampleType	Solid Tissue Normal	727	PGR	specific	9	0.22559	1.17	-13.071
+SampleType	Solid Tissue Normal	727	NKX2-1	specific	10	0.236297	1.52	-11.88
+SampleType	Solid Tissue Normal	727	ZNF385B	specific	13	0.256167	2.23	-9.841
+SampleType	Solid Tissue Normal	727	FOXA2	specific	14	0.261377	1.78	-9.34
+SampleType	Solid Tissue Normal	727	FOXA1	specific	15	0.265326	2.93	-8.974
+SampleType	Solid Tissue Normal	727	EHF	specific	18	0.270527	4.24	-8.543
+SampleType	Solid Tissue Normal	727	GRHL2	specific	20	0.276111	2.9	-8.055
+SampleType	Solid Tissue Normal	727	SPDEF	specific	21	0.278373	2.36	-7.875
+SampleType	Solid Tissue Normal	727	IRX2	specific	23	0.280986	2.57	-7.662
+SampleType	Solid Tissue Normal	727	NR1H4	specific	24	0.28208	1.59	-7.587
+SampleType	Solid Tissue Normal	727	HNF4A	specific	26	0.28362	1.93	-7.475
+SampleType	Solid Tissue Normal	727	ESRRB	specific	27	0.283906	1.06	-7.466
+SampleType	Solid Tissue Normal	727	DMRT2	specific	29	0.287014	1.6	-7.229
+SampleType	Solid Tissue Normal	727	HNF1B	specific	30	0.288316	2.55	-7.128
+SampleType	Solid Tissue Normal	727	FOXP2	specific	32	0.300335	1.77	-6.128
+SampleType	Solid Tissue Normal	727	FOXF1	specific	35	0.302133	2.0	-6.019
+SampleType	Solid Tissue Normal	727	OSR1	specific	36	0.304336	2.26	-5.851
+SampleType	Solid Tissue Normal	727	BARX2	specific	37	0.305734	2.4	-5.751
+SampleType	Solid Tissue Normal	727	OVOL1	specific	38	0.306266	2.01	-5.72
+SampleType	Solid Tissue Normal	727	ESRRG	specific	40	0.307072	1.79	-5.678
+SampleType	Solid Tissue Normal	727	ZNF750	specific	41	0.307549	1.73	-5.651
+SampleType	Solid Tissue Normal	727	DMRTA1	specific	46	0.315302	1.04	-5.099
+SampleType	Solid Tissue Normal	727	TP63	specific	47	0.31739	1.91	-4.952
+SampleType	Solid Tissue Normal	727	THRB	specific	48	0.319731	2.96	-4.787
+SampleType	Solid Tissue Normal	727	OVOL2	specific	49	0.324064	2.5	-4.49
+SampleType	Solid Tissue Normal	727	NR3C2	specific	50	0.324066	3.04	-4.49
+SampleType	Solid Tissue Normal	727	RORC	specific	51	0.325599	3.93	-4.389
+SampleType	Solid Tissue Normal	727	GATA6	specific	52	0.327377	2.59	-4.272
+SampleType	Solid Tissue Normal	727	CREB3L3	specific	53	0.331065	1.03	-4.025
+SampleType	Solid Tissue Normal	727	POU2F3	specific	54	0.331668	1.4	-3.992
+SampleType	Solid Tissue Normal	727	HLF	specific	55	0.333271	3.54	-3.893
+SampleType	Solid Tissue Normal	727	FOXQ1	specific	56	0.333362	1.6	-3.893
+SampleType	Solid Tissue Normal	727	IRF6	specific	58	0.334825	4.51	-3.816
+SampleType	Solid Tissue Normal	727	TFAP2B	specific	59	0.334847	1.21	-3.816
+SampleType	Solid Tissue Normal	727	ELF3	specific	60	0.335121	6.33	-3.805
+SampleType	Solid Tissue Normal	727	SOX7	specific	61	0.336276	2.69	-3.736
+SampleType	Solid Tissue Normal	727	ZBTB7C	specific	62	0.336987	2.7	-3.696
+SampleType	Solid Tissue Normal	727	MECOM	specific	63	0.339451	3.69	-3.542
+SampleType	Solid Tissue Normal	727	TFCP2L1	specific	64	0.34063	3.03	-3.474
+SampleType	Solid Tissue Normal	727	AR	specific	66	0.342524	2.37	-3.367
+SampleType	Solid Tissue Normal	727	TWIST2	specific	67	0.343403	2.12	-3.318
+SampleType	Solid Tissue Normal	727	HNF1A	specific	68	0.343928	1.24	-3.291
+SampleType	Solid Tissue Normal	727	HNF4G	specific	69	0.34446	1.27	-3.265
+SampleType	Solid Tissue Normal	727	LTF	specific	70	0.345871	4.75	-3.183
+SampleType	Solid Tissue Normal	727	HOXD10	specific	71	0.346716	1.68	-3.138
+SampleType	Solid Tissue Normal	727	HIF3A	specific	72	0.347751	2.14	-3.081
+SampleType	Solid Tissue Normal	727	TBX3	specific	73	0.348042	3.85	-3.069
+SampleType	Solid Tissue Normal	727	NR4A3	specific	74	0.348814	2.67	-3.028
+SampleType	Solid Tissue Normal	727	MEOX2	specific	76	0.352274	1.67	-2.835
+SampleType	Solid Tissue Normal	727	NKX3-1	specific	79	0.35396	1.78	-2.753
+SampleType	Solid Tissue Normal	727	OSR2	specific	80	0.354272	2.28	-2.746
+SampleType	Solid Tissue Normal	727	NR5A2	specific	81	0.354339	1.55	-2.746
+SampleType	Solid Tissue Normal	727	MEOX1	specific	83	0.354825	1.59	-2.725
+SampleType	Solid Tissue Normal	727	KLF5	specific	84	0.35523	4.7	-2.706
+SampleType	Solid Tissue Normal	727	ZNF366	specific	85	0.356407	1.1	-2.645
+SampleType	Solid Tissue Normal	727	ESR1	specific	86	0.357531	2.09	-2.586
+SampleType	Solid Tissue Normal	727	PAX2	specific	87	0.357758	1.11	-2.578
+SampleType	Solid Tissue Normal	727	FOXA3	specific	89	0.361488	1.47	-2.382
+SampleType	Solid Tissue Normal	727	PPARG	specific	90	0.36539	4.15	-2.178
+SampleType	Solid Tissue Normal	727	GRHL1	specific	91	0.367394	2.4	-2.078
+SampleType	Solid Tissue Normal	727	IRX1	specific	92	0.367927	1.71	-2.055
+SampleType	Solid Tissue Normal	727	CREB3L1	specific	94	0.368805	3.55	-2.02
+SampleType	Solid Tissue Normal	727	ATOH8	specific	95	0.369665	4.08	-1.981
+SampleType	Solid Tissue Normal	727	TOX3	specific	96	0.371084	2.0	-1.914
+SampleType	Solid Tissue Normal	727	PAX9	specific	97	0.371649	1.02	-1.89
+SampleType	Solid Tissue Normal	727	PRDM16	specific	98	0.373021	1.58	-1.826
+SampleType	Solid Tissue Normal	727	PROX1	specific	99	0.373168	1.65	-1.824
+SampleType	Solid Tissue Normal	727	ZFPM2	specific	101	0.373942	1.6	-1.794
+SampleType	Solid Tissue Normal	727	GATA3	specific	103	0.376915	3.06	-1.66
+SampleType	Solid Tissue Normal	727	PRDM5	specific	106	0.378597	1.86	-1.593
+SampleType	Solid Tissue Normal	727	KLF15	specific	108	0.379462	3.1	-1.561
+SampleType	Solid Tissue Normal	727	FOXJ1	specific	110	0.381019	1.54	-1.497
+SampleType	Solid Tissue Normal	727	TSHZ2	specific	111	0.381195	2.37	-1.493
+SampleType	Solid Tissue Normal	727	MLXIPL	specific	112	0.381473	2.23	-1.484
+SampleType	Solid Tissue Normal	727	FOXF2	specific	115	0.383186	1.69	-1.419
+SampleType	Solid Tissue Normal	727	SMAD9	specific	116	0.383616	2.27	-1.404
+SampleType	Solid Tissue Normal	727	ATF3	specific	118	0.384035	6.18	-1.392
+SampleType	Solid Tissue Normal	727	CASZ1	specific	119	0.385347	3.01	-1.338
+SampleType	Solid Tissue Normal	727	ID1	specific	120	0.386263	6.6	-1.302
+SampleType	Solid Tissue Normal	727	FOSB	specific	121	0.38716	5.99	-1.267
+SampleType	Solid Tissue Normal	727	EBF1	specific	123	0.389302	2.16	-1.183
+SampleType	Solid Tissue Normal	727	NR2F1	specific	124	0.389993	3.86	-1.158
+SampleType	Solid Tissue Normal	727	ZNF214	specific	126	0.390808	1.31	-1.132
+SampleType	Solid Tissue Normal	727	TEAD3	specific	128	0.391096	3.87	-1.126
+SampleType	Solid Tissue Normal	727	ZBTB16	specific	129	0.39123	2.98	-1.125
+SampleType	Solid Tissue Normal	727	NFIB	specific	130	0.391295	4.03	-1.125
+SampleType	Solid Tissue Normal	727	EGR2	specific	131	0.391368	3.47	-1.125
+SampleType	Solid Tissue Normal	727	PBX1	specific	132	0.391657	4.55	-1.116
+SampleType	Solid Tissue Normal	727	IRX3	specific	133	0.393422	3.53	-1.048
+SampleType	Solid Tissue Normal	727	PAX8	specific	134	0.393568	3.26	-1.045
+SampleType	Solid Tissue Normal	727	SETBP1	specific	135	0.393909	2.32	-1.035
+SampleType	Solid Tissue Normal	727	MEIS2	specific	137	0.394582	3.56	-1.014
+SampleType	Solid Tissue Normal	727	KLF8	specific	138	0.394826	2.11	-1.008
+SampleType	Solid Tissue Normal	727	EBF3	specific	139	0.395109	1.09	-1.003
+SampleType	Solid Tissue Normal	727	FOS	non_specific	218	0.420709	8.57	-0.327
+SampleType	Solid Tissue Normal	727	YBX1	non_specific	635	0.459489	8.47	-0.014
+SampleType	Solid Tissue Normal	727	ATF4	non_specific	543	0.455333	7.84	-0.014
+SampleType	Solid Tissue Normal	727	EGR1	non_specific	184	0.412661	7.72	-0.497
+SampleType	Solid Tissue Normal	727	XBP1	non_specific	334	0.441351	7.64	-0.014
+SampleType	Solid Tissue Normal	727	JUNB	non_specific	278	0.434343	7.42	-0.082
+SampleType	Solid Tissue Normal	727	YBX3	non_specific	492	0.45239	7.17	-0.014
+SampleType	Solid Tissue Normal	727	JUND	non_specific	395	0.446596	7.15	-0.014
+SampleType	Solid Tissue Normal	727	JUN	non_specific	190	0.41391	6.97	-0.471
+SampleType	Solid Tissue Normal	727	NR4A1	non_specific	163	0.404071	6.91	-0.734
+SampleType	Solid Tissue Normal	727	TSC22D1	non_specific	282	0.434735	6.91	-0.079
+SampleType	Solid Tissue Normal	727	TSC22D3	non_specific	319	0.44045	6.9	-0.014
+SampleType	Solid Tissue Normal	727	NFE2L1	non_specific	372	0.444889	6.73	-0.014
+SampleType	Solid Tissue Normal	727	EPAS1	non_specific	154	0.398625	6.73	-0.91
+SampleType	Solid Tissue Normal	727	MAZ	non_specific	983	0.472938	6.62	-0.014
+SampleType	Solid Tissue Normal	727	ID2	non_specific	253	0.429769	6.59	-0.15
+SampleType	Solid Tissue Normal	727	USF2	non_specific	756	0.463939	6.53	-0.014
+SampleType	Solid Tissue Normal	727	HMGN3	non_specific	508	0.453393	6.39	-0.014
+SampleType	Solid Tissue Normal	727	NFE2L2	non_specific	301	0.438699	6.37	-0.02
+SampleType	Solid Tissue Normal	727	DRAP1	non_specific	789	0.465084	6.35	-0.014
+SampleType	Solid Tissue Normal	727	ZNF706	non_specific	670	0.460964	6.34	-0.014
+SampleType	Solid Tissue Normal	727	ID3	non_specific	172	0.408329	6.32	-0.609
+SampleType	Solid Tissue Normal	727	KLF6	non_specific	267	0.43236	6.28	-0.111
+SampleType	Solid Tissue Normal	727	BHLHE40	non_specific	256	0.43064	6.23	-0.134
+SampleType	Solid Tissue Normal	727	STAT6	non_specific	403	0.44709	6.17	-0.014
+SampleType	Solid Tissue Normal	727	STAT3	non_specific	385	0.445755	6.1	-0.014
+SampleType	Solid Tissue Normal	727	SON	non_specific	784	0.464848	6.08	-0.014
+SampleType	Solid Tissue Normal	727	GTF3A	non_specific	887	0.468933	6.06	-0.014
+SampleType	Solid Tissue Normal	727	PA2G4	non_specific	904	0.46945	6.04	-0.014
+SampleType	Solid Tissue Normal	727	CAMTA1	non_specific	485	0.452115	6.03	-0.014
+SampleType	Solid Tissue Normal	727	AEBP1	non_specific	461	0.45125	5.91	-0.014
+SampleType	Solid Tissue Normal	727	ETS2	non_specific	203	0.417987	5.89	-0.379
+SampleType	Solid Tissue Normal	727	ZNF207	non_specific	867	0.468206	5.85	-0.014
+SampleType	Solid Tissue Normal	727	GTF2I	non_specific	715	0.462537	5.83	-0.014
+SampleType	Solid Tissue Normal	727	MBD2	non_specific	360	0.443737	5.83	-0.014
+SampleType	Solid Tissue Normal	727	GPBP1L1	non_specific	529	0.454629	5.73	-0.014
+SampleType	Solid Tissue Normal	727	TGIF1	non_specific	374	0.445248	5.71	-0.014
+SampleType	Solid Tissue Normal	727	IRF9	non_specific	797	0.46529	5.66	-0.014
+SampleType	Solid Tissue Normal	727	NR1H2	non_specific	537	0.45487	5.65	-0.014
+SampleType	Solid Tissue Normal	727	THAP4	non_specific	378	0.445301	5.63	-0.014
+SampleType	Solid Tissue Normal	727	PHF1	non_specific	567	0.456557	5.6	-0.014
+SampleType	Solid Tissue Normal	727	SLC2A4RG	non_specific	446	0.450292	5.6	-0.014
+SampleType	Solid Tissue Normal	727	RBCK1	non_specific	769	0.464359	5.59	-0.014
+SampleType	Solid Tissue Normal	727	HIF1A	non_specific	557	0.456039	5.56	-0.014
+SampleType	Solid Tissue Normal	727	PIN1	non_specific	758	0.464056	5.54	-0.014
+SampleType	Solid Tissue Normal	727	STAT1	non_specific	755	0.463892	5.54	-0.014
+SampleType	Solid Tissue Normal	727	PLSCR1	non_specific	428	0.448994	5.53	-0.014
+SampleType	Solid Tissue Normal	727	ATF6B	non_specific	729	0.463081	5.5	-0.014
+SampleType	Solid Tissue Normal	727	HBP1	non_specific	387	0.445836	5.5	-0.014
+SampleType	Solid Tissue Normal	727	HSF1	non_specific	872	0.468317	5.49	-0.014
+SampleType	Solid Tissue Normal	727	GLMP	non_specific	721	0.462626	5.47	-0.014
+SampleType	Solid Tissue Normal	727	CUX1	non_specific	491	0.452376	5.47	-0.014
+SampleType	Solid Tissue Normal	727	KLF10	non_specific	242	0.428015	5.45	-0.175
+SampleType	Solid Tissue Normal	727	THYN1	non_specific	493	0.452423	5.45	-0.014
+SampleType	Solid Tissue Normal	727	HMG20B	non_specific	814	0.466065	5.43	-0.014
+SampleType	Solid Tissue Normal	727	SREBF1	non_specific	623	0.458971	5.42	-0.014
+SampleType	Solid Tissue Normal	727	RELA	non_specific	570	0.456673	5.42	-0.014
+SampleType	Solid Tissue Normal	727	HES1	non_specific	151	0.398243	5.41	-0.915
+SampleType	Solid Tissue Normal	727	NFIC	non_specific	309	0.439604	5.4	-0.014
+SampleType	Solid Tissue Normal	727	SREBF2	non_specific	502	0.453036	5.4	-0.014
+SampleType	Solid Tissue Normal	727	REPIN1	non_specific	779	0.464594	5.4	-0.014
+SampleType	Solid Tissue Normal	727	CEBPD	non_specific	226	0.423775	5.39	-0.257
+SampleType	Solid Tissue Normal	727	BCLAF1	non_specific	611	0.458398	5.35	-0.014
+SampleType	Solid Tissue Normal	727	ZNF664	non_specific	426	0.44873	5.35	-0.014
+SampleType	Solid Tissue Normal	727	HMGA1	non_specific	1285	0.491257	5.33	-0.0
+SampleType	Solid Tissue Normal	727	SP100	non_specific	509	0.453426	5.33	-0.014
+SampleType	Solid Tissue Normal	727	SMAD2	non_specific	483	0.452105	5.32	-0.014
+SampleType	Solid Tissue Normal	727	MYC	non_specific	503	0.453045	5.32	-0.014
+SampleType	Solid Tissue Normal	727	MAX	non_specific	688	0.461487	5.31	-0.014
+SampleType	Solid Tissue Normal	727	ZNF358	non_specific	466	0.451398	5.31	-0.014
+SampleType	Solid Tissue Normal	727	GLYR1	non_specific	545	0.455421	5.31	-0.014
+SampleType	Solid Tissue Normal	727	UBTF	non_specific	722	0.462706	5.3	-0.014
+SampleType	Solid Tissue Normal	727	FOSL2	non_specific	252	0.429652	5.3	-0.152
+SampleType	Solid Tissue Normal	727	KLF4	non_specific	145	0.396728	5.29	-0.955
+SampleType	Solid Tissue Normal	727	NFIX	non_specific	279	0.434521	5.28	-0.08
+SampleType	Solid Tissue Normal	727	GPBP1	non_specific	661	0.460617	5.26	-0.014
+SampleType	Solid Tissue Normal	727	CSRNP1	non_specific	176	0.410036	5.24	-0.562
+SampleType	Solid Tissue Normal	727	CENPB	non_specific	571	0.456677	5.23	-0.014
+SampleType	Solid Tissue Normal	727	SAFB	non_specific	934	0.470664	5.21	-0.014

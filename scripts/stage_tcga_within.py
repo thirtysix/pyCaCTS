@@ -9,8 +9,8 @@ its OWN groups (reference set = that cancer's samples only), on two axes:
 
 (A stage axis would go here too, but the AJCC-stage clinical table isn't freely fetchable from Xena.)
 
-Writes dashboard/data/tcga/within_<axis>_mtfs.tsv (cols: cancer, group, group_size, tf, rank, category,
-cacts_score, group_expr_log2tpm) + within_manifest.json ({axis: {cancer: {group: n}}}). Each cancer's
+Writes dashboard/data/tcga/within_<axis>_mtfs.tsv (cols: cancer, group, group_size, tf, category, jsd_rank,
+cacts_score, group_expr_log2tpm, fdr_log10) + within_manifest.json ({axis: {cancer: {group: n}}}). Each cancer's
 samples are found via the patient barcode (first 12 chars) joined to the CaCTS primary sample map, so
 metastatic / normal samples inherit their patient's cancer. Same inputs as stage_tcga.py."""
 import os, sys, json
@@ -19,24 +19,22 @@ import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
-from pycacts import io, score, filter as cfilter
+from pycacts import io, score, filter as cfilter, stats
 
 DATA = HERE.parent / "data"
-EXPR = Path(os.environ.get("PYCACTS_TCGA_EXPR", DATA / "tcga" / "TCGA_pancan.geneExp.gz"))
+EXPR = Path(os.environ.get("PYCACTS_TCGA_EXPR", DATA / "tcga" / "TCGA_toil_tpm_log2p1.tsv.gz"))
 SMAP = Path(os.environ.get("PYCACTS_TCGA_TYPES", DATA / "tcga" / "TCGA_sample_types.txt"))
 SUBTYPE = Path(os.environ.get("PYCACTS_TCGA_SUBTYPE", DATA / "tcga" / "TCGASubtype.tsv.gz"))
 TF = DATA / "CaCTS_merged_1671_TFs.txt"
 OUT = HERE.parent / "dashboard" / "data" / "tcga"; OUT.mkdir(parents=True, exist_ok=True)
 MIN_N = 10                                                      # min samples per within-cancer group
-
-
-TOPN = 20                                                       # top TFs by specificity score kept per group
+FDR_MAX = 0.10                                                  # specific = empirical-null FDR <= this ...
+EXPR_FLOOR = 1.0                                                # ... AND mean expr >= 1 TPM (log2(TPM+1) units)
 
 
 def score_groups(expr, labels):
     """labels: Series barcode -> within-group. Returns (rows, {group: size}) or (None, None) if <2 groups.
-    Within one cancer the strict specific-MTF set is tiny (shared lineage), so keep each group's top-TOPN
-    TFs by CaCTS score (most subtype/state-specific), annotated with the strict class."""
+    Each group's specific / non-specific MTFs, scored across this cancer's own subgroups (FDR + 1 TPM floor)."""
     lab = labels.dropna()
     lab = lab[[c for c in lab.index if c in expr.columns]]
     counts = lab.value_counts()
@@ -45,18 +43,19 @@ def score_groups(expr, labels):
     if lab.nunique() < 2:
         return None, None
     gsize = counts[keep].astype(int)
-    rep = expr[list(lab.index)].T.groupby(lab).mean().T.dropna(how="all").fillna(0.0).clip(lower=0.0)
+    rep = expr[list(lab.index)].T.groupby(lab).mean().T.dropna(how="all").fillna(0.0)
     S = score.cacts_score_matrix(rep)
     rows = []
     for g in rep.columns:
-        cats = cfilter.mtf_categories(S, rep, g)
-        spec = set(cats["specific"])
-        expressed = list(spec | set(cats["non_specific"]))       # the top-5%-expressed TFs in this group
-        ranked = S[g][expressed].sort_values()                   # most specific among the expressed (ascending)
-        for rank, (tf, sc) in enumerate(ranked.head(TOPN).items(), 1):
-            rows.append(dict(group=g, group_size=int(gsize.get(g, 0)), tf=tf, rank=rank,
-                             category="specific" if tf in spec else "non_specific",
-                             cacts_score=round(float(sc), 6), group_expr_log2tpm=round(float(rep.loc[tf, g]), 2)))
+        f = stats.empirical_fdr_log10(S[g])                    # log10(empirical-null FDR) per TF
+        cats = cfilter.mtf_categories_fdr(S, rep, g, fdr_log10=f, fdr_max=FDR_MAX, expr_floor=EXPR_FLOOR)
+        rk = S[g].rank(method="first")
+        for cat in ("specific", "non_specific"):
+            for tf in cats[cat]:
+                rows.append(dict(group=g, group_size=int(gsize.get(g, 0)), tf=tf, category=cat,
+                                 jsd_rank=int(rk[tf]), cacts_score=round(float(S.loc[tf, g]), 6),
+                                 group_expr_log2tpm=round(float(rep.loc[tf, g]), 2),
+                                 fdr_log10=round(float(f[tf]), 3)))
     return rows, gsize.to_dict()
 
 
@@ -100,7 +99,8 @@ def main():
 
     for axis in ("subtype", "tumornormal"):
         allrows = [r for rows in axes[axis].values() for r in rows]
-        cols = ["cancer", "group", "group_size", "tf", "rank", "category", "cacts_score", "group_expr_log2tpm"]
+        cols = ["cancer", "group", "group_size", "tf", "category", "jsd_rank", "cacts_score",
+                "group_expr_log2tpm", "fdr_log10"]
         pd.DataFrame(allrows)[cols].to_csv(OUT / f"within_{axis}_mtfs.tsv", sep="\t", index=False)
         print(f"  {axis}: {len(manifest[axis])} cancers")
     (OUT / "within_manifest.json").write_text(json.dumps(manifest, separators=(",", ":")))

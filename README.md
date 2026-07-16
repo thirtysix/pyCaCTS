@@ -30,9 +30,11 @@ cell line.
 - Computes the CaCTS specificity score for every TF × group.
 - Groupings supported (one engine): **OncotreeLineage**, **OncotreePrimaryDisease**, **OncotreeSubtype**,
   **DepmapModelType**, and **individual cell line**.
-- Applies the CaCTS specific / non-specific MTF definitions (top-5% specificity ∩ top-5% expression;
-  and the high-expression / low-specificity "non-specific" category).
-- Adds an **empirical-null FDR** per TF per group as a non-arbitrary alternative to the top-5% cutoff.
+- Calls a **specific MTF** by an **empirical-null FDR &lt; 0.10** (a data-driven specificity gate, replacing
+  CaCTS's fixed top-5%-by-score cutoff) **and** a light **&ge; 1 TPM** abundance floor, and keeps CaCTS's
+  high-expression / low-specificity **non-specific** (candidate ubiquitous) category.
+- The FDR floor recovers genuinely expressed lineage TFs the aggressive top-5%-expression gate dropped
+  (e.g. ovarian SOX17 / WT1 / MECOM) while excluding near-silent JSD artifacts.
 
 ## What's scored
 pyCaCTS scores **1,651 transcription factors** (of the CaCTS 1,671-TF catalogue) across the **1,450
@@ -68,9 +70,9 @@ tfs   = io.load_tf_universe("data/CaCTS_merged_1671_TFs.txt")                   
 rep, sizes = grouping.build_rep_matrix(expr, model, "lineage", tf_universe=tfs)     # TFs x lineages
 scores = score.cacts_score_matrix(rep)          # TFs x lineages, lower = more specific (a few ms)
 
-# master TFs of the Skin lineage: specific = top-5% score AND top-5% expression
-mtfs = cfilter.mtf_categories(scores, rep, "Skin")
-print(mtfs["specific"])                          # ['SOX10', 'LEF1', 'MITF']
+# master TFs of the Skin lineage: specific = empirical-null FDR < 0.10 AND mean >= 1 TPM
+mtfs = cfilter.mtf_categories_fdr(scores, rep, "Skin")
+print(mtfs["specific"][:6])                      # ['SOX10', 'RXRG', 'SCML4', 'PAX3', 'OLIG2', 'IRF4']
 print(score.rank_specific(scores, "Skin").head())
 ```
 
@@ -99,13 +101,15 @@ Runnable end-to-end example: `python examples/quickstart.py [LINEAGE]` (set `PYC
 CaCTS was originally built on TCGA tumors; here is that analysis with pyCaCTS, from raw download to
 master-TF list. (A runnable version is `examples/tcga.py`.)
 
-**1. Download the expression matrix:** TCGA pan-cancer batch-corrected RNA-seq, log2(norm+1), gene symbols,
-from **UCSC Xena** PanCanAtlas (~330 MB gzipped; 20,531 genes × 11,069 samples). Use the **Download** link on the
-[dataset page](https://xenabrowser.net/datapages/?dataset=EB%2B%2BAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena&host=https://pancanatlas.xenahubs.net),
-or:
+**1. Download the expression matrix:** TCGA RSEM gene-**TPM** (log2(TPM+0.001), Ensembl-keyed) from the
+**UCSC Xena Toil** hub (uniformly re-quantified TCGA, ~740 MB gzipped), plus the gencode.v23 gene probemap
+(Ensembl → symbol). TPM is used (not the batch-corrected `EB++` matrix) so a literal 1 TPM abundance floor
+applies, in the same units as DepMap:
 ```bash
-curl -L -o TCGA_pancan.geneExp.gz \
-  "https://pancanatlas.xenahubs.net/download/EB%2B%2BAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena.gz"
+curl -L -o tcga_RSEM_gene_tpm.gz \
+  "https://toil-xena-hub.s3.us-east-1.amazonaws.com/download/tcga_RSEM_gene_tpm.gz"
+curl -L -o gencode.v23.gene.probemap \
+  "https://toil-xena-hub.s3.us-east-1.amazonaws.com/download/probeMap/gencode.v23.annotation.gene.probemap"
 ```
 
 **2. Download the sample → tumor-type map:** the tumor-type mapping CaCTS used (9,691 samples, 33 TCGA
@@ -117,32 +121,34 @@ curl -L -o TCGA_sample_types.txt \
 
 **3. Score, and read out the master TFs:**
 ```python
-import pandas as pd
+import numpy as np, pandas as pd
 from pycacts import io, score, filter as cfilter
 
-# expression: genes (rows) x TCGA samples (cols), log2; upper-case the gene symbols
-expr = pd.read_csv("TCGA_pancan.geneExp.gz", sep="\t", index_col=0)
-expr.index = expr.index.astype(str).str.upper()
+tfs = set(io.load_tf_universe("data/CaCTS_merged_1671_TFs.txt"))
+ens2sym = dict(pd.read_csv("gencode.v23.gene.probemap", sep="\t", usecols=["id", "gene"]).itertuples(index=False))
+keep = {e for e, s in ens2sym.items() if str(s).upper() in tfs}
+
+# load only the TF rows; re-encode log2(TPM+0.001) -> log2(TPM+1), the same units as DepMap
+chunks = [c[c.index.isin(keep)] for c in pd.read_csv("tcga_RSEM_gene_tpm.gz", sep="\t", index_col=0, chunksize=4000)]
+m = pd.concat(chunks); tpm = np.clip(2.0 ** m.to_numpy(float) - 0.001, 0, None)
+expr = pd.DataFrame(np.log2(tpm + 1), index=[str(ens2sym[e]).upper() for e in m.index],
+                    columns=m.columns).groupby(level=0).mean()
 
 # map each sample to its tumor type; match on the 15-char sample barcode (TCGA-XX-XXXX-01)
 smap = pd.read_csv("TCGA_sample_types.txt", sep="\t")            # columns: Cancer, Category, SampleId
 sample2type = dict(zip(smap["SampleId"].str[:15], smap["Cancer"]))
 cols = [c for c in expr.columns if c[:15] in sample2type]
 types = pd.Series({c: sample2type[c[:15]] for c in cols})
-print(f"matched {len(cols)} samples across {types.nunique()} tumor types")
-
-# subset to the CaCTS TF universe, then per-type mean = the CaCTS representative matrix.
-# the batch-corrected matrix has slightly negative values; CaCTS needs non-negative input, so clip at 0
-tfs = io.load_tf_universe("data/CaCTS_merged_1671_TFs.txt")
-rep = expr.loc[expr.index.intersection(tfs), cols].T.groupby(types).mean().T.clip(lower=0)   # TFs x 33 types
+rep = expr[cols].T.groupby(types).mean().T                      # TFs x 33 types (mean log2(TPM+1))
 
 scores = score.cacts_score_matrix(rep)                          # TFs x tumor types, in ~ms
 print(score.rank_specific(scores, "SKCM").head())               # cutaneous melanoma
-print("specific MTFs:", cfilter.mtf_categories(scores, rep, "SKCM")["specific"])
-# -> SOX10, IRF4, TFAP2A, MITF, LEF1, ARNT2   (the melanoma master regulators)
+# specific = empirical-null FDR < 0.10 AND mean >= 1 TPM
+print("specific MTFs:", cfilter.mtf_categories_fdr(scores, rep, "SKCM")["specific"][:8])
+# -> PAX3, SOX10, ALX1, FOXD3, EN2, ZNF280A, RXRG, IRF4  (melanocyte / neural-crest masters; MITF, TFAP2A also in the set)
 ```
 Swap `"SKCM"` for any of the 33 codes (`BRCA`, `LUAD`, `OV`, `GBM`, `LAML`, …). Verified end-to-end on the
-files above: this is CaCTS's original TCGA analysis, run with the fast Python engine.
+files above (`examples/tcga.py`), with the FDR + 1 TPM master-TF call the dashboard uses.
 
 ## Validation & performance
 pyCaCTS's specificity score is **numerically identical to the original CaCTS R** and dramatically faster.
@@ -191,10 +197,10 @@ GitHub Pages deploy.)
 
 ## Layout
 ```
-pycacts/        the package (score / grouping / io / filter)
+pycacts/        the package (score / grouping / io / filter / stats [empirical-null FDR])
 scripts/        runners: run_divisions, stage_dashboard_data, stage_line_data, build_gene_info,
-                stage_essentiality, stage_tcga, stage_tcga_within, build_crosswalk, benchmark_vs_r,
-                profile_speedup, cacts_reference.R
+                stage_essentiality, convert_toil_tcga_tpm, stage_tcga, stage_tcga_within, build_crosswalk,
+                benchmark_vs_r, profile_speedup, cacts_reference.R
 examples/       quickstart.py (DepMap) + tcga.py (TCGA) runnable examples
 dashboard/      static results explorer (index.html + css/ + js/ + data/); GitHub-Pages-ready
 data/           bundled TF list + data pointers (large inputs are NOT committed, see data/README.md)
@@ -218,10 +224,11 @@ resources. If you use it, please cite:
   release, <https://depmap.org>. DepMap data are released under **CC BY 4.0**; the dashboard redistributes
   only per-group aggregates (means, ranks) derived from them; please cite the DepMap release and the
   CCLE/Achilles papers listed at depmap.org. Raw DepMap inputs are not committed (see `data/README.md`).
-- **TCGA / UCSC Xena** (the dashboard's TCGA panel and the TCGA worked example): TCGA pan-cancer expression
-  and molecular-subtype calls via the **UCSC Xena** PanCanAtlas hub, <https://xenabrowser.net>; please cite
-  the TCGA Research Network and the Xena resource (Goldman *et al.*, *Nat. Biotechnol.* 2020). The dashboard
-  ships only per-group aggregates.
+- **TCGA / UCSC Xena** (the dashboard's TCGA panel and the TCGA worked example): TCGA expression from the
+  **UCSC Xena Toil** RSEM-TPM recompute (`tcga_RSEM_gene_tpm`), and molecular-subtype calls from the Xena
+  PanCanAtlas hub, <https://xenabrowser.net>; please cite the TCGA Research Network, the Xena resource
+  (Goldman *et al.*, *Nat. Biotechnol.* 2020), and the Toil recompute (Vivian *et al.*, *Nat. Biotechnol.*
+  2017). The dashboard ships only per-group aggregates.
 - **TF universe & families:** Lambert SA, *et al.* "The Human Transcription Factors." *Cell*
   2018;172(4):650–665. DOI 10.1016/j.cell.2018.01.029 (humantfs.ccbr.utoronto.ca); the CaCTS 1,671-TF list
   also draws on Saint-André V, *et al.*, *Genome Research* 2016.

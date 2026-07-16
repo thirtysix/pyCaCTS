@@ -8,7 +8,8 @@ UCSC Xena TCGASubtype `Subtype_Selected` calls), and sample type (primary / meta
 derived from the TCGA barcode). No essentiality (no CRISPR for tumors) and no per-sample level.
 
 Inputs (download; see the README 'Worked example'), paths via env vars:
-  PYCACTS_TCGA_EXPR     TCGA pan-cancer expression, Xena EB++AdjustPANCAN, gene-symbol-keyed (genes x samples)
+  PYCACTS_TCGA_EXPR     TCGA expression as log2(TPM+1), gene-symbol-keyed (genes x samples): the Xena Toil
+                        RSEM-TPM matrix re-encoded by convert_toil_tcga_tpm.py (same units as DepMap)
   PYCACTS_TCGA_TYPES    CaCTS SuppTable1-34-TCGAID.txt  (columns Cancer, Category, SampleId)
   PYCACTS_TCGA_SUBTYPE  Xena TCGASubtype.20170308.tsv   (columns sampleID, …, Subtype_Selected)
 """
@@ -18,15 +19,17 @@ import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
-from pycacts import io, score, filter as cfilter
+from pycacts import io, score, filter as cfilter, stats
 
 DATA = HERE.parent / "data"
-EXPR = Path(os.environ.get("PYCACTS_TCGA_EXPR", DATA / "tcga" / "TCGA_pancan.geneExp.gz"))
+EXPR = Path(os.environ.get("PYCACTS_TCGA_EXPR", DATA / "tcga" / "TCGA_toil_tpm_log2p1.tsv.gz"))
 SMAP = Path(os.environ.get("PYCACTS_TCGA_TYPES", DATA / "tcga" / "TCGA_sample_types.txt"))
 SUBTYPE = Path(os.environ.get("PYCACTS_TCGA_SUBTYPE", DATA / "tcga" / "TCGASubtype.tsv.gz"))
 TF = DATA / "CaCTS_merged_1671_TFs.txt"
 OUT = HERE.parent / "dashboard" / "data" / "tcga"; OUT.mkdir(parents=True, exist_ok=True)
 MIN_N = 5                                                        # drop groups with fewer samples
+FDR_MAX = 0.10                                                   # specific = empirical-null FDR <= this ...
+EXPR_FLOOR = 1.0                                                 # ... AND mean expr >= 1 TPM (log2(TPM+1) units)
 
 # TCGA barcode sample-type codes (char 14-15) -> label
 SAMPLE_TYPE = {"01": "Primary Solid Tumor", "02": "Recurrent Solid Tumor", "03": "Primary Blood-Derived Cancer",
@@ -62,21 +65,22 @@ def build_rep(expr, labels):
 
 def score_and_write(expr, labels, div, col, manifest):
     rep, gsize = build_rep(expr, labels)
-    # batch-corrected TCGA has stray NaNs and slightly negative values; CaCTS needs non-negative input
-    # (a normalized value <= -1 sends log(0.5*obs+0.5) to NaN), so fill and clip at 0.
-    rep = rep.dropna(how="all").fillna(0.0).clip(lower=0.0)
+    # Toil expression is log2(TPM+1) >= 0; keep the fill for any all-NaN row from an empty group intersection.
+    rep = rep.dropna(how="all").fillna(0.0)
     S = score.cacts_score_matrix(rep)
     S.round(4).to_csv(OUT / f"scores_{div}.tsv", sep="\t")
     rep.round(2).to_csv(OUT / f"expr_{div}.tsv", sep="\t")
     rows = []
     for g in rep.columns:
-        cats = cfilter.mtf_categories(S, rep, g)
+        f = stats.empirical_fdr_log10(S[g])                     # log10(empirical-null FDR) per TF
+        cats = cfilter.mtf_categories_fdr(S, rep, g, fdr_log10=f, fdr_max=FDR_MAX, expr_floor=EXPR_FLOOR)
         rk = S[g].rank(method="first")
         for cat in ("specific", "non_specific"):
             for tf in cats[cat]:
                 rows.append(dict(division=col, group=g, group_size=int(gsize.get(g, 0)), tf=tf, category=cat,
                                  jsd_rank=int(rk[tf]), cacts_score=round(float(S.loc[tf, g]), 6),
-                                 group_expr_log2tpm=round(float(rep.loc[tf, g]), 2)))
+                                 group_expr_log2tpm=round(float(rep.loc[tf, g]), 2),
+                                 fdr_log10=round(float(f[tf]), 3)))
     pd.DataFrame(rows).to_csv(OUT / f"mtfs_{div}.tsv", sep="\t", index=False)
     manifest["divisions"][div] = {"col": col, "n_groups": rep.shape[1], "groups": gsize.to_dict()}
     print(f"  {div:10s}: {rep.shape[1]} groups")

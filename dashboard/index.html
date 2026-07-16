@@ -65,7 +65,7 @@
     <!-- MTF atlas -->
     <section class="panel" data-tab="atlas">
       <div class="phead"><div class="eyebrow">Explore</div><h1>MTF atlas</h1>
-        <p class="lede">Master transcription factors for every group. The <b>Data</b> toggle switches between DepMap cell lines (five resolutions, down to the single cell line) and TCGA tumors (tumor type, molecular subtype, sample type). <b>Specific</b> = top-5% by CaCTS score <em>and</em> expression; <b>non-specific</b> = highly expressed, lower specificity (CaCTS's candidate ubiquitous MTFs).</p></div>
+        <p class="lede">Master transcription factors for every group. The <b>Data</b> toggle switches between DepMap cell lines (five resolutions, down to the single cell line) and TCGA tumors (tumor type, molecular subtype, sample type). <b>Specific</b> = empirical-null FDR &lt; 0.10 <em>and</em> mean ≥ 1 TPM; <b>non-specific</b> = highly expressed but not FDR-significant (CaCTS's candidate ubiquitous MTFs).</p></div>
       <div class="controls">
         <span class="ctl-label" title="which panel to score: DepMap cell lines or TCGA tumors">Data</span>
         <div class="seg ds-seg" id="atlas-ds" role="tablist"></div>
@@ -79,9 +79,9 @@
       </div>
       <div class="desc" id="atlas-desc" title="what this group is"></div>
       <div class="two">
-        <div class="card"><div class="card-h"><span class="pill spec" title="top-5% by CaCTS score AND top-5% by expression in this group">specific</span><h3 title="lineage-restricted and abundant, the strict CaCTS master-TF call">Specific MTFs</h3></div>
+        <div class="card"><div class="card-h"><span class="pill spec" title="empirical-null FDR < 0.10 AND mean ≥ 1 TPM in this group">specific</span><h3 title="significantly group-specific and expressed, the master-TF call">Specific MTFs</h3></div>
           <div class="card-b listbox" id="atlas-spec"></div></div>
-        <div class="card"><div class="card-h"><span class="pill nons" title="top-5% expression but outside the top-5% specificity, CaCTS's candidate ubiquitous / multi-cancer MTF">non-specific</span><h3 title="highly expressed but not lineage-specific">Non-specific MTFs</h3></div>
+        <div class="card"><div class="card-h"><span class="pill nons" title="top-5% expression but not FDR-significant, CaCTS's candidate ubiquitous / multi-cancer MTF">non-specific</span><h3 title="highly expressed but not lineage-specific">Non-specific MTFs</h3></div>
           <div class="card-b listbox" id="atlas-nons"></div></div>
       </div>
     </section>
@@ -89,7 +89,7 @@
     <!-- TF scores -->
     <section class="panel" data-tab="scores">
       <div class="phead"><div class="eyebrow">Explore</div><h1>TF scores</h1>
-        <p class="lede">Every transcription factor's CaCTS specificity score for a chosen group, sortable. The <b>Data</b> toggle switches between DepMap cell lines and TCGA tumors. Lower CaCTS score = more group-specific (rank 1 = most specific). Class (specific / non-specific) uses the top-5%-score ∩ top-5%-expression rule, and the two gates behind it are shown as their own columns. Each TF also carries its family, per-group CRISPR essentiality (Chronos; not at the single-cell-line level), cross-group breadth, and out-links. <b>⬇ TSV</b> downloads the current sorted / filtered view.</p></div>
+        <p class="lede">Every transcription factor's CaCTS specificity score for a chosen group, sortable. The <b>Data</b> toggle switches between DepMap cell lines and TCGA tumors. Lower CaCTS score = more group-specific (rank 1 = most specific). Class (specific / non-specific) uses the empirical-null FDR &lt; 0.10 ∩ mean ≥ 1 TPM rule, and the two gates behind it are shown as their own columns. Each TF also carries its family, per-group CRISPR essentiality (Chronos; not at the single-cell-line level), cross-group breadth, and out-links. <b>⬇ TSV</b> downloads the current sorted / filtered view.</p></div>
       <div class="controls">
         <span class="ctl-label" title="which panel to score: DepMap cell lines or TCGA tumors">Data</span>
         <div class="seg ds-seg" id="scores-ds" role="tablist"></div>
@@ -119,12 +119,12 @@
             <th data-sort="tf" title="transcription factor (gene symbol); hover a symbol for its full name. Click to sort A–Z.">TF</th>
             <th data-sort="family" title="DNA-binding-domain family (Lambert et al. 2018). Click to sort.">Family</th>
             <th data-sort="cacts" data-num="1" title="CaCTS score = Jensen-Shannon divergence specificity. Lower = more group-specific. Click to sort.">CaCTS score</th>
-            <th data-sort="top5s" data-num="1" title="✓ if in the top 5% by CaCTS score in this group (the specificity gate behind the class). Click to sort.">top-5% <span class="th-sub">score</span></th>
-            <th data-sort="expr" data-num="1" title="mean expression across the group's cell lines (log₂ TPM+1). Click to sort.">Expr <span class="th-sub">log₂TPM</span></th>
-            <th data-sort="top5e" data-num="1" title="✓ if in the top 5% by expression in this group (the abundance gate behind the class). Click to sort.">top-5% <span class="th-sub">expr</span></th>
+            <th data-sort="sig" data-num="1" title="✓ if empirical-null FDR &lt; 0.10 in this group (the significance gate behind the class). Click to sort.">FDR <span class="th-sub">&lt;0.10</span></th>
+            <th data-sort="expr" data-num="1" title="mean expression across the group's cell lines / samples (log₂ TPM+1). Click to sort.">Expr <span class="th-sub">log₂TPM</span></th>
+            <th data-sort="floored" data-num="1" title="✓ if mean expression ≥ 1 TPM in this group (the abundance floor behind the class). Click to sort.">≥1 <span class="th-sub">TPM</span></th>
             <th data-sort="exprrank" data-num="1" title="abundance rank in this group (1 = most highly expressed). Click to sort.">Expr rank</th>
             <th data-sort="fdr" data-num="1" title="Empirical-null false-discovery rate for group-specificity (Benjamini-Hochberg). Lower = more confidently specific; bold = FDR < 0.10. Use the FDR filter above. Click to sort.">FDR</th>
-            <th data-sort="cat" title="MTF call, specific: top-5% score ∩ top-5% expression; non-specific: high expression, lower specificity. Click to sort.">Class</th>
+            <th data-sort="cat" title="MTF call, specific: empirical-null FDR &lt; 0.10 ∩ mean ≥ 1 TPM; non-specific: high expression, not FDR-significant. Click to sort.">Class</th>
             <th data-sort="ess" data-num="1" title="mean CRISPR (Chronos) dependency across this group's cell lines; lower = stronger dependency (~ -1 = common-essential, 0 = neutral). Not staged at the single-cell-line level. Click to sort.">Essent. <span class="th-sub">Chronos</span></th>
             <th data-sort="breadth" data-num="1" title="number of lineage / disease / subtype / model-type groups where this TF is a specific MTF (how broadly it is a master regulator). Click to sort.">Breadth</th>
             <th title="external gene pages: N = NCBI Gene, G = GeneCards, D = DepMap">Links</th>
@@ -161,7 +161,7 @@
     <!-- Within-cancer -->
     <section class="panel" data-tab="within">
       <div class="phead"><div class="eyebrow">Compare</div><h1>Within-cancer master TFs</h1>
-        <p class="lede">Inside a single cancer, which master TFs distinguish its subgroups. CaCTS is re-scored with the reference set restricted to <b>one cancer's own samples</b>, across either its <b>molecular subtypes</b> (TCGA subtype working-group calls) or <b>tumor vs adjacent-normal</b> tissue. Each column is a subgroup, listing its most-specific expressed TFs ranked within that cancer. Because the whole cancer shares a lineage, the strict specific-MTF gate is sparse here, so each list is the top TFs by specificity among the well-expressed ones; <span class="pill spec tiny">S</span> flags the few that still clear the strict rule. Breast is a clean read: LumA / LumB surface ESR1, FOXA1, GATA3.</p></div>
+        <p class="lede">Inside a single cancer, which master TFs distinguish its subgroups. CaCTS is re-scored with the reference set restricted to <b>one cancer's own samples</b>, across either its <b>molecular subtypes</b> (TCGA subtype working-group calls) or <b>tumor vs adjacent-normal</b> tissue. Each column is a subgroup, listing its <b>specific master TFs</b> (empirical-null FDR &lt; 0.10 <b>and</b> mean ≥ 1 TPM), ordered by CaCTS specificity, with the FDR shown. Because the whole cancer shares a lineage, the signal favours the factors that most distinguish one subgroup from the others (e.g. breast LumA surfaces the progesterone receptor PGR). Some subgroups have many such TFs, some have none, which is itself informative.</p></div>
       <div class="controls">
         <span class="ctl-label" title="split each cancer by its molecular subtypes, or by tumor vs adjacent-normal tissue">Axis</span>
         <div class="seg" id="within-axis" role="tablist"></div>

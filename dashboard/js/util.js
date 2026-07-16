@@ -21,20 +21,25 @@ const U = (() => {
     const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x); return s * y; };
   const normcdf = z => 0.5 * (1 + erf(z / Math.SQRT2));
 
-  // Recompute the CaCTS MTF class (specific / non-specific) for a set of {tf,cacts,expr} records,
-  // exactly as the pipeline does: top-5% by score ∩ top-5% by expression. Returns rows ranked by score.
+  const FDR_MAX = 0.10, EXPR_FLOOR = 1.0;                       // specific = empirical-null FDR <= 0.10 ...
+  const LN_FDR_MAX = Math.log(FDR_MAX);                         // ... AND mean expr >= 1 TPM (log2(TPM+1) units)
+  // Recompute the CaCTS MTF class for a set of {tf,cacts,expr} records: specific = empirical-null FDR <= 0.10
+  // AND expression >= 1 TPM; non-specific (candidate ubiquitous) = top-5% expression, not specific. Ranked by score.
   const classify = recs => {
-    const N = recs.length, k = Math.round(0.05 * N);
     const byScore = [...recs].sort((a, b) => a.cacts - b.cacts);
     const byExpr = [...recs].sort((a, b) => b.expr - a.expr);
     const er = {}; byExpr.forEach((r, i) => er[r.tf] = i + 1);
-    const tS = new Set(byScore.slice(0, k).map(r => r.tf));
-    const tE = new Set(byExpr.slice(0, k).map(r => r.tf));
-    return byScore.map((r, i) => ({
-      rank: i + 1, tf: r.tf, cacts: r.cacts, expr: r.expr, exprrank: er[r.tf],
-      top5s: tS.has(r.tf), top5e: tE.has(r.tf),                 // the two gates behind the MTF class
-      cat: (tS.has(r.tf) && tE.has(r.tf)) ? "specific" : (tE.has(r.tf) ? "non_specific" : ""),
-    }));
+    const kE = Math.round(0.05 * recs.length);
+    const tE = new Set(byExpr.slice(0, kE).map(r => r.tf));     // top-5% expr, for the ubiquitous (non-specific) call
+    const lnFdr = empiricalFDR(recs);                          // {tf -> ln(FDR)}
+    return byScore.map((r, i) => {
+      const sig = lnFdr[r.tf] <= LN_FDR_MAX, floored = r.expr >= EXPR_FLOOR;
+      return {
+        rank: i + 1, tf: r.tf, cacts: r.cacts, expr: r.expr, exprrank: er[r.tf], fdr: lnFdr[r.tf],
+        sig, floored, top5e: tE.has(r.tf),                     // the two gates behind the class + ubiquitous marker
+        cat: (sig && floored) ? "specific" : (tE.has(r.tf) ? "non_specific" : ""),
+      };
+    });
   };
 
   // Download row-objects as a TSV file. cols = [{label, key} | {label, get(row)}]; rows = [{...}].
