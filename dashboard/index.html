@@ -44,9 +44,14 @@
 
     <!-- Overview -->
     <section class="panel active" data-tab="overview">
-      <div class="phead"><div class="eyebrow">pyCaCTS</div>
+      <div class="phead wide"><div class="eyebrow">pyCaCTS</div>
         <h1>Master transcription factors across the DepMap cell-line panel</h1>
-        <p class="lede">A validated, fast Python reimplementation of <b>CaCTS</b> (Cancer Core Transcription factor Specificity), which scores how lineage-specifically each transcription factor is expressed. Here it is applied both to the <b>DepMap/CCLE</b> cell-line panel (lineage, disease, subtype, model type, and each cell line) and to <b>TCGA</b> tumors (tumor type, molecular subtype, sample type), so you can read out the candidate master regulators of any cancer group, and compare the tumor with its cell-line models. Scores match the original R to floating-point precision, computed thousands of times faster.</p>
+        <p class="lede">A fast, validated Python reimplementation of <b>CaCTS</b> (Cancer Core Transcription factor Specificity): it scores how lineage-specifically each transcription factor is expressed and reads out the candidate <b>master regulators</b> of any cancer group. It runs on two panels:</p>
+        <div class="lede-grid">
+          <div class="lede-point"><span class="lp-lab">DepMap / CCLE:</span> ~1,450 cell lines, grouped at every Oncotree level (lineage, disease, subtype, model type) and each line on its own.</div>
+          <div class="lede-point"><span class="lp-lab">TCGA:</span> tumors by tumor type, molecular subtype, and sample type, so you can compare a tumor with its cell-line models.</div>
+        </div>
+        <p class="lede lede-foot">Scores match the original R to floating-point precision, computed thousands of times faster (see below).</p>
       </div>
       <div class="stat-grid" id="ov-stats"></div>
       <div class="panel-strip" id="ov-panel"></div>
@@ -64,8 +69,12 @@
 
     <!-- MTF atlas -->
     <section class="panel" data-tab="atlas">
-      <div class="phead"><div class="eyebrow">Explore</div><h1>MTF atlas</h1>
-        <p class="lede">Master transcription factors for every group. The <b>Data</b> toggle switches between DepMap cell lines (five resolutions, down to the single cell line) and TCGA tumors (tumor type, molecular subtype, sample type). <b>Specific</b> = empirical-null FDR &lt; 0.10 <em>and</em> mean ≥ 1 TPM; <b>non-specific</b> = highly expressed but not FDR-significant (CaCTS's candidate ubiquitous MTFs).</p></div>
+      <div class="phead wide"><div class="eyebrow">Explore</div><h1>MTF atlas</h1>
+        <p class="lede">Master transcription factors for every group. The <b>Data</b> toggle switches between DepMap cell lines (five resolutions, down to the single cell line) and TCGA tumors (tumor type, molecular subtype, sample type). Each group's TFs split into two calls:</p>
+        <div class="lede-grid">
+          <div class="lede-point"><span class="lp-lab">Specific:</span> empirical-null FDR &lt; 0.10 <b>and</b> mean ≥ 1 TPM, significantly group-specific and expressed.</div>
+          <div class="lede-point"><span class="lp-lab">Non-specific:</span> top-5% expressed but not FDR-significant, CaCTS's candidate ubiquitous (multi-cancer) MTFs.</div>
+        </div></div>
       <div class="controls">
         <span class="ctl-label" title="which panel to score: DepMap cell lines or TCGA tumors">Data</span>
         <div class="seg ds-seg" id="atlas-ds" role="tablist"></div>
@@ -88,8 +97,12 @@
 
     <!-- TF scores -->
     <section class="panel" data-tab="scores">
-      <div class="phead"><div class="eyebrow">Explore</div><h1>TF scores</h1>
-        <p class="lede">Every transcription factor's CaCTS specificity score for a chosen group, sortable. The <b>Data</b> toggle switches between DepMap cell lines and TCGA tumors. Lower CaCTS score = more group-specific (rank 1 = most specific). Class (specific / non-specific) uses the empirical-null FDR &lt; 0.10 ∩ mean ≥ 1 TPM rule, and the two gates behind it are shown as their own columns. Each TF also carries its family, per-group CRISPR essentiality (Chronos; not at the single-cell-line level), cross-group breadth, and out-links. <b>⬇ TSV</b> downloads the current sorted / filtered view.</p></div>
+      <div class="phead wide"><div class="eyebrow">Explore</div><h1>TF scores</h1>
+        <p class="lede">Every transcription factor's CaCTS specificity score for a chosen group, in one sortable table (DepMap or TCGA via the <b>Data</b> toggle). Lower score = more group-specific (rank 1 = most specific).</p>
+        <div class="lede-grid">
+          <div class="lede-point"><span class="lp-lab">Class:</span> specific = empirical-null FDR &lt; 0.10 <b>and</b> mean ≥ 1 TPM; the two gates are shown as their own columns, and the FDR is filterable.</div>
+          <div class="lede-point"><span class="lp-lab">Per TF:</span> DNA-binding family, per-group CRISPR essentiality (DepMap; Chronos), cross-group breadth, and NCBI / GeneCards / DepMap links. <b>⬇ TSV</b> exports the current view.</div>
+        </div></div>
       <div class="controls">
         <span class="ctl-label" title="which panel to score: DepMap cell lines or TCGA tumors">Data</span>
         <div class="seg ds-seg" id="scores-ds" role="tablist"></div>
@@ -137,8 +150,13 @@
 
     <!-- Tumor vs model -->
     <section class="panel" data-tab="compare">
-      <div class="phead"><div class="eyebrow">Compare</div><h1>Tumor vs model</h1>
-        <p class="lede">For a cancer, its <b>specific master TFs</b> in the TCGA tumor beside those in the matched DepMap cell-line models. The <b>shared</b> set is the master-TF program the model preserves; <b>tumor-only</b> factors are lost in culture (often microenvironment / lineage TFs), <b>model-only</b> ones are gained. Specificity is scored independently in each panel (tumor across TCGA types, model across DepMap subtypes), so this compares which factors each calls a master regulator.</p></div>
+      <div class="phead wide"><div class="eyebrow">Compare</div><h1>Tumor vs model</h1>
+        <p class="lede">A cancer's <b>specific master TFs</b> in the TCGA tumor beside those in its matched DepMap cell-line models, specificity scored independently in each panel. The overlap splits three ways:</p>
+        <div class="lede-grid g3">
+          <div class="lede-point"><span class="lp-lab">Shared:</span> the master-TF program the model preserves.</div>
+          <div class="lede-point"><span class="lp-lab tumor">Tumor-only:</span> lost in culture, often microenvironment / differentiation TFs.</div>
+          <div class="lede-point"><span class="lp-lab nons">Model-only:</span> gained in culture, not seen in the tumor.</div>
+        </div></div>
       <div class="controls">
         <div class="combo" id="cmp-combo">
           <input id="cmp-group" class="sel combo-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" autocomplete="off" spellcheck="false" aria-label="Cancer" title="Choose a cancer (TCGA type paired with its DepMap group), or type to filter." placeholder="Choose a cancer…">
@@ -184,8 +202,8 @@
 
     <!-- TF finder -->
     <section class="panel" data-tab="finder">
-      <div class="phead"><div class="eyebrow">Look up</div><h1>Where is a TF a master regulator?</h1>
-        <p class="lede">Type a gene symbol to see every lineage, disease, subtype, and model type where it is a <em>specific</em> MTF, with its specificity rank.</p></div>
+      <div class="phead wide"><div class="eyebrow">Look up</div><h1>Where is a TF a master regulator?</h1>
+        <p class="lede">Type a gene symbol to see every lineage, disease, subtype, and model type where it is a <em>specific</em> MTF (empirical-null FDR &lt; 0.10 and mean ≥ 1 TPM), with its specificity rank.</p></div>
       <input type="search" id="finder-input" class="sel big" placeholder="e.g. PAX8, MITF, SPI1, AR, GATA3…" autocomplete="off" spellcheck="false" title="enter a gene symbol; results list each group where it clears both the specificity and expression cutoffs">
       <div class="finder-res" id="finder-res"></div>
     </section>
