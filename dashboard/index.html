@@ -161,10 +161,12 @@
     <!-- Within-cancer -->
     <section class="panel" data-tab="within">
       <div class="phead"><div class="eyebrow">Compare</div><h1>Within-cancer master TFs</h1>
-        <p class="lede">Inside a single cancer, which master TFs distinguish its subgroups. CaCTS is re-scored with the reference set restricted to <b>one cancer's own samples</b>, across either its <b>molecular subtypes</b> (TCGA subtype working-group calls) or <b>tumor vs adjacent-normal</b> tissue. Each column is a subgroup, listing its <b>specific master TFs</b> (empirical-null FDR &lt; 0.10 <b>and</b> mean ≥ 1 TPM), ordered by CaCTS specificity, with the FDR shown. Because the whole cancer shares a lineage, the signal favours the factors that most distinguish one subgroup from the others (e.g. breast LumA surfaces the progesterone receptor PGR). Some subgroups have many such TFs, some have none, which is itself informative.</p></div>
+        <p class="lede">Inside a single cancer, which master TFs distinguish its subgroups. CaCTS is re-scored with the reference set restricted to <b>one cancer's own samples</b>, across either its <b>molecular subtypes</b> (TCGA subtype working-group calls) or <b>tumor vs adjacent-normal</b> tissue. Each column is a subgroup, ordered by CaCTS specificity. The <b>Call</b> toggle picks the definition: <b>Significant</b> = the tool-wide call (empirical-null FDR &lt; 0.10 <b>and</b> mean ≥ 1 TPM), which favours the most subgroup-<em>discriminative</em> factors (breast LumA surfaces the progesterone receptor PGR); <b>Abundant</b> = the top-5% expressed TFs ranked by specificity, i.e. the highly-expressed <em>canonical</em> masters (breast LumA / LumB → ESR1 / FOXA1 / GATA3). Within one shared lineage the two views diverge and complement each other. Some subgroups have many specific TFs, some none, which is itself informative.</p></div>
       <div class="controls">
         <span class="ctl-label" title="split each cancer by its molecular subtypes, or by tumor vs adjacent-normal tissue">Axis</span>
         <div class="seg" id="within-axis" role="tablist"></div>
+        <span class="ctl-label" title="how a master TF is called: FDR significance, or the highly-expressed canonical masters">Call</span>
+        <div class="seg" id="within-call" role="tablist"></div>
         <div class="combo" id="within-combo">
           <input id="within-group" class="sel combo-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" autocomplete="off" spellcheck="false" aria-label="Cancer" title="Choose a cancer, or type to filter by code or name." placeholder="Choose a cancer…">
           <div class="combo-pop" id="within-pop" role="listbox"></div>

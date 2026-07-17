@@ -44,13 +44,15 @@ const About = (() => {
       cancer's own samples</b>, so specificity is read <em>inside</em> one disease rather than across all
       of TCGA. Two axes are offered: <b>molecular subtype</b> (the TCGA subtype working-group calls, e.g.
       BRCA into LumA / LumB / Basal / Her2 / Normal) and <b>tumor vs adjacent-normal</b> tissue (from the
-      sample barcode). Each subgroup lists its <b>specific</b> MTFs (empirical-null FDR &lt; 0.10 AND mean ≥
-      1 TPM), ordered by CaCTS specificity, with the FDR shown. Because every subgroup shares the cancer's
-      lineage, the signal favours the factors that most distinguish one subgroup from the others: breast LumA
-      surfaces the progesterone receptor <b>PGR</b>; some subgroups have many specific TFs and some (e.g. lung
-      adenocarcinoma normal tissue) none, which is itself informative. Metastatic and normal samples inherit
-      their patient's cancer via the sample barcode. A stage axis is not shown: the AJCC-stage clinical table
-      is not freely fetchable from the Xena mirror.</p>
+      sample barcode). A <b>Call</b> toggle picks the definition, because within one shared lineage the two
+      diverge. <b>Significant</b> (the tool-wide call: FDR &lt; 0.10 AND mean ≥ 1 TPM) favours the most
+      subgroup-<em>discriminative</em> factors: breast LumA surfaces the progesterone receptor <b>PGR</b>, and
+      some subgroups have many such TFs while some (e.g. lung adenocarcinoma normal tissue) have none, which is
+      itself informative. <b>Abundant</b> (the top-5% expressed TFs ranked by specificity) instead surfaces the
+      highly-expressed <em>canonical</em> masters that a low abundance floor lets ultra-specific but modestly
+      expressed TFs outrank: breast LumA / LumB → <b>ESR1, FOXA1, GATA3</b>, Basal → FOXM1 / MYBL2. Metastatic
+      and normal samples inherit their patient's cancer via the sample barcode. A stage axis is not shown: the
+      AJCC-stage clinical table is not freely fetchable from the Xena mirror.</p>
 
       <h3>How an MTF is called</h3>
       <p>A factor is a <b>specific MTF</b> in a group if it is both <b>significantly group-specific</b>

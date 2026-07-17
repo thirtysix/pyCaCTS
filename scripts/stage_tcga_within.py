@@ -10,7 +10,7 @@ its OWN groups (reference set = that cancer's samples only), on two axes:
 (A stage axis would go here too, but the AJCC-stage clinical table isn't freely fetchable from Xena.)
 
 Writes dashboard/data/tcga/within_<axis>_mtfs.tsv (cols: cancer, group, group_size, tf, category, jsd_rank,
-cacts_score, group_expr_log2tpm, fdr_log10) + within_manifest.json ({axis: {cancer: {group: n}}}). Each cancer's
+cacts_score, group_expr_log2tpm, fdr_log10, top5e) + within_manifest.json ({axis: {cancer: {group: n}}}). Each cancer's
 samples are found via the patient barcode (first 12 chars) joined to the CaCTS primary sample map, so
 metastatic / normal samples inherit their patient's cancer. Same inputs as stage_tcga.py."""
 import os, sys, json
@@ -34,7 +34,9 @@ EXPR_FLOOR = 1.0                                                # ... AND mean e
 
 def score_groups(expr, labels):
     """labels: Series barcode -> within-group. Returns (rows, {group: size}) or (None, None) if <2 groups.
-    Each group's specific / non-specific MTFs, scored across this cancer's own subgroups (FDR + 1 TPM floor)."""
+    Each group's specific / non-specific MTFs, scored across this cancer's own subgroups (FDR + 1 TPM floor).
+    Rows carry a top5e flag (top-5% expressed here) so the tab can offer an 'abundant' canonical-master view
+    alongside the FDR call: within one lineage that surfaces the highly-expressed masters (LumA -> ESR1/FOXA1)."""
     lab = labels.dropna()
     lab = lab[[c for c in lab.index if c in expr.columns]]
     counts = lab.value_counts()
@@ -45,17 +47,19 @@ def score_groups(expr, labels):
     gsize = counts[keep].astype(int)
     rep = expr[list(lab.index)].T.groupby(lab).mean().T.dropna(how="all").fillna(0.0)
     S = score.cacts_score_matrix(rep)
+    kE = round(0.05 * S.shape[0])
     rows = []
     for g in rep.columns:
         f = stats.empirical_fdr_log10(S[g])                    # log10(empirical-null FDR) per TF
         cats = cfilter.mtf_categories_fdr(S, rep, g, fdr_log10=f, fdr_max=FDR_MAX, expr_floor=EXPR_FLOOR)
+        top_expr = set(rep[g].nlargest(kE).index)              # top-5% expressed (the 'abundant' view's pool)
         rk = S[g].rank(method="first")
         for cat in ("specific", "non_specific"):
             for tf in cats[cat]:
                 rows.append(dict(group=g, group_size=int(gsize.get(g, 0)), tf=tf, category=cat,
                                  jsd_rank=int(rk[tf]), cacts_score=round(float(S.loc[tf, g]), 6),
                                  group_expr_log2tpm=round(float(rep.loc[tf, g]), 2),
-                                 fdr_log10=round(float(f[tf]), 3)))
+                                 fdr_log10=round(float(f[tf]), 3), top5e=int(tf in top_expr)))
     return rows, gsize.to_dict()
 
 
@@ -100,7 +104,7 @@ def main():
     for axis in ("subtype", "tumornormal"):
         allrows = [r for rows in axes[axis].values() for r in rows]
         cols = ["cancer", "group", "group_size", "tf", "category", "jsd_rank", "cacts_score",
-                "group_expr_log2tpm", "fdr_log10"]
+                "group_expr_log2tpm", "fdr_log10", "top5e"]
         pd.DataFrame(allrows)[cols].to_csv(OUT / f"within_{axis}_mtfs.tsv", sep="\t", index=False)
         print(f"  {axis}: {len(manifest[axis])} cancers")
     (OUT / "within_manifest.json").write_text(json.dumps(manifest, separators=(",", ":")))
