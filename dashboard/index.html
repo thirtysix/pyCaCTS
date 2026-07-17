@@ -160,8 +160,13 @@
 
     <!-- Within-cancer -->
     <section class="panel" data-tab="within">
-      <div class="phead"><div class="eyebrow">Compare</div><h1>Within-cancer master TFs</h1>
-        <p class="lede">Inside a single cancer, which master TFs distinguish its subgroups. CaCTS is re-scored with the reference set restricted to <b>one cancer's own samples</b>, across either its <b>molecular subtypes</b> (TCGA subtype working-group calls) or <b>tumor vs adjacent-normal</b> tissue. Each column is a subgroup, ordered by CaCTS specificity. The <b>Call</b> toggle picks the definition: <b>Significant</b> = the tool-wide call (empirical-null FDR &lt; 0.10 <b>and</b> mean ≥ 1 TPM), which favours the most subgroup-<em>discriminative</em> factors (breast LumA surfaces the progesterone receptor PGR); <b>Abundant</b> = the top-5% expressed TFs ranked by specificity, i.e. the highly-expressed <em>canonical</em> masters (breast LumA / LumB → ESR1 / FOXA1 / GATA3). Within one shared lineage the two views diverge and complement each other. Some subgroups have many specific TFs, some none, which is itself informative.</p></div>
+      <div class="phead wide"><div class="eyebrow">Compare</div><h1>Within-cancer master TFs</h1>
+        <p class="lede">Inside a single cancer, which master TFs distinguish its subgroups. CaCTS is re-scored on <b>that cancer's own samples</b>, split by the <b>Axis</b> toggle (molecular subtype, or tumor vs adjacent-normal). The <b>Call</b> toggle picks how a master TF is defined:</p>
+        <div class="lede-grid">
+          <div class="lede-point"><span class="lp-lab">Significant:</span> empirical-null FDR &lt; 0.10 <b>and</b> mean ≥ 1 TPM (the tool-wide call). Favours the most subgroup-<em>discriminative</em> factors: breast LumA surfaces the progesterone receptor <b>PGR</b>.</div>
+          <div class="lede-point"><span class="lp-lab">Abundant:</span> the top-5% expressed TFs ranked by specificity, the highly-expressed <em>canonical</em> masters. Breast LumA / LumB → <b>ESR1 / FOXA1 / GATA3</b>.</div>
+        </div>
+        <p class="lede lede-foot">Within one shared lineage the two views diverge and complement each other; some subgroups have many master TFs, some none, which is itself informative.</p></div>
       <div class="controls">
         <span class="ctl-label" title="split each cancer by its molecular subtypes, or by tumor vs adjacent-normal tissue">Axis</span>
         <div class="seg" id="within-axis" role="tablist"></div>

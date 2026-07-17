@@ -47,12 +47,15 @@ const Within = (() => {
     const gnames = allGroups.sort((a, b) =>
       order ? order.indexOf(a) - order.indexOf(b) : sizeOf(b) - sizeOf(a) || a.localeCompare(b));
 
-    const axisWord = axis === "subtype" ? "molecular subtypes" : "sample states (tumor vs adjacent normal)";
-    U.el("within-desc").innerHTML =
-      `<b>${U.esc(cancerLabel(code))}</b> scored across its own ${gnames.length} ${axisWord} (reference set = this cancer only). ` +
-      (abundant
-        ? `Each column lists that subgroup's <b>abundant</b> master TFs (top-5% expressed here), ordered by CaCTS specificity; <span class="pill spec tiny">S</span> marks those also FDR-significant. The value shown is expression (log₂TPM+1). Within one lineage this surfaces the highly-expressed canonical masters.`
-        : `Each column lists that subgroup's <b>specific</b> master TFs (empirical-null FDR &lt; 0.10 AND mean ≥ 1 TPM), ordered by CaCTS specificity; the value shown is the FDR.`);
+    const axisWord = axis === "subtype" ? "molecular subtypes" : "sample states (tumor vs adjacent-normal)";
+    const sep = '<span class="sep">·</span>';
+    const callBit = abundant
+      ? `Call: <b>Abundant</b> <span class="mono">(top-5% expressed, ranked by specificity; value = expression, <span class="pill spec tiny">S</span> = also FDR-significant)</span>`
+      : `Call: <b>Significant</b> <span class="mono">(FDR &lt; 0.10 &amp; ≥ 1 TPM; value = FDR)</span>`;
+    U.el("within-desc").innerHTML = [
+      `<b>${U.esc(cancerLabel(code))}</b>`, `${gnames.length} ${axisWord}`,
+      `reference set = this cancer only`, callBit,
+    ].join(sep);
 
     const noun = abundant ? "abundant" : "specific";
     U.el("within-cards").innerHTML = gnames.map(g => {
