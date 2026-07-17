@@ -36,8 +36,10 @@ const About = (() => {
       (that column is blank for TCGA), and the sample-type level is cross-cutting across all cancers, so it
       reads most cleanly within a single tumor type. The <b>Tumor vs model</b> tab pairs each tumor type
       with its matched DepMap group (a curated crosswalk) and splits their specific master TFs into
-      <b>shared</b> (preserved in the model), <b>tumor-only</b>, and <b>model-only</b> (e.g. ovarian: PAX8
-      shared, but WT1 / SOX17 tumor-only, lost in the cell-line models).</p>
+      <b>shared</b> (preserved in the model), <b>tumor-only</b>, and <b>model-only</b> (e.g. ovarian: the core
+      lineage program <b>PAX8 / SOX17 / WT1 / MECOM</b> is shared, retained in the cell-line models under this
+      sensitive FDR call, while differentiation / hormonal factors such as PAX2 and ESR1 are tumor-only, lost
+      in culture).</p>
 
       <h3>Within-cancer master TFs</h3>
       <p>The <b>Within-cancer</b> tab re-scores CaCTS with the reference set restricted to a <b>single
@@ -50,9 +52,12 @@ const About = (() => {
       some subgroups have many such TFs while some (e.g. lung adenocarcinoma normal tissue) have none, which is
       itself informative. <b>Abundant</b> (the top-5% expressed TFs ranked by specificity) instead surfaces the
       highly-expressed <em>canonical</em> masters that a low abundance floor lets ultra-specific but modestly
-      expressed TFs outrank: breast LumA / LumB → <b>ESR1, FOXA1, GATA3</b>, Basal → FOXM1 / MYBL2. Metastatic
-      and normal samples inherit their patient's cancer via the sample barcode. A stage axis is not shown: the
-      AJCC-stage clinical table is not freely fetchable from the Xena mirror.</p>
+      expressed TFs outrank: breast LumA / LumB → <b>ESR1, FOXA1, GATA3</b>, Basal → FOXM1 / MYBL2. A third
+      <b>Stage</b> axis (19 cancers that AJCC-stage) splits tumor samples by major stage I / II / III / IV,
+      with the per-patient stage pulled from the GDC clinical API (<code>build_tcga_stage.py</code>); advanced
+      stages tend to carry more stage-specific TFs (e.g. lung adenocarcinoma stage III surfaces the EMT /
+      developmental factors HOXA10, HMGA2, FOSL1). Metastatic and normal samples inherit their patient's
+      cancer via the sample barcode.</p>
 
       <h3>How an MTF is called</h3>
       <p>A factor is a <b>specific MTF</b> in a group if it is both <b>significantly group-specific</b>

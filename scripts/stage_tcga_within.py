@@ -2,12 +2,13 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 # Copyright (C) 2026 Harlan Barker
 """Stage WITHIN-cancer CaCTS for the dashboard's 'Within-cancer' tab: for each cancer, score CaCTS across
-its OWN groups (reference set = that cancer's samples only), on two axes:
+its OWN groups (reference set = that cancer's samples only), on up to three axes:
 
   subtype      : the cancer's molecular subtypes (UCSC Xena Subtype_Selected)
   tumornormal  : the cancer's [Tumor, Normal-tissue] samples (from the TCGA barcode)
-
-(A stage axis would go here too, but the AJCC-stage clinical table isn't freely fetchable from Xena.)
+  stage        : the cancer's AJCC major stages I / II / III / IV (GDC clinical, via build_tcga_stage.py;
+                 tumor samples only, since adjacent-normal tissue has no tumor stage). Skipped if the
+                 PYCACTS_TCGA_STAGE map is absent, and only cancers that AJCC-stage appear.
 
 Writes dashboard/data/tcga/within_<axis>_mtfs.tsv (cols: cancer, group, group_size, tf, category, jsd_rank,
 cacts_score, group_expr_log2tpm, fdr_log10, top5e) + within_manifest.json ({axis: {cancer: {group: n}}}). Each cancer's
@@ -25,6 +26,7 @@ DATA = HERE.parent / "data"
 EXPR = Path(os.environ.get("PYCACTS_TCGA_EXPR", DATA / "tcga" / "TCGA_toil_tpm_log2p1.tsv.gz"))
 SMAP = Path(os.environ.get("PYCACTS_TCGA_TYPES", DATA / "tcga" / "TCGA_sample_types.txt"))
 SUBTYPE = Path(os.environ.get("PYCACTS_TCGA_SUBTYPE", DATA / "tcga" / "TCGASubtype.tsv.gz"))
+STAGE = Path(os.environ.get("PYCACTS_TCGA_STAGE", DATA / "tcga" / "TCGA_stage.tsv"))   # patient -> AJCC major stage
 TF = DATA / "CaCTS_merged_1671_TFs.txt"
 OUT = HERE.parent / "dashboard" / "data" / "tcga"; OUT.mkdir(parents=True, exist_ok=True)
 MIN_N = 10                                                      # min samples per within-cancer group
@@ -84,8 +86,21 @@ def main():
         v = bc_sub.get(c[:15])
         return None if (v is None or pd.isna(v) or v == "NA" or str(v).endswith(".NA")) else v
 
+    pat2stage = {}
+    if STAGE.exists():                                          # optional GDC-derived AJCC major-stage map
+        sdf = pd.read_csv(STAGE, sep="\t", dtype=str)
+        pat2stage = dict(zip(sdf["patient"], sdf["stage"]))
+
+    def stage_of(c):                                           # AJCC stage of a TUMOR sample (normal has none)
+        if c[13:15] == "11":
+            return None
+        s = pat2stage.get(c[:12])
+        return f"Stage {s}" if s else None
+
     axes = {"subtype": {}, "tumornormal": {}}
     manifest = {"subtype": {}, "tumornormal": {}}
+    if pat2stage:
+        axes["stage"] = {}; manifest["stage"] = {}
     for cancer, samples in bc_cancer.groupby(bc_cancer).groups.items():
         cols = list(samples)
         # subtype axis: this cancer's molecular subtypes
@@ -100,15 +115,22 @@ def main():
         if rows and set(gs) == {"Tumor", "Normal"}:
             for r in rows: r["cancer"] = cancer
             axes["tumornormal"][cancer] = rows; manifest["tumornormal"][cancer] = gs
+        # AJCC stage axis (tumor samples only), for cancers that stage
+        if pat2stage:
+            stlab = pd.Series({c: stage_of(c) for c in cols})
+            rows, gs = score_groups(expr, stlab)
+            if rows:
+                for r in rows: r["cancer"] = cancer
+                axes["stage"][cancer] = rows; manifest["stage"][cancer] = gs
 
-    for axis in ("subtype", "tumornormal"):
+    for axis in axes:
         allrows = [r for rows in axes[axis].values() for r in rows]
         cols = ["cancer", "group", "group_size", "tf", "category", "jsd_rank", "cacts_score",
                 "group_expr_log2tpm", "fdr_log10", "top5e"]
         pd.DataFrame(allrows)[cols].to_csv(OUT / f"within_{axis}_mtfs.tsv", sep="\t", index=False)
         print(f"  {axis}: {len(manifest[axis])} cancers")
     (OUT / "within_manifest.json").write_text(json.dumps(manifest, separators=(",", ":")))
-    print("wrote within_{subtype,tumornormal}_mtfs.tsv + within_manifest.json")
+    print(f"wrote within_<axis>_mtfs.tsv for {list(axes)} + within_manifest.json")
 
 
 if __name__ == "__main__":

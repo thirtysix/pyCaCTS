@@ -199,8 +199,8 @@ GitHub Pages deploy.)
 ```
 pycacts/        the package (score / grouping / io / filter / stats [empirical-null FDR])
 scripts/        runners: run_divisions, stage_dashboard_data, stage_line_data, build_gene_info,
-                stage_essentiality, convert_toil_tcga_tpm, stage_tcga, stage_tcga_within, build_crosswalk,
-                benchmark_vs_r, profile_speedup, cacts_reference.R
+                stage_essentiality, convert_toil_tcga_tpm, stage_tcga, build_tcga_stage, stage_tcga_within,
+                build_crosswalk, benchmark_vs_r, profile_speedup, cacts_reference.R
 examples/       quickstart.py (DepMap) + tcga.py (TCGA) runnable examples
 dashboard/      static results explorer (index.html + css/ + js/ + data/); GitHub-Pages-ready
 data/           bundled TF list + data pointers (large inputs are NOT committed, see data/README.md)

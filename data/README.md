@@ -55,6 +55,7 @@ type). It needs three downloads (paths via env vars; see the README worked examp
 | TCGA expression (TPM) | `PYCACTS_TCGA_EXPR` | Xena **Toil** `tcga_RSEM_gene_tpm` re-encoded to log2(TPM+1) by `convert_toil_tcga_tpm.py` (same units as DepMap; a literal 1 TPM floor) | toil-xena-hub S3 |
 | sample → tumor type | `PYCACTS_TCGA_TYPES` | CaCTS `SuppTable1-34-TCGAID.txt` (33 types) | github.com/lawrenson-lab/CaCTS `files/` |
 | sample → molecular subtype | `PYCACTS_TCGA_SUBTYPE` | UCSC Xena `TCGASubtype.20170308.tsv` (`Subtype_Selected`) | pancanatlas.xenahubs.net |
+| patient → AJCC stage | `PYCACTS_TCGA_STAGE` | `TCGA_stage.tsv` (patient, major stage I/II/III/IV) from `build_tcga_stage.py`, for the within-cancer Stage axis | GDC clinical API |
 
 `convert_toil_tcga_tpm.py` prepares `PYCACTS_TCGA_EXPR` from two Toil-hub downloads: the RSEM gene-TPM
 matrix (`PYCACTS_TOIL_TPM`, log2(TPM+0.001), Ensembl-keyed) and the gencode.v23 gene probemap

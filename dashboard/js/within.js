@@ -5,8 +5,11 @@
    breast LumA -> ESR1 / FOXA1 / GATA3). Within one lineage the two views diverge; both are shown. */
 const Within = (() => {
   let manifest = null, typeDesc = {}, combo, axis = "subtype", call = "fdr", cur = null, curRows = null;
-  const AXES = [["subtype", "Molecular subtype"], ["tumornormal", "Tumor vs normal"]];
+  const AXES = [["subtype", "Molecular subtype"], ["tumornormal", "Tumor vs normal"], ["stage", "Stage"]];
   const CALLS = [["fdr", "Significant"], ["abundant", "Abundant"]];
+  const axisNoun = k => k === "subtype" ? "molecular subtypes"
+    : k === "stage" ? "AJCC major stages (tumor samples)" : "sample states (tumor vs adjacent-normal)";
+  const STAGE_ORDER = ["Stage I", "Stage II", "Stage III", "Stage IV"];
   const file = a => `data/tcga/within_${a}_mtfs.tsv`;
   const DEFAULT = "BRCA";
   const CAP = 40;                                        // TFs shown per card (rest in the TSV)
@@ -42,12 +45,12 @@ const Within = (() => {
     const groups = {};
     for (const r of rows) if (keep(r)) (groups[r.group] ||= []).push(r);
     const allGroups = [...new Set(rows.map(r => r.group))];
-    const order = axis === "tumornormal" ? ["Tumor", "Normal"] : null;
+    const order = axis === "tumornormal" ? ["Tumor", "Normal"] : axis === "stage" ? STAGE_ORDER : null;
     const sizeOf = g => { const any = rows.find(r => r.group === g); return any ? +any.group_size : 0; };
     const gnames = allGroups.sort((a, b) =>
       order ? order.indexOf(a) - order.indexOf(b) : sizeOf(b) - sizeOf(a) || a.localeCompare(b));
 
-    const axisWord = axis === "subtype" ? "molecular subtypes" : "sample states (tumor vs adjacent-normal)";
+    const axisWord = axisNoun(axis);
     const sep = '<span class="sep">·</span>';
     const callBit = abundant
       ? `Call: <b>Abundant</b> <span class="mono">(top-5% expressed, ranked by specificity; value = expression, <span class="pill spec tiny">S</span> = also FDR-significant)</span>`
@@ -106,7 +109,7 @@ const Within = (() => {
       DataLoader.loadJSON("data/tcga/within_manifest.json"),
       DataLoader.loadJSON("data/tcga/type_desc.json").catch(() => ({})),
     ]);
-    seg("within-axis", AXES.map(([k, l]) => [k, l, `score each cancer across its ${k === "subtype" ? "molecular subtypes" : "tumor vs adjacent-normal samples"}`]), axis, "axis", setAxis);
+    seg("within-axis", AXES.map(([k, l]) => [k, l, `score each cancer across its ${axisNoun(k)}`]), axis, "axis", setAxis);
     seg("within-call", [
       ["fdr", "Significant", "empirical-null FDR &lt; 0.10 AND mean ≥ 1 TPM (the tool-wide call)"],
       ["abundant", "Abundant", "top-5% expressed, ranked by specificity: the highly-expressed canonical masters (e.g. LumA → ESR1 / FOXA1 / GATA3)"],

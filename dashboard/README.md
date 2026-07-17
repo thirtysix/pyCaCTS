@@ -15,8 +15,9 @@ from `data/`; no build step.
 - **Tumor vs model**: for a cancer, its specific master TFs in the TCGA tumor beside the matched DepMap
   cell-line models (a curated crosswalk), split into shared / tumor-only / model-only; TSV download.
 - **Within-cancer**: CaCTS re-scored inside one cancer (reference set = that cancer's own samples), across
-  either its molecular subtypes or tumor vs adjacent-normal tissue; one card per subgroup listing its
-  most-specific expressed TFs. Breast into LumA / LumB surfaces ESR1 / FOXA1 / GATA3. TSV download.
+  its molecular subtypes, tumor vs adjacent-normal tissue, or AJCC stage (I to IV, 19 cancers); one card per
+  subgroup. A **Call** toggle switches between Significant (FDR &lt; 0.10 & ≥ 1 TPM, discriminative) and
+  Abundant (top-5% expressed, the canonical masters, e.g. breast LumA / LumB → ESR1 / FOXA1 / GATA3). TSV download.
 - **TF finder**: where a given TF is a specific master regulator.
 - **About & methods**: method, MTF-calling rule, and credit to the original CaCTS.
 
@@ -39,9 +40,11 @@ Regenerate `data/` from the analysis with:
   sample map, and Xena subtype calls; see `../data/README.md`).
 - `scripts/build_crosswalk.py`, `crosswalk.json` (the curated TCGA-type to DepMap-group pairing for the
   Tumor-vs-model tab; needs both manifests).
-- `scripts/stage_tcga_within.py`, the `within_{subtype,tumornormal}_mtfs.tsv` + `within_manifest.json`
-  (within-cancer CaCTS: each cancer re-scored across its own molecular subtypes or tumor/normal samples;
-  same TCGA inputs / env vars as `stage_tcga.py`, plus `type_desc.json` for the cancer-name labels).
+- `scripts/build_tcga_stage.py`, `TCGA_stage.tsv` (patient to AJCC major-stage map, queried from the GDC
+  clinical API) for the within-cancer Stage axis.
+- `scripts/stage_tcga_within.py`, the `within_{subtype,tumornormal,stage}_mtfs.tsv` + `within_manifest.json`
+  (within-cancer CaCTS: each cancer re-scored across its own molecular subtypes, tumor/normal samples, or
+  AJCC stages; same TCGA inputs / env vars as `stage_tcga.py`, plus `PYCACTS_TCGA_STAGE` and `type_desc.json`).
 
 Divisions shipped: lineage (29 groups), primary disease (79), subtype (191), model type (192), plus the
 per-cell-line level (~1,450 lines). All from DepMap/CCLE expression scored against the CaCTS 1,671-TF
